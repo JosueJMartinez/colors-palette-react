@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import ColorBox from './ColorBox';
+import '../../css/Palette.css';
 
 export default class Palette extends Component {
 	render() {
@@ -7,11 +9,8 @@ export default class Palette extends Component {
 			<div className="Palette">
 				{/* NavBar goes here */}
 				<div className="Palette-colors">
-					{colors.map(c => (
-						<p key={c.color} id={c.color}>
-							{c.name}, {c.color}
-						</p>
-					))}
+					{/* Mapping colors array into individual colorboxes */}
+					{colors.map(c => <ColorBox key={c.color} {...c} />)}
 				</div>
 				{/* footer here */}
 			</div>

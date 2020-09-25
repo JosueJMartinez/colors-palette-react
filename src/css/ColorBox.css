@@ -24,4 +24,9 @@
 	line-height: 20px;
 	color: white;
 	text-transform: uppercase;
+	opacity: 0;
+}
+
+.ColorBox .copy-button:hover {
+	opacity: 100%;
 }

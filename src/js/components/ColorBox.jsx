@@ -10,8 +10,14 @@ export default class ColorBox extends Component {
 				style={{ backgroundColor: color }}
 				id={color}
 			>
-				<span>More</span>
-				{color}, {name}
+				<div className="copy-container">
+					Copy
+					<div className="content">
+						<span>{name}</span>{' '}
+						<button className="copy-button">Copy</button>
+						<span className="more-link">More</span>
+					</div>
+				</div>
 			</div>
 		);
 	}

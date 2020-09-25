@@ -11,7 +11,6 @@ export default class ColorBox extends Component {
 				id={color}
 			>
 				<div className="copy-container">
-					Copy
 					<div className="content">
 						<span>{name}</span>{' '}
 						<button className="copy-button">Copy</button>

@@ -12,9 +12,9 @@ export default class ColorBox extends Component {
 			>
 				<div className="copy-container">
 					<div className="content">
-						<span>{name}</span>{' '}
+						<div className="color-name">{name}</div>{' '}
 						<button className="copy-button">Copy</button>
-						<span className="more-link">More</span>
+						<div className="more-link">More</div>
 					</div>
 				</div>
 			</div>

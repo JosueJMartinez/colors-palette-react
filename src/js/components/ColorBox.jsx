@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+
 import '../../css/ColorBox.css';
 
 export default class ColorBox extends Component {
@@ -14,7 +15,7 @@ export default class ColorBox extends Component {
 
 	animate = () => {
 		this.setState({ copied: true }, () => {
-			this.props.toggleCopyMessage(this.props.color);
+			this.props.toggleCopyMessage(this.props.hex);
 			setTimeout(() => {
 				this.setState({ copied: false }, () =>
 					this.props.toggleCopyMessage('')

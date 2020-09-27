@@ -47,3 +47,26 @@
 	font-size: 2rem;
 	font-weight: 100;
 }
+
+.Palette .slider-wrapper {
+	width: 340px;
+	margin: 0 10px;
+	display: inline-block;
+}
+
+.Palette .rc-slider-track {
+	background-color: transparent;
+}
+
+.Palette .rc-slider-track {
+	height: 8px;
+}
+
+.Palette .rc-slider-handle {
+	background-color: green;
+	outline: none;
+	border: 2px solid green;
+	box-shadow: none;
+	width: 16px;
+	height: 16;
+}

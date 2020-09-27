@@ -1,8 +1,11 @@
 import React from 'react';
-import '../css/App.css';
+
 import Palette from './components/Palette';
+
 import seedColors from './seedColors';
 import genPalette from './chromaHelpers';
+
+import '../css/App.css';
 
 function App() {
 	return (

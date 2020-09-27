@@ -5,7 +5,6 @@
 	display: inline-block;
 	position: relative;
 	cursor: pointer;
-	text-transform: uppercase;
 }
 
 .ColorBox .copy-button {
@@ -27,6 +26,7 @@
 	opacity: 0;
 	cursor: pointer;
 	transition: 0.5s;
+	text-transform: uppercase;
 }
 
 .ColorBox:hover .copy-button {

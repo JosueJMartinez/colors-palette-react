@@ -14,13 +14,12 @@ export default class ColorBox extends Component {
 
 	animate = () => {
 		this.setState({ copied: true }, () => {
+			this.props.toggleCopyMessage(this.props.color);
 			setTimeout(() => {
-				this.props.toggleCopyMessage(this.props.color);
-				setTimeout(() => {
-					this.props.toggleCopyMessage('');
-					this.setState({ copied: false });
-				}, 900);
-			}, 600);
+				this.setState({ copied: false }, () =>
+					this.props.toggleCopyMessage('')
+				);
+			}, 1500);
 		});
 	};
 

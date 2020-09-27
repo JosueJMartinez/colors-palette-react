@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Slider, { Range } from 'rc-slider';
 
 import ColorBox from './ColorBox';
 
 import 'rc-slider/assets/index.css';
 import '../../css/Palette.css';
+import NavBar from './NavBar';
 
 export default class Palette extends Component {
 	state = {
@@ -32,15 +32,7 @@ export default class Palette extends Component {
 		return (
 			<div className="Palette">
 				{/* NavBar goes here */}
-				<div className="slider-wrapper">
-					<Slider
-						defaultValue={level}
-						min={100}
-						max={900}
-						onAfterChange={this.handleSlider}
-						step={100}
-					/>
-				</div>
+				<NavBar level={level} handleSlider={this.handleSlider} />
 
 				<div className={`copy-overlay-text ${show && 'show'}`}>
 					<h1>Copied</h1>

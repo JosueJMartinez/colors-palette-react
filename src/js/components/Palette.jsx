@@ -5,6 +5,7 @@ import CloseIcon from '@material-ui/icons/Close';
 
 import NavBar from './NavBar';
 import ColorBox from './ColorBox';
+import Footer from './Footer';
 
 import 'rc-slider/assets/index.css';
 import '../../css/Palette.css';
@@ -100,6 +101,7 @@ export default class Palette extends Component {
 					}
 				/>
 				{/* footer here */}
+				<Footer />
 			</div>
 		);
 	}

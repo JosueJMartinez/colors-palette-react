@@ -4,4 +4,12 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	color: white;
+	font-weight: bold;
+	font-size: .9rem;
+}
+
+.Footer .emoji {
+	font-size: 1.2rem;
+	margin-right: 1rem;
 }

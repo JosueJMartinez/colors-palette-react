@@ -8,7 +8,7 @@ export default class Footer extends Component {
 		return (
 			<footer className="Footer">
 				<div>
-					{emoji} {name}
+					<span className="emoji">{emoji}</span> {name}
 				</div>
 			</footer>
 		);

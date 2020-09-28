@@ -8,6 +8,7 @@ import Select from '@material-ui/core/Select';
 
 import 'rc-slider/assets/index.css';
 import '../../css/NavBar.css';
+import { Link } from 'react-router-dom';
 
 // const styles = theme => ({
 // 	formControl: {
@@ -31,7 +32,7 @@ export default class NavBar extends Component {
 		return (
 			<nav className="NavBar">
 				<div className="logo">
-					<a href="#">RCP</a>
+					<Link to="/">RCP</Link>
 				</div>
 				<div className="slider-wrapper">
 					<span>Level: {level}</span>

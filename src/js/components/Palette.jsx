@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
+import NavBar from './NavBar';
 import ColorBox from './ColorBox';
 
 import 'rc-slider/assets/index.css';
 import '../../css/Palette.css';
-import NavBar from './NavBar';
 
 export default class Palette extends Component {
 	state = {
@@ -13,12 +16,16 @@ export default class Palette extends Component {
 			color: ''
 		},
 		level: 500,
-		type: 'hex'
+		type: 'hex',
+		isOpen: false
 	};
 
 	toggleCopyMessage = color => {
 		this.setState(prevProps => ({
-			copyStatus: { show: !prevProps.copyStatus.show, color }
+			copyStatus: {
+				show: !prevProps.copyStatus.show,
+				color
+			}
 		}));
 	};
 
@@ -28,13 +35,17 @@ export default class Palette extends Component {
 
 	changeFormat = e => {
 		const { value, name } = e.target;
-		this.setState({ [name]: value });
+		this.setState({ [name]: value, isOpen: true });
+	};
+
+	handleClose = (event, reason) => {
+		this.setState({ isOpen: false });
 	};
 
 	render() {
 		const { colors, emoji, id, paletteName } = this.props;
 		const { show, color } = this.state.copyStatus;
-		const { level, type } = this.state;
+		const { level, type, isOpen } = this.state;
 
 		return (
 			<div className="Palette">
@@ -56,12 +67,38 @@ export default class Palette extends Component {
 						<ColorBox
 							key={c.id}
 							name={c.name}
-							type={c[this.state.type]}
+							type={c[type]}
 							id={c.id}
 							toggleCopyMessage={this.toggleCopyMessage}
 						/>
 					))}
 				</div>
+				<Snackbar
+					anchorOrigin={{
+						vertical: 'bottom',
+						horizontal: 'left'
+					}}
+					open={isOpen}
+					autoHideDuration={1500}
+					onClose={this.handleClose}
+					message={
+						<span id="message-id">Format is {type.toUpperCase()}</span>
+					}
+					ContentProps={{ 'aria-describedby': 'message-id' }}
+					action={
+						<React.Fragment>
+							<IconButton
+								size="small"
+								aria-label="close"
+								color="inherit"
+								onClick={this.handleClose}
+								onClose={this.handleClose}
+							>
+								<CloseIcon fontSize="small" />
+							</IconButton>
+						</React.Fragment>
+					}
+				/>
 				{/* footer here */}
 			</div>
 		);

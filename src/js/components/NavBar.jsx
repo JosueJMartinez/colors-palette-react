@@ -46,22 +46,20 @@ export default class NavBar extends Component {
 					</div>
 				</div>
 				<div className="select-container">
-					<FormControl variant="outlined">
-						<Select
-							labelId="demo-simple-select-outlined-label"
-							id="demo-simple-select-outlined"
-							name="type"
-							value={type}
-							onChange={handleFormat}
-							label="Format"
-						>
-							<MenuItem value="hex">HEX - #ffffff</MenuItem>
-							<MenuItem value="rgb">RGB - RGB(255,255,255)</MenuItem>
-							<MenuItem value="rgba">
-								RGBA - RGB(255,255,255, 1.0)
-							</MenuItem>
-						</Select>
-					</FormControl>
+					{/* <FormControl variant="outlined"> */}
+					<Select
+						labelId="demo-simple-select-label"
+						id="demo-simple-select"
+						name="type"
+						value={type}
+						onChange={handleFormat}
+						label="Format"
+					>
+						<MenuItem value="hex">HEX - #ffffff</MenuItem>
+						<MenuItem value="rgb">RGB - RGB(255,255,255)</MenuItem>
+						<MenuItem value="rgba">RGBA - RGB(255,255,255, 1.0)</MenuItem>
+					</Select>
+					{/* </FormControl> */}
 				</div>
 			</nav>
 		);

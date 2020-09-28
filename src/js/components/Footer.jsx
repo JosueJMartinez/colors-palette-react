@@ -4,9 +4,12 @@ import '../../css/Footer.css';
 
 export default class Footer extends Component {
 	render() {
+		const { emoji, name } = this.props;
 		return (
 			<footer className="Footer">
-				<div>Here I am RCP</div>
+				<div>
+					{emoji} {name}
+				</div>
 			</footer>
 		);
 	}

@@ -101,7 +101,7 @@ export default class Palette extends Component {
 					}
 				/>
 				{/* footer here */}
-				<Footer />
+				<Footer emoji={emoji} name={paletteName} />
 			</div>
 		);
 	}

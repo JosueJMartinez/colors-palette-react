@@ -10,7 +10,7 @@ import '../css/App.css';
 function App() {
 	return (
 		<div className="App">
-			<Palette {...genPalette(seedColors[4])} />
+			<Palette {...genPalette(seedColors[0])} />
 		</div>
 	);
 }

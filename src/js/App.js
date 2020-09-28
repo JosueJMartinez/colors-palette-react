@@ -7,7 +7,7 @@ import seedColors from './seedColors';
 import genPalette from './chromaHelpers';
 
 import '../css/App.css';
-import Home from './components/Home';
+import PaletteList from './components/PaletteList';
 
 function App() {
 	const grabPalette = id => {
@@ -21,7 +21,7 @@ function App() {
 				<Route
 					exact
 					path="/"
-					render={() => <Home palettes={seedColors} />}
+					render={() => <PaletteList palettes={seedColors} />}
 				/>
 				<Route
 					exact

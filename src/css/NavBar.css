@@ -43,6 +43,13 @@
 	outline: none;
 	border: 2px solid green;
 	box-shadow: none;
-	width: 16px;
-	height: 16;
+	width: 14px;
+	height: 14px;
+}
+
+.NavBar .select-container {
+	/* height: 50%; */
+	/* width: 20%; */
+	/* display: flex;
+	align-items: center; */
 }

@@ -12,7 +12,8 @@ export default class Palette extends Component {
 			show: false,
 			color: ''
 		},
-		level: 500
+		level: 500,
+		type: 'hex'
 	};
 
 	toggleCopyMessage = color => {
@@ -25,14 +26,25 @@ export default class Palette extends Component {
 		this.setState({ level: newLevel });
 	};
 
+	changeFormat = e => {
+		const { value, name } = e.target;
+		this.setState({ [name]: value });
+	};
+
 	render() {
 		const { colors, emoji, id, paletteName } = this.props;
 		const { show, color } = this.state.copyStatus;
-		const { level } = this.state;
+		const { level, type } = this.state;
+
 		return (
 			<div className="Palette">
 				{/* NavBar goes here */}
-				<NavBar level={level} handleSlider={this.handleSlider} />
+				<NavBar
+					level={level}
+					handleSlider={this.handleSlider}
+					handleFormat={this.changeFormat}
+					type={type}
+				/>
 
 				<div className={`copy-overlay-text ${show && 'show'}`}>
 					<h1>Copied</h1>
@@ -43,7 +55,9 @@ export default class Palette extends Component {
 					{colors[level].map(c => (
 						<ColorBox
 							key={c.id}
-							{...c}
+							name={c.name}
+							type={c[this.state.type]}
+							id={c.id}
 							toggleCopyMessage={this.toggleCopyMessage}
 						/>
 					))}

@@ -15,27 +15,26 @@ export default class ColorBox extends Component {
 
 	animate = () => {
 		this.setState({ copied: true }, () => {
-			this.props.toggleCopyMessage(this.props.hex);
+			this.props.toggleCopyMessage(this.props.type);
 			setTimeout(() => {
-				this.setState({ copied: false }, () =>
-					this.props.toggleCopyMessage('')
-				);
+				this.props.toggleCopyMessage('');
+				this.setState({ copied: false });
 			}, 1500);
 		});
 	};
 
 	render() {
-		const { hex, id, rgb, rbga, name } = this.props;
+		const { type, id, name } = this.props;
 		const { copied } = this.state;
 		return (
-			<CopyToClipboard text={hex} onCopy={this.handleCopyClick}>
+			<CopyToClipboard text={type} onCopy={this.handleCopyClick}>
 				<div
 					className="ColorBox"
-					style={{ backgroundColor: hex }}
-					id={hex}
+					style={{ backgroundColor: type }}
+					id={type}
 				>
 					<div
-						style={{ backgroundColor: hex }}
+						style={{ backgroundColor: type }}
 						className={`copy-overlay ${copied && 'show'}`}
 					/>
 

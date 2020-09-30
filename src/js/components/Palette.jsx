@@ -21,6 +21,14 @@ export default class Palette extends Component {
 		isOpen: false
 	};
 
+	componentDidMount() {
+		document.body.classList.add('overflow');
+	}
+
+	componentWillUnmount() {
+		document.body.classList.remove('overflow');
+	}
+
 	toggleCopyMessage = color => {
 		this.setState(prevProps => ({
 			copyStatus: {

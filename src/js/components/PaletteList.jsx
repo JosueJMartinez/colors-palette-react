@@ -1,34 +1,42 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 
 import MiniPalette from './MiniPalette';
 
-export default class PaletteList extends Component {
+const styles = {
+	root: {},
+	nav: {
+		display: 'flex',
+		width: '100%',
+		justifyContent: 'space-between',
+		padding: '20px 0',
+		'& h1': {
+			margin: '0px'
+		}
+	}
+};
+
+class PaletteList extends Component {
 	render() {
-		const { palettes } = this.props;
-		const useStyles = makeStyles(theme => ({
-			root: {
-				flexGrow: 1
-			},
-			paper: {
-				padding: theme.spacing(2),
-				textAlign: 'center',
-				color: theme.palette.text.secondary
-			}
-		}));
+		const { classes, palettes } = this.props;
+
 		return (
-			<Container fixed>
+			<Container className={classes.root} fixed maxWidth={'sm'}>
+				<nav className={classes.nav}>
+					<h1>RCP</h1>
+					<Link>Create New Palette</Link>
+				</nav>
 				<Grid container spacing={3}>
-					<Grid item xs={12}>
-						<h1>List of Palette Colors</h1>
-					</Grid>
 					{palettes.map(p => <MiniPalette key={p.id} {...p} />)}
 				</Grid>
 			</Container>
 		);
 	}
 }
+
+export default withStyles(styles)(PaletteList);

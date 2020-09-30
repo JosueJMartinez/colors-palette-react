@@ -17,12 +17,12 @@ const styles = {
 		// height: '150px',
 	},
 	colors: {
-		height: '200px',
+		height: '150px',
 		borderRadius: '5px',
 		backgroundColor: 'grey'
 	},
 	color: {
-		height: '40px'
+		height: '30px'
 	},
 	title: {
 		display: 'flex',
@@ -32,11 +32,11 @@ const styles = {
 	},
 	link: {
 		textDecoration: 'none',
-		fontSize: '1.5rem'
+		fontSize: '.75rem'
 	},
 	emoji: {
-		fontSize: '1.75rem',
-		lineHeight: '22px',
+		fontSize: '1rem',
+		lineHeight: '15px',
 		textShadow: '1px 2px black'
 	}
 };

@@ -22,7 +22,7 @@ export default class PaletteList extends Component {
 		}));
 		return (
 			<Container fixed>
-				<Grid container spacing={2}>
+				<Grid container spacing={3}>
 					<Grid item xs={12}>
 						<h1>List of Palette Colors</h1>
 					</Grid>

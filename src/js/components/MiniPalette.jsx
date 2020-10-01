@@ -6,7 +6,9 @@ import Card from '@material-ui/core/Card';
 import { lineHeight } from '@material-ui/system';
 
 const styles = {
-	root: {},
+	root: {
+		padding: '6px !important'
+	},
 	card: {
 		backgroundColor: 'white',
 		borderRadius: '5px',
@@ -17,17 +19,25 @@ const styles = {
 		// height: '150px',
 	},
 	colors: {
+		display: 'flex',
+		flexWrap: 'wrap',
 		height: '150px',
-		borderRadius: '5px',
-		backgroundColor: 'grey'
+		borderRadius: '5px !important',
+		backgroundColor: 'grey',
+		overflow: 'hidden'
 	},
 	color: {
-		height: '30px'
+		height: '25%',
+		width: '20%'
+	},
+	'div.color :first-child': {
+		color: 'red'
 	},
 	title: {
 		display: 'flex',
 		justifyContent: 'space-between',
-		margin: '1rem 0'
+		margin: '0',
+		paddingTop: '0.5rem'
 		// color: '#2c1515'
 	},
 	link: {
@@ -44,28 +54,25 @@ const styles = {
 function MiniPalette(props) {
 	const { classes, id, paletteName, emoji, colors } = props;
 	return (
-		<Grid className={classes.root} id={id} item xs={12} sm={6} md={4}>
-			<Card className={classes.card}>
-				<Link className={classes.link} to={`/palette/${id}`}>
+		<Grid className={classes.root} id={id} item xs={12} sm={4}>
+			<Link className={classes.link} to={`/palette/${id}`}>
+				<div className={classes.card}>
 					<div className={classes.colors}>
-						<Grid container>
-							{colors.map((c, idx) => (
-								<Grid
-									className={classes.color}
-									item
-									xs={3}
-									style={{ backgroundColor: c.color }}
-									key={idx}
-								/>
-							))}
-						</Grid>
+						{colors.map((c, idx) => (
+							<div
+								className={classes.color}
+								item
+								xs={3}
+								style={{ backgroundColor: c.color }}
+								key={idx}
+							/>
+						))}
 					</div>
 					<h5 className={classes.title}>
-						<span>{paletteName}</span>{' '}
-						<span className={classes.emoji}>{emoji}</span>
+						{paletteName} <span className="emoji">{emoji}</span>
 					</h5>
-				</Link>
-			</Card>
+				</div>
+			</Link>
 		</Grid>
 	);
 }

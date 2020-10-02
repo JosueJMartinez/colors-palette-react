@@ -18,6 +18,11 @@ const styles = {
 		'& h1': {
 			margin: '0px'
 		}
+	},
+	create: {
+		color: 'white',
+		fontSize: '1rem',
+		textDecoration: 'none'
 	}
 };
 
@@ -29,7 +34,7 @@ class PaletteList extends Component {
 			<Container className={classes.root} fixed maxWidth={'sm'}>
 				<nav className={classes.nav}>
 					<h1>RCP</h1>
-					<Link>Create New Palette</Link>
+					<Link className={classes.create}>Create New Palette</Link>
 				</nav>
 				<Grid container spacing={3}>
 					{palettes.map(p => <MiniPalette key={p.id} {...p} />)}

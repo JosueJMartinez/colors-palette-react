@@ -5,6 +5,7 @@
 	align-items: center;
 	justify-content: flex-start;
 	height: 6%;
+	background-color: white;
 }
 
 .NavBar .logo {

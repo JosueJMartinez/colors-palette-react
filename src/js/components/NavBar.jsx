@@ -34,18 +34,22 @@ export default class NavBar extends Component {
 				<div className="logo">
 					<Link to="/">RCP</Link>
 				</div>
-				<div className="slider-wrapper">
-					<span>Level: {level}</span>
-					<div className="slider">
-						<Slider
-							defaultValue={level}
-							min={100}
-							max={900}
-							onAfterChange={handleSlider}
-							step={100}
-						/>
+				{this.props.handleSlider ? (
+					<div className="slider-wrapper">
+						<span>Level: {level}</span>
+						<div className="slider">
+							<Slider
+								defaultValue={level}
+								min={100}
+								max={900}
+								onAfterChange={handleSlider}
+								step={100}
+							/>
+						</div>
 					</div>
-				</div>
+				) : (
+					''
+				)}
 				<div className="select-container">
 					{/* <FormControl variant="outlined"> */}
 					<Select

@@ -79,6 +79,7 @@ export default class Palette extends Component {
 							type={c[type]}
 							id={c.id}
 							toggleCopyMessage={this.toggleCopyMessage}
+							paletteId={id}
 						/>
 					))}
 				</div>

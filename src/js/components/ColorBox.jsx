@@ -26,6 +26,7 @@ export default class ColorBox extends Component {
 	render() {
 		const { type, id, name } = this.props;
 		const { copied } = this.state;
+		const nameArr = name.split(' ');
 		return (
 			<CopyToClipboard text={type} onCopy={this.handleCopyClick}>
 				<div
@@ -40,7 +41,10 @@ export default class ColorBox extends Component {
 
 					<div className="copy-container">
 						<div className="content">
-							<span className="color-name">{name}</span>{' '}
+							<span className="color-name">
+								<div>{nameArr[0]}</div>
+								<div>{nameArr[1]}</div>
+							</span>{' '}
 							<button className="copy-button">Copy</button>
 							<span className="more-link">More</span>
 						</div>

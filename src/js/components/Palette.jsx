@@ -80,6 +80,7 @@ export default class Palette extends Component {
 							id={c.id}
 							toggleCopyMessage={this.toggleCopyMessage}
 							paletteId={id}
+							isLevelPalette={false}
 						/>
 					))}
 				</div>
@@ -96,7 +97,7 @@ export default class Palette extends Component {
 					}
 					ContentProps={{ 'aria-describedby': 'message-id' }}
 					action={
-						<React.Fragment>
+						<Fragment>
 							<IconButton
 								size="small"
 								aria-label="close"
@@ -106,7 +107,7 @@ export default class Palette extends Component {
 							>
 								<CloseIcon fontSize="small" />
 							</IconButton>
-						</React.Fragment>
+						</Fragment>
 					}
 				/>
 				{/* footer here */}

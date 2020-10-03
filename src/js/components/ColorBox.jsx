@@ -25,15 +25,23 @@ export default class ColorBox extends Component {
 	};
 
 	render() {
-		const { type, id, name, paletteId } = this.props;
+		const {
+			type,
+			id,
+			name,
+			paletteId,
+			height,
+			isLevelPalette
+		} = this.props;
+
 		const { copied } = this.state;
 		const nameArr = name.split(' ');
-		console.log(id);
+
 		return (
 			<CopyToClipboard text={type} onCopy={this.handleCopyClick}>
 				<div
 					className="ColorBox"
-					style={{ backgroundColor: type }}
+					style={{ backgroundColor: type, height }}
 					id={type}
 				>
 					<div
@@ -48,12 +56,16 @@ export default class ColorBox extends Component {
 								<div>{nameArr[1]}</div>
 							</span>{' '}
 							<button className="copy-button">Copy</button>
-							<Link
-								to={`/palette/${paletteId}/${id}`}
-								className="more-link"
-							>
-								More
-							</Link>
+							{isLevelPalette ? (
+								''
+							) : (
+								<Link
+									to={`/palette/${paletteId}/${id}`}
+									className="more-link"
+								>
+									More
+								</Link>
+							)}
 						</div>
 					</div>
 				</div>

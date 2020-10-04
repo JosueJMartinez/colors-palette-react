@@ -67,11 +67,11 @@ class SingleColorPalette extends Component {
 
 		return (
 			<div className={classes.root}>
-				<NavBar />
-				{/* <div className={`copy-overlay-text ${show && 'show'}`}>
+				<NavBar handleFormat={this.changeFormat} type={type} />
+				<div className={`copy-overlay-text ${show && 'show'}`}>
 					<h1>Copied</h1>
 					<p>{color}</p>
-				</div> */}
+				</div>
 				<div className="Palette-colors">
 					{colorLevels.map(l => (
 						<ColorBox

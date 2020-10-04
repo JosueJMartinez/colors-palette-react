@@ -30,7 +30,10 @@ function App() {
 					exact
 					path="/palette/:id"
 					render={routeProps => (
-						<Palette {...grabPalette(routeProps.match.params.id)} />
+						<Palette
+							{...grabPalette(routeProps.match.params.id)}
+							{...routeProps}
+						/>
 					)}
 				/>
 				<Route

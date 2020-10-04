@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
@@ -71,18 +72,34 @@ class SingleColorPalette extends Component {
 					<h1>Copied</h1>
 					<p>{color}</p>
 				</div> */}
-				{colorLevels.map(l => (
-					<ColorBox
-						key={l.name}
-						name={l.name}
-						type={l[type]}
-						id={l.name}
-						toggleCopyMessage={this.toggleCopyMessage}
-						paletteId={id}
-						isLevelPalette={true}
-					/>
-					// <div style={{ backgroundColor: l.hex }}>{l.name} </div>
-				))}
+				<div className="Palette-colors">
+					{colorLevels.map(l => (
+						<ColorBox
+							key={l.name}
+							name={l.name}
+							type={l[type]}
+							id={l.name}
+							toggleCopyMessage={this.toggleCopyMessage}
+							paletteId={id}
+							isLevelPalette={true}
+						/>
+
+						// <div style={{ backgroundColor: l.hex }}>{l.name} </div>
+					))}
+					<div className="ColorBox ColorBox-height-lvl-palette ColorBox-margin-back">
+						<div className="copy-container">
+							<div className="content">
+								<span className="color-name">
+									<div> </div>
+									<div> </div>
+								</span>{' '}
+								<Link className="back" to={`/palette/${params.id}`}>
+									Back
+								</Link>
+							</div>
+						</div>
+					</div>
+				</div>
 				<Snackbar
 					anchorOrigin={{
 						vertical: 'bottom',

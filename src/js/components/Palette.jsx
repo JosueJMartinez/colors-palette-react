@@ -47,14 +47,14 @@ export default class Palette extends Component {
 		this.setState({ [name]: value, isOpen: true });
 	};
 
-	handleClose = (event, reason) => {
+	handleClose = () => {
 		this.setState({ isOpen: false });
 	};
 
 	render() {
 		const { colors, emoji, id, paletteName } = this.props;
-		const { show, color } = this.state.copyStatus;
-		const { level, type, isOpen } = this.state;
+		const { level, type, isOpen, copyStatus } = this.state;
+		const { show, color } = copyStatus;
 
 		return (
 			<div className="Palette">

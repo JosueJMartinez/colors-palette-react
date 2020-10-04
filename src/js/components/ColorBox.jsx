@@ -10,7 +10,6 @@ export default class ColorBox extends Component {
 	};
 
 	handleCopyClick = e => {
-		console.log(e);
 		this.animate();
 	};
 
@@ -25,14 +24,7 @@ export default class ColorBox extends Component {
 	};
 
 	render() {
-		const {
-			type,
-			id,
-			name,
-			paletteId,
-			height,
-			isLevelPalette
-		} = this.props;
+		const { type, id, name, paletteId, isLevelPalette } = this.props;
 
 		const { copied } = this.state;
 		const nameArr = name.split(' ');
@@ -40,8 +32,10 @@ export default class ColorBox extends Component {
 		return (
 			<CopyToClipboard text={type} onCopy={this.handleCopyClick}>
 				<div
-					className="ColorBox"
-					style={{ backgroundColor: type, height }}
+					className={`ColorBox ${isLevelPalette
+						? 'ColorBox-height-lvl-palette'
+						: ''}`}
+					style={{ backgroundColor: type }}
 					id={type}
 				>
 					<div

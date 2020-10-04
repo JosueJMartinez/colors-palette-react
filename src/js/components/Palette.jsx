@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
@@ -11,6 +12,9 @@ import 'rc-slider/assets/index.css';
 import '../../css/Palette.css';
 
 export default class Palette extends Component {
+	static defaultProps = {
+		isRegPalette: true
+	};
 	state = {
 		copyStatus: {
 			show: false,
@@ -52,16 +56,72 @@ export default class Palette extends Component {
 	};
 
 	render() {
-		const { colors, emoji, id, paletteName } = this.props;
+		const {
+			colors,
+			emoji,
+			id,
+			paletteName,
+			isRegPalette,
+			match
+		} = this.props;
 		const { level, type, isOpen, copyStatus } = this.state;
 		const { show, color } = copyStatus;
+		const { params } = match;
+
+		const decidePalette = () => {
+			if (isRegPalette) {
+				return mapPaletteBoxes(colors[level], false);
+			}
+
+			const keys = Object.keys(colors);
+			const colorLevels = [];
+			for (let i = 1; i < keys.length; i++) {
+				const c = colors[keys[i]].filter(c => c.id === params.color);
+				colorLevels.push(c[0]);
+			}
+			return mapPaletteBoxes(colorLevels, true);
+		};
+
+		const mapPaletteBoxes = (palette, isLevel) => {
+			return palette.map(c => (
+				<ColorBox
+					key={c.name}
+					name={c.name}
+					type={c[type]}
+					id={c.id}
+					toggleCopyMessage={this.toggleCopyMessage}
+					paletteId={id}
+					isLevelPalette={isLevel}
+				/>
+			));
+		};
+
+		const addBackButton = () => {
+			if (!isRegPalette) {
+				return (
+					<div className="ColorBox ColorBox-height-lvl-palette ColorBox-margin-back">
+						<div className="copy-container">
+							<div className="content">
+								<span className="color-name">
+									<div> </div>
+									<div> </div>
+								</span>{' '}
+								<Link className="back" to={`/palette/${params.id}`}>
+									Back
+								</Link>
+							</div>
+						</div>
+					</div>
+				);
+			}
+		};
 
 		return (
 			<div className="Palette">
 				{/* NavBar goes here */}
 				<NavBar
 					level={level}
-					handleSlider={this.handleSlider}
+					handleSlider={isRegPalette && this.handleSlider}
 					handleFormat={this.changeFormat}
 					type={type}
 				/>
@@ -72,17 +132,8 @@ export default class Palette extends Component {
 				</div>
 				<div className="Palette-colors">
 					{/* Mapping colors array into individual colorboxes */}
-					{colors[level].map(c => (
-						<ColorBox
-							key={c.id}
-							name={c.name}
-							type={c[type]}
-							id={c.id}
-							toggleCopyMessage={this.toggleCopyMessage}
-							paletteId={id}
-							isLevelPalette={false}
-						/>
-					))}
+					{decidePalette()}
+					{addBackButton()}
 				</div>
 				<Snackbar
 					anchorOrigin={{

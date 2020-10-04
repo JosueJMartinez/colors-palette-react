@@ -56,6 +56,7 @@ export default class ColorBox extends Component {
 								<Link
 									to={`/palette/${paletteId}/${id}`}
 									className="more-link"
+									onClick={e => e.stopPropagation()}
 								>
 									More
 								</Link>

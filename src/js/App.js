@@ -8,7 +8,6 @@ import genPalette from './chromaHelpers';
 
 import '../css/App.css';
 import PaletteList from './components/PaletteList';
-import SingleColorPalette from './components/SingleColorPalette';
 
 function App() {
 	const grabPalette = id => {
@@ -40,7 +39,8 @@ function App() {
 					exact
 					path="/palette/:id/:color"
 					render={routeProps => (
-						<SingleColorPalette
+						<Palette
+							isRegPalette={false}
 							{...routeProps}
 							{...grabPalette(routeProps.match.params.id)}
 						/>

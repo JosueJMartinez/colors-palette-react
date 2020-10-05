@@ -2,9 +2,22 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
+import { withStyles } from '@material-ui/styles';
+
 import '../../css/ColorBox.css';
 
-export default class ColorBox extends Component {
+const styles = {
+	root: {
+		width: '20%',
+		height: '25%',
+		margin: '0 auto',
+		display: 'inline-block',
+		position: 'relative',
+		cursor: 'pointer'
+	}
+};
+
+class ColorBox extends Component {
 	state = {
 		copied: false
 	};
@@ -24,7 +37,14 @@ export default class ColorBox extends Component {
 	};
 
 	render() {
-		const { type, id, name, paletteId, isLevelPalette } = this.props;
+		const {
+			type,
+			id,
+			name,
+			paletteId,
+			isLevelPalette,
+			classes
+		} = this.props;
 
 		const { copied } = this.state;
 		const nameArr = name.split(' ');
@@ -32,7 +52,7 @@ export default class ColorBox extends Component {
 		return (
 			<CopyToClipboard text={type} onCopy={this.handleCopyClick}>
 				<div
-					className={`ColorBox ${isLevelPalette
+					className={`${classes.root} ${isLevelPalette
 						? 'ColorBox-height-lvl-palette'
 						: ''}`}
 					style={{ backgroundColor: type }}
@@ -68,3 +88,5 @@ export default class ColorBox extends Component {
 		);
 	}
 }
+
+export default withStyles(styles)(ColorBox);

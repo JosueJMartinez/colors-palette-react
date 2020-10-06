@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
@@ -92,27 +91,14 @@ export default class Palette extends Component {
 					toggleCopyMessage={this.toggleCopyMessage}
 					paletteId={id}
 					isLevelPalette={isLevel}
+					isBackBox={false}
 				/>
 			));
 		};
 
 		const addBackButton = () => {
 			if (!isRegPalette) {
-				return (
-					<div className="ColorBox ColorBox-height-lvl-palette ColorBox-margin-back">
-						<div className="copy-container">
-							<div className="content">
-								<span className="color-name">
-									<div> </div>
-									<div> </div>
-								</span>{' '}
-								<Link className="back" to={`/palette/${params.id}`}>
-									Back
-								</Link>
-							</div>
-						</div>
-					</div>
-				);
+				return <ColorBox isBackBox={true} paletteId={id} />;
 			}
 		};
 

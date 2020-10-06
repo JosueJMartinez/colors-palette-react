@@ -34,7 +34,9 @@ class PaletteList extends Component {
 			<Container className={classes.root} fixed maxWidth={'sm'}>
 				<nav className={classes.nav}>
 					<h1>RCP</h1>
-					<Link className={classes.create}>Create New Palette</Link>
+					<Link to="/palette/new" className={classes.create}>
+						Create New Palette
+					</Link>
 				</nav>
 				<Grid container spacing={3}>
 					{palettes.map(p => <MiniPalette key={p.id} {...p} />)}

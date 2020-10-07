@@ -84,9 +84,6 @@ const styles = {
 		fontSize: '12px',
 		letterSpacing: '1px'
 	},
-	'height-lvl-palette': {
-		height: '50%'
-	},
 	'margin-back': {
 		marginTop: '-30px'
 	},

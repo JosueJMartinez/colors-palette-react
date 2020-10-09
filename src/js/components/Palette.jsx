@@ -106,7 +106,7 @@ export default class Palette extends Component {
 			<div className="Palette">
 				{/* NavBar goes here */}
 				<NavBar
-					level={level}
+					level={isRegPalette && level}
 					handleSlider={isRegPalette && this.handleSlider}
 					handleFormat={this.changeFormat}
 					type={type}

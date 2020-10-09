@@ -85,6 +85,9 @@ const styles = {
 		fontSize: '12px',
 		letterSpacing: '1px'
 	},
+	'color-name.light-text': {
+		fontColor: 'white'
+	},
 	'height-lvl-palette': {
 		height: '50%'
 	},
@@ -176,7 +179,7 @@ class ColorBox extends Component {
 								<div className={classes.content}>
 									<span
 										style={{ color: fontColorLum(type) }}
-										className={classes['color-name']}
+										className={`${classes['color-name']}`}
 									>
 										<div>{nameArr[0]}</div>
 										<div>{nameArr[1]}</div>

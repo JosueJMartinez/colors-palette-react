@@ -42,8 +42,15 @@
 	margin-bottom: 0px;
 	padding: 1rem;
 }
+.Palette .copy-overlay-text h1.darkBackground {
+	background: #00000084;
+}
 
 .Palette .copy-overlay-text p {
 	font-size: 2rem;
 	font-weight: 100;
+	color: black;
+}
+.Palette .copy-overlay-text p.light-text {
+	color: white;
 }

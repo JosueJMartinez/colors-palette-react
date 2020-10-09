@@ -85,6 +85,9 @@ export default class Palette extends Component {
 		const { show, color } = copyStatus;
 		const { params } = match;
 
+		const isFontColorDark = chroma(color).luminance() < 0.5;
+		const isBackgroundColorDark = chroma(color).luminance() > 0.4;
+
 		const decidePalette = () => {
 			if (isRegPalette) {
 				return mapPaletteBoxes(colors[level], false);
@@ -110,8 +113,10 @@ export default class Palette extends Component {
 					paletteId={id}
 					isLevelPalette={isLevel}
 					isBackBox={false}
-					fontColorLum={this.fontColorLum}
+					isFontColorDark={isFontColorDark}
+					isBackgroundColorDark={isBackgroundColorDark}
 					backgroundColorLum={this.backgroundColorLum}
+					fontColorLum={this.fontColorLum}
 				/>
 			));
 		};
@@ -133,10 +138,18 @@ export default class Palette extends Component {
 				/>
 
 				<div className={`copy-overlay-text ${show && 'show'}`}>
-					<h1 style={{ backgroundColor: this.backgroundColorLum(color) }}>
+					<h1
+						style={{ backgroundColor: this.backgroundColorLum(color) }}
+						// className={isBackgroundColorDark && 'darkBackground'}
+					>
 						Copied
 					</h1>
-					<p style={{ color: this.fontColorLum(color) }}>{color}</p>
+					<p
+						style={{ color: this.fontColorLum(color) }}
+						// className={isFontColorDark && 'light-text'}
+					>
+						{color}
+					</p>
 				</div>
 				<div className="Palette-colors">
 					{/* Mapping colors array into individual colorboxes */}

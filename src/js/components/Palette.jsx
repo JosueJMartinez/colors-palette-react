@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import chroma from 'chroma-js';
 
 import NavBar from './NavBar';
 import ColorBox from './ColorBox';
@@ -17,7 +18,7 @@ export default class Palette extends Component {
 	state = {
 		copyStatus: {
 			show: false,
-			color: ''
+			color: 'white'
 		},
 		level: 500,
 		type: 'hex',
@@ -52,6 +53,23 @@ export default class Palette extends Component {
 
 	handleClose = () => {
 		this.setState({ isOpen: false });
+	};
+
+	fontColorLum = color => {
+		// console.log(chroma(color).luminance());
+		const lum = chroma(color).luminance();
+		if (lum < 0.05) {
+			return 'white';
+		}
+		return 'black';
+	};
+
+	backgroundColorLum = color => {
+		const lum = chroma(color).luminance();
+		if (lum > 0.4) {
+			return '#00000084';
+		}
+		return '#ffffff34';
 	};
 
 	render() {
@@ -92,6 +110,8 @@ export default class Palette extends Component {
 					paletteId={id}
 					isLevelPalette={isLevel}
 					isBackBox={false}
+					fontColorLum={this.fontColorLum}
+					backgroundColorLum={this.backgroundColorLum}
 				/>
 			));
 		};
@@ -113,8 +133,10 @@ export default class Palette extends Component {
 				/>
 
 				<div className={`copy-overlay-text ${show && 'show'}`}>
-					<h1>Copied</h1>
-					<p>{color}</p>
+					<h1 style={{ backgroundColor: this.backgroundColorLum(color) }}>
+						Copied
+					</h1>
+					<p style={{ color: this.fontColorLum(color) }}>{color}</p>
 				</div>
 				<div className="Palette-colors">
 					{/* Mapping colors array into individual colorboxes */}

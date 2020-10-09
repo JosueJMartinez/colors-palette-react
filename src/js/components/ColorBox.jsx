@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import chroma from 'chroma-js';
 
 import { withStyles } from '@material-ui/styles';
 
@@ -84,6 +85,9 @@ const styles = {
 		fontSize: '12px',
 		letterSpacing: '1px'
 	},
+	'height-lvl-palette': {
+		height: '50%'
+	},
 	'margin-back': {
 		marginTop: '-30px'
 	},
@@ -107,7 +111,7 @@ const styles = {
 		transition: '0.5s',
 		textTransform: 'uppercase',
 		textDecoration: 'none',
-		'&:hover': {
+		'&:hover $back': {
 			backgroundColor: 'grey'
 		}
 	},
@@ -129,7 +133,7 @@ class ColorBox extends Component {
 		this.setState({ copied: true }, () => {
 			this.props.toggleCopyMessage(this.props.type);
 			setTimeout(() => {
-				this.props.toggleCopyMessage('');
+				this.props.toggleCopyMessage('white');
 				this.setState({ copied: false });
 			}, 1500);
 		});
@@ -143,7 +147,9 @@ class ColorBox extends Component {
 			paletteId,
 			isLevelPalette,
 			classes,
-			isBackBox
+			isBackBox,
+			fontColorLum,
+			backgroundColorLum
 		} = this.props;
 
 		const { copied } = this.state;
@@ -168,16 +174,25 @@ class ColorBox extends Component {
 
 							<div className={classes['copy-container']}>
 								<div className={classes.content}>
-									<span className={classes['color-name']}>
+									<span
+										style={{ color: fontColorLum(type) }}
+										className={classes['color-name']}
+									>
 										<div>{nameArr[0]}</div>
 										<div>{nameArr[1]}</div>
 									</span>{' '}
-									<button className={classes['copy-button']}>Copy</button>
+									<button
+										style={{ backgroundColor: backgroundColorLum(type) }}
+										className={classes['copy-button']}
+									>
+										Copy
+									</button>
 									{isLevelPalette ? (
 										''
 									) : (
 										<Link
 											to={`/palette/${paletteId}/${id}`}
+											style={{ backgroundColor: backgroundColorLum(type) }}
 											className={classes['more-link']}
 											onClick={e => e.stopPropagation()}
 										>

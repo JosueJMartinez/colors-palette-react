@@ -55,21 +55,12 @@ export default class Palette extends Component {
 		this.setState({ isOpen: false });
 	};
 
-	fontColorLum = color => {
-		// console.log(chroma(color).luminance());
-		const lum = chroma(color).luminance();
-		if (lum < 0.05) {
-			return 'white';
-		}
-		return 'black';
+	isFontColorDark = color => {
+		return chroma(color).luminance() < 0.5;
 	};
 
-	backgroundColorLum = color => {
-		const lum = chroma(color).luminance();
-		if (lum > 0.4) {
-			return '#00000084';
-		}
-		return '#ffffff34';
+	isBackgroundColorDark = color => {
+		return chroma(color).luminance() > 0.4;
 	};
 
 	render() {
@@ -84,9 +75,6 @@ export default class Palette extends Component {
 		const { level, type, isOpen, copyStatus } = this.state;
 		const { show, color } = copyStatus;
 		const { params } = match;
-
-		const isFontColorDark = chroma(color).luminance() < 0.5;
-		const isBackgroundColorDark = chroma(color).luminance() > 0.4;
 
 		const decidePalette = () => {
 			if (isRegPalette) {
@@ -113,10 +101,8 @@ export default class Palette extends Component {
 					paletteId={id}
 					isLevelPalette={isLevel}
 					isBackBox={false}
-					isFontColorDark={isFontColorDark}
-					isBackgroundColorDark={isBackgroundColorDark}
-					backgroundColorLum={this.backgroundColorLum}
-					fontColorLum={this.fontColorLum}
+					isFontColorDark={this.isFontColorDark}
+					isBackgroundColorDark={this.isBackgroundColorDark}
 				/>
 			));
 		};
@@ -140,13 +126,15 @@ export default class Palette extends Component {
 				<div className={`copy-overlay-text ${show && 'show'}`}>
 					<h1
 						// style={{ backgroundColor: this.backgroundColorLum(color) }}
-						className={isBackgroundColorDark && 'dark-background'}
+						className={
+							this.isBackgroundColorDark(color) && 'dark-background'
+						}
 					>
 						Copied
 					</h1>
 					<p
 						// style={{ color: this.fontColorLum(color) }}
-						className={isFontColorDark && 'light-text'}
+						className={this.isFontColorDark(color) && 'light-text'}
 					>
 						{color}
 					</p>

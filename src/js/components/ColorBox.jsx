@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import chroma from 'chroma-js';
 
 import { withStyles } from '@material-ui/styles';
 
@@ -89,7 +88,7 @@ const styles = {
 		letterSpacing: '1px'
 	},
 	'light-text': {
-		fontColor: 'white !important'
+		color: 'white !important'
 	},
 	'height-lvl-palette': {
 		height: '50%'
@@ -155,12 +154,10 @@ class ColorBox extends Component {
 			isLevelPalette,
 			classes,
 			isBackBox,
-			fontColorLum,
-			backgroundColorLum,
 			isFontColorDark,
 			isBackgroundColorDark
 		} = this.props;
-		// console.log(is)
+
 		const { copied } = this.state;
 		const nameArr = !name ? '' : name.split(' ');
 
@@ -177,25 +174,27 @@ class ColorBox extends Component {
 						>
 							<div
 								style={{ backgroundColor: type }}
-								className={`${classes['copy-overlay']} `}
+								className={`${classes['copy-overlay']} ${copied &&
+									classes['show']}`}
 							/>
 
 							<div className={classes['copy-container']}>
 								<div className={classes.content}>
 									<span
-										style={{ color: fontColorLum(type) }}
-										// className={`${classes[
-										// 	'color-name'
-										// ]} ${isFontColorDark && classes['light-text']}`}
+										// style={{ color: fontColorLum(type) }}
+										className={`${classes['color-name']} ${isFontColorDark(
+											type
+										) && classes['light-text']}`}
 									>
 										<div>{nameArr[0]}</div>
 										<div>{nameArr[1]}</div>
 									</span>{' '}
 									<button
-										style={{ backgroundColor: backgroundColorLum(type) }}
-										className={`${classes['copy-button']} `}
-										// ${isBackgroundColorDark &&
-										// 	// classes['dark-background']}
+										// style={{ backgroundColor: backgroundColorLum(type) }}
+										className={`${classes[
+											'copy-button'
+										]} ${isBackgroundColorDark(type) &&
+											classes['dark-background']}`}
 									>
 										Copy
 									</button>
@@ -205,9 +204,10 @@ class ColorBox extends Component {
 										<Link
 											to={`/palette/${paletteId}/${id}`}
 											// style={{ backgroundColor: backgroundColorLum(type) }}
-											className={`${classes['more-link']} `}
-											// ${isBackgroundColorDark &&
-											// 	classes['dark-background']}
+											className={`${classes[
+												'more-link'
+											]} ${isBackgroundColorDark(type) &&
+												classes['dark-background']}`}
 											onClick={e => e.stopPropagation()}
 										>
 											More

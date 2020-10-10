@@ -139,14 +139,14 @@ export default class Palette extends Component {
 
 				<div className={`copy-overlay-text ${show && 'show'}`}>
 					<h1
-						style={{ backgroundColor: this.backgroundColorLum(color) }}
-						// className={isBackgroundColorDark && 'darkBackground'}
+						// style={{ backgroundColor: this.backgroundColorLum(color) }}
+						className={isBackgroundColorDark && 'dark-background'}
 					>
 						Copied
 					</h1>
 					<p
-						style={{ color: this.fontColorLum(color) }}
-						// className={isFontColorDark && 'light-text'}
+						// style={{ color: this.fontColorLum(color) }}
+						className={isFontColorDark && 'light-text'}
 					>
 						{color}
 					</p>

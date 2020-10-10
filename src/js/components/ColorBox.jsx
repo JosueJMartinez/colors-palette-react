@@ -85,8 +85,8 @@ const styles = {
 		fontSize: '12px',
 		letterSpacing: '1px'
 	},
-	'color-name.light-text': {
-		fontColor: 'white'
+	'light-text': {
+		fontColor: 'white !important'
 	},
 	'height-lvl-palette': {
 		height: '50%'
@@ -118,9 +118,13 @@ const styles = {
 			backgroundColor: 'grey'
 		}
 	},
+	'dark-background':{
+		backgroundColor: '#00000084 !important'
+	},
 	'default-pointer': {
 		cursor: 'default !important'
-	}
+	},
+	
 };
 
 class ColorBox extends Component {
@@ -152,9 +156,11 @@ class ColorBox extends Component {
 			classes,
 			isBackBox,
 			fontColorLum,
-			backgroundColorLum
+			backgroundColorLum,
+			isFontColorDark,
+			isBackgroundColorDark
 		} = this.props;
-
+		// console.log(is)
 		const { copied } = this.state;
 		const nameArr = !name ? '' : name.split(' ');
 
@@ -171,22 +177,21 @@ class ColorBox extends Component {
 						>
 							<div
 								style={{ backgroundColor: type }}
-								className={`${classes['copy-overlay']} ${copied &&
-									classes['show']}`}
+								className={`${classes['copy-overlay']} `}
 							/>
 
 							<div className={classes['copy-container']}>
 								<div className={classes.content}>
 									<span
-										style={{ color: fontColorLum(type) }}
-										className={`${classes['color-name']}`}
+										// style={{ color: fontColorLum(type) }}
+										className={`${classes['color-name']} ${isFontColorDark && classes['light-text']}`}
 									>
 										<div>{nameArr[0]}</div>
 										<div>{nameArr[1]}</div>
 									</span>{' '}
 									<button
-										style={{ backgroundColor: backgroundColorLum(type) }}
-										className={classes['copy-button']}
+										// style={{ backgroundColor: backgroundColorLum(type) }}
+										className={`${classes['copy-button']} ${isBackgroundColorDark && classes['dark-background']}`}
 									>
 										Copy
 									</button>
@@ -195,8 +200,8 @@ class ColorBox extends Component {
 									) : (
 										<Link
 											to={`/palette/${paletteId}/${id}`}
-											style={{ backgroundColor: backgroundColorLum(type) }}
-											className={classes['more-link']}
+											// style={{ backgroundColor: backgroundColorLum(type) }}
+											className={`${classes['more-link']} ${isBackgroundColorDark && classes['dark-background']}`}
 											onClick={e => e.stopPropagation()}
 										>
 											More

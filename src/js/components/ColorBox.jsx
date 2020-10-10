@@ -79,6 +79,9 @@ const styles = {
 		lineHeight: '30px',
 		textDecoration: 'none'
 	},
+	'dark-background': {
+		backgroundColor: '#00000084 !important'
+	},
 	'color-name': {
 		paddingLeft: '5px',
 		padding: '10px',
@@ -118,13 +121,10 @@ const styles = {
 			backgroundColor: 'grey'
 		}
 	},
-	'dark-background':{
-		backgroundColor: '#00000084 !important'
-	},
+
 	'default-pointer': {
 		cursor: 'default !important'
-	},
-	
+	}
 };
 
 class ColorBox extends Component {
@@ -183,15 +183,19 @@ class ColorBox extends Component {
 							<div className={classes['copy-container']}>
 								<div className={classes.content}>
 									<span
-										// style={{ color: fontColorLum(type) }}
-										className={`${classes['color-name']} ${isFontColorDark && classes['light-text']}`}
+										style={{ color: fontColorLum(type) }}
+										// className={`${classes[
+										// 	'color-name'
+										// ]} ${isFontColorDark && classes['light-text']}`}
 									>
 										<div>{nameArr[0]}</div>
 										<div>{nameArr[1]}</div>
 									</span>{' '}
 									<button
-										// style={{ backgroundColor: backgroundColorLum(type) }}
-										className={`${classes['copy-button']} ${isBackgroundColorDark && classes['dark-background']}`}
+										style={{ backgroundColor: backgroundColorLum(type) }}
+										className={`${classes['copy-button']} `}
+										// ${isBackgroundColorDark &&
+										// 	// classes['dark-background']}
 									>
 										Copy
 									</button>
@@ -201,7 +205,9 @@ class ColorBox extends Component {
 										<Link
 											to={`/palette/${paletteId}/${id}`}
 											// style={{ backgroundColor: backgroundColorLum(type) }}
-											className={`${classes['more-link']} ${isBackgroundColorDark && classes['dark-background']}`}
+											className={`${classes['more-link']} `}
+											// ${isBackgroundColorDark &&
+											// 	classes['dark-background']}
 											onClick={e => e.stopPropagation()}
 										>
 											More

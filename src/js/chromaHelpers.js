@@ -26,6 +26,7 @@ function genPalette(starterPalette) {
 					.replace(')', ', 1.0)')
 			});
 		}
+		return newPalette;
 	});
 	return newPalette;
 }

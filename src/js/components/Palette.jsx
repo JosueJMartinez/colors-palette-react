@@ -56,11 +56,11 @@ export default class Palette extends Component {
 	};
 
 	isFontColorDark = color => {
-		return chroma(color).luminance() < 0.5;
+		return chroma(color).luminance() < 0.08;
 	};
 
 	isBackgroundColorDark = color => {
-		return chroma(color).luminance() > 0.4;
+		return chroma(color).luminance() > 0.04;
 	};
 
 	render() {

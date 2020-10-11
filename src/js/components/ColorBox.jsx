@@ -30,7 +30,6 @@ const styles = {
 		textAlign: 'center',
 		outline: 'none',
 		border: 'none',
-		background: '#ffffff34',
 		fontSize: '1rem',
 		lineHeight: '20px',
 		color: 'white',
@@ -69,7 +68,6 @@ const styles = {
 		justifyContent: 'space-between'
 	},
 	'more-link': {
-		background: '#ffffff34',
 		padding: '0 5px',
 		color: 'white',
 		width: '60px',
@@ -79,7 +77,7 @@ const styles = {
 		textDecoration: 'none'
 	},
 	'dark-background': {
-		backgroundColor: '#00000084 !important'
+		backgroundColor: props => props.isBackgroundColorDark(props.type) ? '#00000084' : '#ffffff34'
 	},
 	'color-name': {
 		paddingLeft: '5px',
@@ -87,11 +85,8 @@ const styles = {
 		fontSize: '12px',
 		letterSpacing: '1px'
 	},
-	'light-text': {
-		color: 'white !important'
-	},
-	'height-lvl-palette': {
-		height: '50%'
+	'text-color': {
+		color: props => props.isFontColorDark(props.type) ? 'white' : 'black'
 	},
 	'margin-back': {
 		marginTop: '-30px'
@@ -153,9 +148,7 @@ class ColorBox extends Component {
 			paletteId,
 			isLevelPalette,
 			classes,
-			isBackBox,
-			isFontColorDark,
-			isBackgroundColorDark
+			isBackBox
 		} = this.props;
 
 		const { copied } = this.state;
@@ -181,20 +174,15 @@ class ColorBox extends Component {
 							<div className={classes['copy-container']}>
 								<div className={classes.content}>
 									<span
-										// style={{ color: fontColorLum(type) }}
-										className={`${classes['color-name']} ${isFontColorDark(
-											type
-										) && classes['light-text']}`}
+										className={`${classes['color-name']} ${classes['text-color']}`}
 									>
 										<div>{nameArr[0]}</div>
 										<div>{nameArr[1]}</div>
 									</span>{' '}
 									<button
-										// style={{ backgroundColor: backgroundColorLum(type) }}
 										className={`${classes[
 											'copy-button'
-										]} ${isBackgroundColorDark(type) &&
-											classes['dark-background']}`}
+										]} ${classes['dark-background']}`}
 									>
 										Copy
 									</button>
@@ -203,11 +191,9 @@ class ColorBox extends Component {
 									) : (
 										<Link
 											to={`/palette/${paletteId}/${id}`}
-											// style={{ backgroundColor: backgroundColorLum(type) }}
 											className={`${classes[
 												'more-link'
-											]} ${isBackgroundColorDark(type) &&
-												classes['dark-background']}`}
+											]} ${classes['dark-background']}`}
 											onClick={e => e.stopPropagation()}
 										>
 											More

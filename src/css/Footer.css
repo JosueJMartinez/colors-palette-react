@@ -1,15 +1,15 @@
 .Footer {
-	background-color: grey;
-	height: 4%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: white;
-	font-weight: bold;
-	font-size: .7rem;
+  background-color: grey;
+  height: 4%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 0.7rem;
 }
 
 .Footer .emoji {
-	font-size: 0.9rem;
-	margin-right: 1rem;
+  font-size: 0.9rem;
+  margin-right: 1rem;
 }

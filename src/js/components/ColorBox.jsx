@@ -9,7 +9,7 @@ import '../../css/ColorBox.css';
 const styles = {
 	root: {
 		width: '20%',
-		height: '25%',
+		height: props => props.isBackBox || props.isRegPalette ? '50%' : '25%',
 		margin: '0 auto',
 		display: 'inline-block',
 		position: 'relative',
@@ -77,16 +77,14 @@ const styles = {
 		textDecoration: 'none'
 	},
 	'dark-background': {
-		backgroundColor: props => props.isBackgroundColorDark(props.type) ? '#00000084' : '#ffffff34'
+		backgroundColor: props => !props.isBackBox && props.isBackgroundColorDark(props.type) ? '#00000084' : '#ffffff34'
 	},
 	'color-name': {
 		paddingLeft: '5px',
 		padding: '10px',
 		fontSize: '12px',
-		letterSpacing: '1px'
-	},
-	'text-color': {
-		color: props => props.isFontColorDark(props.type) ? 'white' : 'black'
+		letterSpacing: '1px',
+		color: props => !props.isBackBox && props.isFontColorDark(props.type) ? 'white' : 'black'
 	},
 	'margin-back': {
 		marginTop: '-30px'
@@ -146,7 +144,7 @@ class ColorBox extends Component {
 			id,
 			name,
 			paletteId,
-			isLevelPalette,
+			isRegPalette,
 			classes,
 			isBackBox
 		} = this.props;
@@ -159,9 +157,7 @@ class ColorBox extends Component {
 				return (
 					<CopyToClipboard text={type} onCopy={this.handleCopyClick}>
 						<div
-							className={`${classes.root} ${isLevelPalette
-								? classes['height-lvl-palette']
-								: ''}`}
+							className={classes.root}
 							style={{ backgroundColor: type }}
 							id={type}
 						>
@@ -186,7 +182,7 @@ class ColorBox extends Component {
 									>
 										Copy
 									</button>
-									{isLevelPalette ? (
+									{isRegPalette ? (
 										''
 									) : (
 										<Link

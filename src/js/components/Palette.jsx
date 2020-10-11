@@ -78,7 +78,7 @@ export default class Palette extends Component {
 
 		const decidePalette = () => {
 			if (isRegPalette) {
-				return mapPaletteBoxes(colors[level], false);
+				return mapPaletteBoxes(colors[level], true);
 			}
 
 			const keys = Object.keys(colors);
@@ -87,24 +87,24 @@ export default class Palette extends Component {
 				const c = colors[keys[i]].filter(c => c.id === params.color);
 				colorLevels.push(c[0]);
 			}
-			return mapPaletteBoxes(colorLevels, true);
+			return mapPaletteBoxes(colorLevels, false);
 		};
 
-		const mapPaletteBoxes = (palette, isLevel) => {
-			return palette.map(c => (
-				<ColorBox
+		const mapPaletteBoxes = (palette, isRegPalette) => {
+			return palette.map(c => {
+				return <ColorBox
 					key={c.name}
 					name={c.name}
 					type={c[type]}
 					id={c.id}
 					toggleCopyMessage={this.toggleCopyMessage}
 					paletteId={id}
-					isLevelPalette={isLevel}
+					isRegPalette={!isRegPalette}
 					isBackBox={false}
 					isFontColorDark={this.isFontColorDark}
 					isBackgroundColorDark={this.isBackgroundColorDark}
 				/>
-			));
+			});
 		};
 
 		const addBackButton = () => {

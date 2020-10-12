@@ -56,5 +56,3 @@ export default function styles(theme, drawerWidth) {
     },
   };
 }
-
-// export default

@@ -57,7 +57,7 @@ export default function NewPaletteForm() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Persistent drawer
+            RCP
           </Typography>
         </Toolbar>
       </AppBar>

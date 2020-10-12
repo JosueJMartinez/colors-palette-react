@@ -196,7 +196,9 @@ class Palette extends Component {
           </h1>
           <p
             // style={{ color: this.fontColorLum(color) }}
-            className={this.isFontColorDark(color) && classes.lightText}
+            className={
+              this.isFontColorDark(color) ? classes.lightText : undefined
+            }
           >
             {color}
           </p>

@@ -4,7 +4,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 
 import { withStyles } from "@material-ui/styles";
 
-import "../../css/ColorBox.css";
+// import "../../css/ColorBox.css";
 
 const styles = {
   root: {

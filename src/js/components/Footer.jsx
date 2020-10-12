@@ -1,15 +1,33 @@
 import React from "react";
+import { withStyles } from "@material-ui/styles";
 
-import "../../css/Footer.css";
+const styles = {
+  root: {
+    backgroundColor: "grey",
+    height: "4%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "white",
+    fontWeight: "bold",
+    fontSize: "0.7rem",
+  },
+  emoji: {
+    fontSize: "0.9rem",
+    marginRight: "1rem",
+  },
+};
 
-export default function Footer(props) {
-  const { emoji, name } = props;
+function Footer(props) {
+  const { emoji, name, classes } = props;
 
   return (
-    <footer className="Footer">
+    <footer className={classes.root}>
       <div>
-        <span className="emoji">{emoji}</span> {name}
+        <span className={classes.emoji}>{emoji}</span> {name}
       </div>
     </footer>
   );
 }
+
+export default withStyles(styles)(Footer);

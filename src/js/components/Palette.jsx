@@ -4,14 +4,71 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import chroma from "chroma-js";
 
+import { withStyles } from "@material-ui/styles";
+
 import NavBar from "./NavBar";
 import ColorBox from "./ColorBox";
 import Footer from "./Footer";
 
 import "rc-slider/assets/index.css";
-import "../../css/Palette.css";
 
-export default class Palette extends Component {
+const styles = {
+  root: {
+    height: "100vh",
+  },
+  paletteColors: {
+    height: "90%",
+    textTransform: "uppercase",
+  },
+  copyOverlayText: {
+    width: "100%",
+    height: "100%",
+    left: "0",
+    right: "0",
+    top: "0",
+    bottom: "0",
+    position: "fixed",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    fontSize: "4rem",
+    transform: "scale(0.1)",
+    color: "white",
+    opacity: "0",
+    "& p": {
+      fontSize: "2rem",
+      fonteight: "100",
+      color: "black",
+    },
+    "& $lightText": {
+      color: "white",
+    },
+  },
+  show: {
+    opacity: "1",
+    transform: "scale(1)",
+    zIndex: "14",
+    transition: "all 0.1s ease-in-out",
+    transitionDelay: "0.3s",
+    "& h1": {
+      fontWeight: "400",
+      textShadow: "1px 2px black",
+      background: "#ffffff2d",
+      width: "100%",
+      textAlign: "center",
+      marginBottom: "0px",
+      padding: "1rem",
+    },
+    "& $darkBackground": {
+      background: "#00000084",
+    },
+  },
+  darkBackground: {},
+  lightText: {},
+};
+
+class Palette extends Component {
   static defaultProps = {
     isRegPalette: true,
   };
@@ -71,6 +128,7 @@ export default class Palette extends Component {
       paletteName,
       isRegPalette,
       match,
+      classes,
     } = this.props;
     const { level, type, isOpen, copyStatus } = this.state;
     const { show, color } = copyStatus;
@@ -116,7 +174,7 @@ export default class Palette extends Component {
     };
 
     return (
-      <div className="Palette">
+      <div className={classes.root}>
         {/* NavBar goes here */}
         <NavBar
           level={isRegPalette && level}
@@ -125,23 +183,25 @@ export default class Palette extends Component {
           type={type}
         />
 
-        <div className={`copy-overlay-text ${show && "show"}`}>
+        <div
+          className={`${classes.copyOverlayText} ${show && classes.show}`}
+        >
           <h1
             // style={{ backgroundColor: this.backgroundColorLum(color) }}
             className={
-              this.isBackgroundColorDark(color) && "dark-background"
+              this.isBackgroundColorDark(color) && classes.darkBackground
             }
           >
             Copied
           </h1>
           <p
             // style={{ color: this.fontColorLum(color) }}
-            className={this.isFontColorDark(color) && "light-text"}
+            className={this.isFontColorDark(color) && classes.lightText}
           >
             {color}
           </p>
         </div>
-        <div className="Palette-colors">
+        <div className={classes.paletteColors}>
           {/* Mapping colors array into individual colorboxes */}
           {decidePalette()}
           {addBackButton()}
@@ -178,3 +238,5 @@ export default class Palette extends Component {
     );
   }
 }
+
+export default withStyles(styles)(Palette);

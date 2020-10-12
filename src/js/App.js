@@ -1,60 +1,59 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React from "react";
+import { Switch, Route } from "react-router-dom";
 
-import Palette from './components/Palette';
+import Palette from "./components/Palette";
 
-import seedColors from './seedColors';
-import genPalette from './chromaHelpers';
+import seedColors from "./seedColors";
+import genPalette from "./chromaHelpers";
 
-import '../css/App.css';
-import PaletteList from './components/PaletteList';
+import PaletteList from "./components/PaletteList";
 
 function App() {
-	const grabPalette = id => {
-		const found = seedColors.filter(p => id === p.id);
-		return genPalette(found[0]);
-	};
+  const grabPalette = id => {
+    const found = seedColors.filter(p => id === p.id);
+    return genPalette(found[0]);
+  };
 
-	return (
-		<div className="App">
-			<Switch>
-				<Route
-					exact
-					path="/"
-					render={routeProps => (
-						<PaletteList palettes={seedColors} {...routeProps} />
-					)}
-				/>
-				<Route
-					exact
-					path="/palette/new"
-					render={routeProps => <h1>New Palette Route</h1>}
-				/>
-				<Route
-					exact
-					path="/palette/:id"
-					render={routeProps => (
-						<Palette
-							{...grabPalette(routeProps.match.params.id)}
-							{...routeProps}
-						/>
-					)}
-				/>
-				<Route
-					exact
-					path="/palette/:id/:color"
-					render={routeProps => (
-						<Palette
-							isRegPalette={false}
-							{...routeProps}
-							{...grabPalette(routeProps.match.params.id)}
-						/>
-					)}
-				/>
-				<Route render={() => <h1>404 page</h1>} />
-			</Switch>
-		</div>
-	);
+  return (
+    <div className="App">
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={routeProps => (
+            <PaletteList palettes={seedColors} {...routeProps} />
+          )}
+        />
+        <Route
+          exact
+          path="/palette/new"
+          render={routeProps => <h1>New Palette Route</h1>}
+        />
+        <Route
+          exact
+          path="/palette/:id"
+          render={routeProps => (
+            <Palette
+              {...grabPalette(routeProps.match.params.id)}
+              {...routeProps}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/palette/:id/:color"
+          render={routeProps => (
+            <Palette
+              isRegPalette={false}
+              {...routeProps}
+              {...grabPalette(routeProps.match.params.id)}
+            />
+          )}
+        />
+        <Route render={() => <h1>404 page</h1>} />
+      </Switch>
+    </div>
+  );
 }
 
 export default App;

@@ -131,7 +131,9 @@ class Palette extends Component {
           <h1
             // style={{ backgroundColor: this.backgroundColorLum(color) }}
             className={
-              this.isBackgroundColorDark(color) && classes.darkBackground
+              this.isBackgroundColorDark(color)
+                ? classes.darkBackground
+                : undefined
             }
           >
             Copied

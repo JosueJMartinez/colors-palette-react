@@ -1,27 +1,26 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { withStyles } from "@material-ui/core/styles";
+
 import Slider from "rc-slider";
-// import { withStyles } from '@material-ui/core/styles';
-// import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from "@material-ui/core/MenuItem";
-// import FormControl from '@material-ui/core/FormControl';
 import Select from "@material-ui/core/Select";
 
 import "rc-slider/assets/index.css";
-import "../../css/NavBar.css";
-import { Link } from "react-router-dom";
+import styles from "../../styles/NavBarStyles";
 
-export default function NavBar(props) {
-  const { level, handleSlider, type, handleFormat } = props;
+function NavBar(props) {
+  const { level, handleSlider, type, handleFormat, classes } = props;
   // const classes = this.styles(withStyles);
   return (
-    <nav className="NavBar">
-      <div className="logo">
+    <nav className={classes.root}>
+      <div className={classes.logo}>
         <Link to="/">RCP</Link>
       </div>
       {handleSlider ? (
-        <div className="slider-wrapper">
+        <div>
           <span>Level: {level}</span>
-          <div className="slider">
+          <div className={classes.slider}>
             <Slider
               defaultValue={level}
               min={100}
@@ -34,7 +33,7 @@ export default function NavBar(props) {
       ) : (
         ""
       )}
-      <div className="select-container">
+      <div className={classes.selectContainer}>
         {/* <FormControl variant="outlined"> */}
         <Select
           labelId="demo-simple-select-label"
@@ -57,3 +56,5 @@ export default function NavBar(props) {
 NavBar.defaultProps = {
   type: "hex",
 };
+
+export default withStyles(styles)(NavBar);

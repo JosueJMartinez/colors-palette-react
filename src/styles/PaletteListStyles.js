@@ -13,5 +13,8 @@ export default {
     color: "white",
     fontSize: "1rem",
     textDecoration: "none",
+    "&:hover": {
+      color: "blue",
+    },
   },
 };

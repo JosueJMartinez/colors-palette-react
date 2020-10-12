@@ -1,5 +1,3 @@
-import _default from "rc-slider/lib/Range";
-
 export default {
   root: {
     width: "20%",

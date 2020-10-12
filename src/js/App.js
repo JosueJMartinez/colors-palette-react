@@ -7,6 +7,7 @@ import seedColors from "./seedColors";
 import genPalette from "./chromaHelpers";
 
 import PaletteList from "./components/PaletteList";
+import NewPaletteForm from "./components/NewPaletteForm";
 
 function App() {
   const grabPalette = id => {
@@ -27,7 +28,7 @@ function App() {
         <Route
           exact
           path="/palette/new"
-          render={routeProps => <h1>New Palette Route</h1>}
+          render={routeProps => <NewPaletteForm {...routeProps} />}
         />
         <Route
           exact

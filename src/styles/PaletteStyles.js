@@ -1,0 +1,55 @@
+export default {
+  root: {
+    height: "100vh",
+  },
+  paletteColors: {
+    height: "90%",
+    textTransform: "uppercase",
+  },
+  copyOverlayText: {
+    width: "100%",
+    height: "100%",
+    left: "0",
+    right: "0",
+    top: "0",
+    bottom: "0",
+    position: "fixed",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+    fontSize: "4rem",
+    transform: "scale(0.1)",
+    color: "white",
+    opacity: "0",
+    "& p": {
+      fontSize: "2rem",
+      fonteight: "100",
+      color: "black",
+    },
+    "& $lightText": {
+      color: "white",
+    },
+  },
+  show: {
+    opacity: "1",
+    transform: "scale(1)",
+    zIndex: "14",
+    transition: "all 0.1s ease-in-out",
+    transitionDelay: "0.3s",
+    "& h1": {
+      fontWeight: "400",
+      textShadow: "1px 2px black",
+      background: "#ffffff2d",
+      width: "100%",
+      textAlign: "center",
+      marginBottom: "0px",
+      padding: "1rem",
+    },
+    "& $darkBackground": {
+      background: "#00000084",
+    },
+  },
+  darkBackground: {},
+  lightText: {},
+};

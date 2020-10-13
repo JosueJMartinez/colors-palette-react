@@ -115,7 +115,13 @@ export default function NewPaletteForm() {
           // onChange={handleChange}
           // disableAlpha
         />
-        <TextField id="filled-basic" label="Filled" variant="filled" />
+        <TextField
+          required
+          id="outlined-required"
+          label="Color Name"
+          //placeHolder="Color Name"
+          variant="outlined"
+        />
         <Button variant="contained" color="primary">
           Add Color
         </Button>

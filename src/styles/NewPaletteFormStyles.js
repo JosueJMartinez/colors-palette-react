@@ -38,10 +38,10 @@ export default function styles(theme, drawerWidth) {
       ...theme.mixins.toolbar,
       justifyContent: "space-between",
     },
-	  drawerHeaderTitle:{
-		marginLeft:'auto',
-		marginRight:'auto'
-	  },
+    drawerHeaderTitle: {
+      marginLeft: "auto",
+      marginRight: "auto",
+    },
     content: {
       flexGrow: 1,
       padding: theme.spacing(3),

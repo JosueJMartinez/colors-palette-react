@@ -6,6 +6,7 @@ import chroma from "chroma-js";
 
 import { withStyles } from "@material-ui/styles";
 import styles from "../../styles/PaletteStyles";
+
 import NavBar from "./NavBar";
 import ColorBox from "./ColorBox";
 import Footer from "./Footer";

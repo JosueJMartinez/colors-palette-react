@@ -60,15 +60,11 @@ export default function styles(theme, drawerWidth) {
       }),
       marginLeft: 0,
     },
-    designTitle: {
-      margin: "auto auto 1em auto",
+    form: {
+      margin: "auto",
     },
     formContent: {
       margin: "0 auto 1em auto",
-    },
-    bottomForm: {
-      margin: "0 auto auto auto",
-      padding: "1.5em 3em",
     },
   };
 }

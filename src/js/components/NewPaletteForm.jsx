@@ -13,7 +13,10 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
-import TextField from "@material-ui/core/TextField";
+import {
+  ValidatorForm,
+  TextValidator,
+} from "react-material-ui-form-validator";
 
 import styles from "../../styles/NewPaletteFormStyles";
 import DraggableColorBox from "./DraggableColorBox";
@@ -29,6 +32,18 @@ export default function NewPaletteForm() {
     background: { hex: "#0000FF", rgb: { a: 0, b: 255, g: 0, r: 1 } },
     paletteColors: [],
     isFull: false,
+    newColorName: "",
+  });
+
+  useEffect(() => {
+    ValidatorForm.addValidationRule("isColorNameUnique", value => {
+      state.paletteColors.every(
+        ({ name }) => name.toLowerCase() !== value.toLowerCase()
+      );
+    });
+    return () => {
+      ValidatorForm.removeValidationRule("isColorNameUnique");
+    };
   });
 
   useEffect(() => {
@@ -53,15 +68,19 @@ export default function NewPaletteForm() {
     }));
   };
 
-  const handleAddColorClick = () => {
+  const handleAddColorSubmit = e => {
     let isFull = false;
     if (state.paletteColors.length >= 19) {
       isFull = true;
     }
     setState(prevState => ({
       ...prevState,
-      paletteColors: [...prevState.paletteColors, state.background],
+      paletteColors: [
+        ...prevState.paletteColors,
+        { ...state.background, name: prevState.newColorName },
+      ],
       isFull: isFull,
+      newColorName: "",
     }));
   };
 
@@ -70,7 +89,13 @@ export default function NewPaletteForm() {
       ...prevState,
       paletteColors: [],
       isFull: false,
+      newColorName: "",
     }));
+  };
+
+  const handleNameChange = e => {
+    const newColorName = e.target.value;
+    setState(prevState => ({ ...prevState, newColorName }));
   };
 
   return (
@@ -121,43 +146,59 @@ export default function NewPaletteForm() {
           </IconButton>
         </div>
         <Divider />
-        <Typography variant="h4" className={classes.designTitle}>
-          Design Your Palette
-        </Typography>
-        <ButtonGroup
-          className={classes.formContent}
-          variant="contained"
-          color="primary"
-          aria-label="contained primary button group"
-          disableElevation
-        >
-          <Button color="secondary" onClick={handleClearClick}>
-            Clear Palette
-          </Button>
-          <Button color="primary">Random Color</Button>
-        </ButtonGroup>
-        <ChromePicker
-          className={classes.formContent}
-          color={state.background}
-          onChangeComplete={handleChangeComplete}
-        />
-        <TextField
-          className={classes.formContent}
-          required
-          id="outlined-required"
-          label="Color Name"
-          variant="outlined"
-        />
-        <Button
-          className={classes.bottomForm}
-          variant="contained"
-          color="primary"
-          style={{ backgroundColor: state.background.hex }}
-          onClick={handleAddColorClick}
-          disabled={state.isFull}
-        >
-          {state.isFull ? "Palette Full" : "Add Color"}
-        </Button>
+
+        <div className={classes.form}>
+          <Typography variant="h4" className={classes.formContent}>
+            Design Your Palette
+          </Typography>
+          <ButtonGroup
+            className={classes.formContent}
+            variant="contained"
+            color="primary"
+            aria-label="contained primary button group"
+            disableElevation
+          >
+            <Button color="secondary" onClick={handleClearClick}>
+              Clear Palette
+            </Button>
+            <Button color="primary">Random Color</Button>
+          </ButtonGroup>
+          <ChromePicker
+            className={classes.formContent}
+            color={state.background}
+            onChangeComplete={handleChangeComplete}
+          />
+          <ValidatorForm
+            // ref="form"
+            onSubmit={handleAddColorSubmit}
+            className={classes.formContent}
+            onError={errors => console.log(errors)}
+          >
+            <TextValidator
+              className={classes.formContent}
+              label="Name"
+              onChange={handleNameChange}
+              name="name"
+              value={state.newColorName}
+              validators={["required", "isColorNameUnique"]}
+              errorMessages={[
+                "this field is required",
+                "color name in use already",
+              ]}
+            />
+            <Button
+              type="submit"
+              className={classes.formContent}
+              variant="contained"
+              color="primary"
+              style={{ backgroundColor: state.background.hex }}
+              // onClick={handleAddColorClick}
+              disabled={state.isFull}
+            >
+              {state.isFull ? "Palette Full" : "Add Color"}
+            </Button>
+          </ValidatorForm>
+        </div>
       </Drawer>
       <main
         className={clsx(classes.content, {
@@ -167,7 +208,7 @@ export default function NewPaletteForm() {
         <div className={classes.drawerHeader} />
 
         {state.paletteColors.map(c => (
-          <DraggableColorBox color={c} />
+          <DraggableColorBox key={c.name} color={c} />
         ))}
       </main>
     </div>

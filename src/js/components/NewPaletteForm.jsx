@@ -16,6 +16,7 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import TextField from "@material-ui/core/TextField";
 
 import styles from "../../styles/NewPaletteFormStyles";
+import DraggableColorBox from "./DraggableColorBox";
 
 const drawerWidth = 350;
 
@@ -27,7 +28,15 @@ export default function NewPaletteForm() {
     isOpen: true,
     background: { hex: "#0000FF", rgb: { a: 0, b: 255, g: 0, r: 1 } },
     paletteColors: [],
+    isFull: false,
   });
+
+  useEffect(() => {
+    if (state.paletteColors.length > 19) {
+      setState(prevState => ({ ...prevState, isFull: true }));
+    }
+    return () => {};
+  }, [state.paletteColors]);
 
   const handleDrawerOpen = () => {
     setState(prevState => ({ ...prevState, isOpen: true }));
@@ -37,17 +46,30 @@ export default function NewPaletteForm() {
     setState(prevState => ({ ...prevState, isOpen: false }));
   };
 
-  const handleChangeComplete = (color, e) => {
+  const handleChangeComplete = color => {
     setState(prevState => ({
       ...prevState,
       background: { hex: color.hex, rgb: color.rgb },
     }));
   };
 
-  const handleAddColorClick = e => {
+  const handleAddColorClick = () => {
+    let isFull = false;
+    if (state.paletteColors.length >= 19) {
+      isFull = true;
+    }
     setState(prevState => ({
       ...prevState,
       paletteColors: [...prevState.paletteColors, state.background],
+      isFull: isFull,
+    }));
+  };
+
+  const handleClearClick = () => {
+    setState(prevState => ({
+      ...prevState,
+      paletteColors: [],
+      isFull: false,
     }));
   };
 
@@ -109,7 +131,9 @@ export default function NewPaletteForm() {
           aria-label="contained primary button group"
           disableElevation
         >
-          <Button color="secondary">Clear Palette</Button>
+          <Button color="secondary" onClick={handleClearClick}>
+            Clear Palette
+          </Button>
           <Button color="primary">Random Color</Button>
         </ButtonGroup>
         <ChromePicker
@@ -130,8 +154,9 @@ export default function NewPaletteForm() {
           color="primary"
           style={{ backgroundColor: state.background.hex }}
           onClick={handleAddColorClick}
+          disabled={state.isFull}
         >
-          Add Color
+          {state.isFull ? "Palette Full" : "Add Color"}
         </Button>
       </Drawer>
       <main
@@ -142,13 +167,7 @@ export default function NewPaletteForm() {
         <div className={classes.drawerHeader} />
 
         {state.paletteColors.map(c => (
-          <div
-            style={{
-              background: c.hex,
-            }}
-          >
-            test
-          </div>
+          <DraggableColorBox color={c} />
         ))}
       </main>
     </div>

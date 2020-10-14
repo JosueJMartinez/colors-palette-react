@@ -17,7 +17,7 @@ import TextField from "@material-ui/core/TextField";
 
 import styles from "../../styles/NewPaletteFormStyles";
 
-const drawerWidth = 300;
+const drawerWidth = 350;
 
 const useStyles = makeStyles(theme => styles(theme, drawerWidth));
 
@@ -25,8 +25,8 @@ export default function NewPaletteForm() {
   const classes = useStyles();
   const [state, setState] = React.useState({
     isOpen: true,
-    background: "#fff",
-    color: {},
+    background: { hex: "#0000FF", rgb: { a: 0, b: 255, g: 0, r: 1 } },
+    paletteColors: [],
   });
 
   const handleDrawerOpen = () => {
@@ -44,12 +44,12 @@ export default function NewPaletteForm() {
     }));
   };
 
-  // const handleChange = (color, e) => {
-  //   setState(prevState => ({
-  //     ...prevState,
-  //     color: { hex: color.hex, rgb: color.rgb },
-  //   }));
-  // };
+  const handleAddColorClick = e => {
+    setState(prevState => ({
+      ...prevState,
+      paletteColors: [...prevState.paletteColors, state.background],
+    }));
+  };
 
   return (
     <div
@@ -77,7 +77,7 @@ export default function NewPaletteForm() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h5" noWrap>
-            RCP
+            Create A Palette
           </Typography>
         </Toolbar>
       </AppBar>
@@ -91,7 +91,7 @@ export default function NewPaletteForm() {
         }}
       >
         <div className={classes.drawerHeader}>
-          <Typography variant="h6" className={classes.drawerHeaderTitle}>
+          <Typography variant="h5" className={classes.drawerHeaderTitle}>
             RCP Options
           </Typography>
           <IconButton onClick={handleDrawerClose}>
@@ -99,30 +99,38 @@ export default function NewPaletteForm() {
           </IconButton>
         </div>
         <Divider />
-        <Typography>Design Your Palette</Typography>
+        <Typography variant="h4" className={classes.designTitle}>
+          Design Your Palette
+        </Typography>
         <ButtonGroup
+          className={classes.formContent}
           variant="contained"
           color="primary"
           aria-label="contained primary button group"
           disableElevation
         >
-          <Button color="secondary">Create Palette</Button>
+          <Button color="secondary">Clear Palette</Button>
           <Button color="primary">Random Color</Button>
         </ButtonGroup>
         <ChromePicker
+          className={classes.formContent}
           color={state.background}
           onChangeComplete={handleChangeComplete}
-          // onChange={handleChange}
-          // disableAlpha
         />
         <TextField
+          className={classes.formContent}
           required
           id="outlined-required"
           label="Color Name"
-          //placeHolder="Color Name"
           variant="outlined"
         />
-        <Button variant="contained" color="primary">
+        <Button
+          className={classes.bottomForm}
+          variant="contained"
+          color="primary"
+          style={{ backgroundColor: state.background.hex }}
+          onClick={handleAddColorClick}
+        >
           Add Color
         </Button>
       </Drawer>
@@ -130,21 +138,18 @@ export default function NewPaletteForm() {
         className={clsx(classes.content, {
           [classes.contentShift]: state.isOpen,
         })}
-        style={{
-          height: "100%",
-          width: "100%",
-        }}
       >
         <div className={classes.drawerHeader} />
-        <div
-          style={{
-            background: state.background.hex,
-            height: "20%",
-            width: "25%",
-          }}
-        >
-          test
-        </div>
+
+        {state.paletteColors.map(c => (
+          <div
+            style={{
+              background: c.hex,
+            }}
+          >
+            test
+          </div>
+        ))}
       </main>
     </div>
   );

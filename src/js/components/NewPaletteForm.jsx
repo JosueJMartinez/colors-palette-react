@@ -29,11 +29,8 @@ export default function NewPaletteForm() {
   const classes = useStyles();
   const [state, setState] = React.useState({
     isOpen: true,
-    background: { hex: "#0000FF", rgb: { a: 0, b: 255, g: 0, r: 1 } },
-    paletteColors: [
-      { hex: "#0000FF", rgb: { a: 0, b: 255, g: 0, r: 1 }, name: "green" },
-      { hex: "#0000FF", rgb: { a: 0, b: 255, g: 0, r: 1 }, name: "blue" },
-    ],
+    currentColor: { hex: "#0000FF", rgb: { a: 0, b: 255, g: 0, r: 1 } },
+    paletteColors: [],
     isFull: false,
     newColorName: "",
   });
@@ -44,9 +41,15 @@ export default function NewPaletteForm() {
         ({ name }) => name.toLowerCase() !== value.toLowerCase()
       )
     );
-    // return () => {
-    //   ValidatorForm.removeValidationRule("isColorNameUnique");
-    // };
+    ValidatorForm.addValidationRule("isColorUnique", value =>
+      state.paletteColors.every(
+        ({ hex }) => state.currentColor.hex !== hex
+      )
+    );
+    return () => {
+      ValidatorForm.removeValidationRule("isColorNameUnique");
+      ValidatorForm.removeValidationRule("isColorUnique");
+    };
   });
 
   useEffect(() => {
@@ -67,7 +70,7 @@ export default function NewPaletteForm() {
   const handleChangeComplete = color => {
     setState(prevState => ({
       ...prevState,
-      background: { hex: color.hex, rgb: color.rgb },
+      currentColor: { hex: color.hex, rgb: color.rgb },
     }));
   };
 
@@ -80,10 +83,11 @@ export default function NewPaletteForm() {
       ...prevState,
       paletteColors: [
         ...prevState.paletteColors,
-        { ...state.background, name: prevState.newColorName },
+        { ...state.currentColor, name: prevState.newColorName },
       ],
       isFull: isFull,
       newColorName: "",
+      currentColor: { hex: "#0000FF", rgb: { a: 0, b: 255, g: 0, r: 1 } },
     }));
   };
 
@@ -169,7 +173,7 @@ export default function NewPaletteForm() {
           <ChromePicker
             disableAlpha
             className={classes.formContent}
-            color={state.background}
+            color={state.currentColor}
             onChangeComplete={handleChangeComplete}
           />
           <ValidatorForm
@@ -185,10 +189,15 @@ export default function NewPaletteForm() {
               onChange={handleNameChange}
               name="name"
               value={state.newColorName}
-              validators={["required", "isColorNameUnique"]}
+              validators={[
+                "required",
+                "isColorNameUnique",
+                "isColorUnique",
+              ]}
               errorMessages={[
                 "this field is required",
                 "color name in use already",
+                "color is already in use",
               ]}
             />
             <Button
@@ -196,7 +205,7 @@ export default function NewPaletteForm() {
               className={classes.formContent}
               variant="contained"
               color="primary"
-              style={{ backgroundColor: state.background.hex }}
+              style={{ backgroundColor: state.currentColor.hex }}
               // onClick={handleAddColorClick}
               disabled={state.isFull}
             >

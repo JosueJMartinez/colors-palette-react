@@ -66,5 +66,8 @@ export default function styles(theme, drawerWidth) {
     formContent: {
       margin: "0 auto 1em auto",
     },
+    appBarButtons: {
+      marginRight: "auto",
+    },
   };
 }

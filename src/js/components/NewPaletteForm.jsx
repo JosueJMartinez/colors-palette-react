@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { ChromePicker } from "react-color";
 import { makeStyles } from "@material-ui/core/styles";
@@ -25,11 +25,11 @@ const drawerWidth = 350;
 
 const useStyles = makeStyles(theme => styles(theme, drawerWidth));
 
-export default function NewPaletteForm() {
+export default function NewPaletteForm(props) {
   const classes = useStyles();
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     isOpen: true,
-    currentColor: { hex: "#0000FF", rgb: { a: 0, b: 255, g: 0, r: 1 } },
+    currentColor: "#0000FF",
     paletteColors: [],
     isFull: false,
     newColorName: "",
@@ -42,9 +42,7 @@ export default function NewPaletteForm() {
       )
     );
     ValidatorForm.addValidationRule("isColorUnique", value =>
-      state.paletteColors.every(
-        ({ hex }) => state.currentColor.hex !== hex
-      )
+      state.paletteColors.every(({ hex }) => state.currentColor !== hex)
     );
     return () => {
       ValidatorForm.removeValidationRule("isColorNameUnique");
@@ -70,7 +68,7 @@ export default function NewPaletteForm() {
   const handleChangeComplete = color => {
     setState(prevState => ({
       ...prevState,
-      currentColor: { hex: color.hex, rgb: color.rgb },
+      currentColor: color.hex,
     }));
   };
 
@@ -83,11 +81,11 @@ export default function NewPaletteForm() {
       ...prevState,
       paletteColors: [
         ...prevState.paletteColors,
-        { ...state.currentColor, name: prevState.newColorName },
+        { color: state.currentColor, name: prevState.newColorName },
       ],
       isFull: isFull,
       newColorName: "",
-      currentColor: { hex: "#0000FF", rgb: { a: 0, b: 255, g: 0, r: 1 } },
+      currentColor: "#0000FF",
     }));
   };
 
@@ -103,6 +101,14 @@ export default function NewPaletteForm() {
   const handleNameChange = e => {
     const newColorName = e.target.value;
     setState(prevState => ({ ...prevState, newColorName }));
+  };
+
+  const goBack = () => {
+    props.history.push("/");
+  };
+
+  const handleSavePalette = () => {
+    props.addPalette(state.paletteColors);
   };
 
   return (
@@ -133,6 +139,20 @@ export default function NewPaletteForm() {
           <Typography variant="h5" noWrap>
             Create A Palette
           </Typography>
+          <ButtonGroup
+            className={classes.appBarButtons}
+            variant="contained"
+            color="primary"
+            aria-label="contained primary button group"
+            disableElevation
+          >
+            <Button color="secondary" onClick={goBack}>
+              Go Back
+            </Button>
+            <Button color="primary" onClick={handleSavePalette}>
+              Save Palette
+            </Button>
+          </ButtonGroup>
         </Toolbar>
       </AppBar>
       <Drawer

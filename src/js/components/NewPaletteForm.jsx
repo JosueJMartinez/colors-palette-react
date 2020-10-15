@@ -30,20 +30,23 @@ export default function NewPaletteForm() {
   const [state, setState] = React.useState({
     isOpen: true,
     background: { hex: "#0000FF", rgb: { a: 0, b: 255, g: 0, r: 1 } },
-    paletteColors: [],
+    paletteColors: [
+      { hex: "#0000FF", rgb: { a: 0, b: 255, g: 0, r: 1 }, name: "green" },
+      { hex: "#0000FF", rgb: { a: 0, b: 255, g: 0, r: 1 }, name: "blue" },
+    ],
     isFull: false,
     newColorName: "",
   });
 
   useEffect(() => {
-    ValidatorForm.addValidationRule("isColorNameUnique", value => {
+    ValidatorForm.addValidationRule("isColorNameUnique", value =>
       state.paletteColors.every(
         ({ name }) => name.toLowerCase() !== value.toLowerCase()
-      );
-    });
-    return () => {
-      ValidatorForm.removeValidationRule("isColorNameUnique");
-    };
+      )
+    );
+    // return () => {
+    //   ValidatorForm.removeValidationRule("isColorNameUnique");
+    // };
   });
 
   useEffect(() => {
@@ -164,12 +167,14 @@ export default function NewPaletteForm() {
             <Button color="primary">Random Color</Button>
           </ButtonGroup>
           <ChromePicker
+            disableAlpha
             className={classes.formContent}
             color={state.background}
             onChangeComplete={handleChangeComplete}
           />
           <ValidatorForm
             // ref="form"
+            instantValidate={false}
             onSubmit={handleAddColorSubmit}
             className={classes.formContent}
             onError={errors => console.log(errors)}

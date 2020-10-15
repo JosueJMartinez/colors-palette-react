@@ -67,6 +67,7 @@ export default function styles(theme, drawerWidth) {
       margin: "0 auto 1em auto",
     },
     appBarButtons: {
+      display: "inline",
       marginRight: "auto",
     },
   };

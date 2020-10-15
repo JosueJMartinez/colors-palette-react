@@ -33,6 +33,7 @@ export default function NewPaletteForm(props) {
     paletteColors: [],
     isFull: false,
     newColorName: "",
+    newPaletteName: "",
   });
 
   useEffect(() => {
@@ -101,8 +102,12 @@ export default function NewPaletteForm(props) {
   };
 
   const handleNameChange = e => {
-    const newColorName = e.target.value;
-    setState(prevState => ({ ...prevState, newColorName }));
+    const name = e.target.name;
+    const value = e.target.value;
+    setState(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   const goBack = () => {
@@ -150,20 +155,50 @@ export default function NewPaletteForm(props) {
           <Typography variant="h5" noWrap>
             Create A Palette
           </Typography>
-          <ButtonGroup
-            className={classes.appBarButtons}
-            variant="contained"
-            color="primary"
-            aria-label="contained primary button group"
-            disableElevation
+
+          <ValidatorForm
+            // ref="form"
+            instantValidate={false}
+            onSubmit={handleSavePalette}
+            className={classes.formContent}
+            onError={errors => console.log(errors)}
           >
-            <Button color="secondary" onClick={goBack}>
-              Go Back
-            </Button>
-            <Button color="primary" onClick={handleSavePalette}>
-              Save Palette
-            </Button>
-          </ButtonGroup>
+            <TextValidator
+              className={classes.formContent}
+              label="Palette Name"
+              onChange={handleNameChange}
+              name="newPaletteName"
+              value={state.newPaletteName}
+              validators={[
+                "required",
+                "isColorNameUnique",
+                "isColorUnique",
+              ]}
+              errorMessages={[
+                "this field is required",
+                "color name in use already",
+                "color is already in use",
+              ]}
+            />
+            <ButtonGroup
+              className={classes.appBarButtons}
+              variant="contained"
+              color="primary"
+              aria-label="contained primary button group"
+              disableElevation
+            >
+              <Button color="secondary" onClick={goBack}>
+                Go Back
+              </Button>
+              <Button
+                type="submit"
+                color="primary"
+                // onClick={}
+              >
+                Save Palette
+              </Button>
+            </ButtonGroup>
+          </ValidatorForm>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -218,7 +253,7 @@ export default function NewPaletteForm(props) {
               className={classes.formContent}
               label="Name"
               onChange={handleNameChange}
-              name="name"
+              name="newColorName"
               value={state.newColorName}
               validators={[
                 "required",

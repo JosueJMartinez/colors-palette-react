@@ -42,7 +42,9 @@ export default function NewPaletteForm(props) {
       )
     );
     ValidatorForm.addValidationRule("isColorUnique", value =>
-      state.paletteColors.every(({ hex }) => state.currentColor !== hex)
+      state.paletteColors.every(
+        ({ color }) => state.currentColor !== color
+      )
     );
     return () => {
       ValidatorForm.removeValidationRule("isColorNameUnique");

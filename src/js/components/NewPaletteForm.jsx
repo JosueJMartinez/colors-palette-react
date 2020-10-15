@@ -110,9 +110,10 @@ export default function NewPaletteForm(props) {
   };
 
   const handleSavePalette = () => {
+    let newName = "Test Palette Demo";
     const newPalette = {
-      paletteName: "test",
-      id: "test",
+      paletteName: newName,
+      id: newName.toLowerCase().replace(/ /g, "-"),
       emoji: "🎨",
       colors: state.paletteColors,
     };

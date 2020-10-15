@@ -110,7 +110,14 @@ export default function NewPaletteForm(props) {
   };
 
   const handleSavePalette = () => {
-    props.addPalette(state.paletteColors);
+    const newPalette = {
+      paletteName: "test",
+      id: "test",
+      emoji: "🎨",
+      colors: state.paletteColors,
+    };
+    props.addPalette(newPalette);
+    props.history.push("/");
   };
 
   return (
@@ -124,6 +131,7 @@ export default function NewPaletteForm(props) {
         className={clsx(classes.appBar, {
           [classes.appBarShift]: state.isOpen,
         })}
+        color="default"
       >
         <Toolbar>
           <IconButton

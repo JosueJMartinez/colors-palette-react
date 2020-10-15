@@ -19,16 +19,7 @@ function App() {
 
   const addPalette = newPalette => {
     setState(prevState => ({
-      ...prevState,
-      palettes: [
-        ...prevState.palettes,
-        {
-          colors: newPalette,
-          paletteName: "test",
-          id: "test",
-          emoji: "🎨",
-        },
-      ],
+      palettes: [...prevState.palettes, newPalette],
     }));
   };
 

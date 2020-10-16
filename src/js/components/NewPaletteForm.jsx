@@ -42,7 +42,7 @@ export default function NewPaletteForm(props) {
         ({ name }) => name.toLowerCase() !== value.toLowerCase()
       )
     );
-    ValidatorForm.addValidationRule("isColorUnique", value =>
+    ValidatorForm.addValidationRule("isColorUnique", () =>
       state.paletteColors.every(
         ({ color }) => state.currentColor !== color
       )
@@ -57,7 +57,7 @@ export default function NewPaletteForm(props) {
 
     ValidatorForm.addValidationRule(
       "isPaletteNotEmpty",
-      value => state.paletteColors.length > 0
+      () => state.paletteColors.length > 0
     );
 
     return () => {
@@ -140,6 +140,15 @@ export default function NewPaletteForm(props) {
     props.history.push("/");
   };
 
+  const handleDeletion = deleteName => {
+    setState(prevState => ({
+      ...prevState,
+      paletteColors: state.paletteColors.filter(
+        ({ name }) => name !== deleteName
+      ),
+    }));
+  };
+
   return (
     <div
       className={classes.root}
@@ -204,11 +213,7 @@ export default function NewPaletteForm(props) {
               <Button color="secondary" onClick={goBack}>
                 Go Back
               </Button>
-              <Button
-                type="submit"
-                color="primary"
-                // onClick={}
-              >
+              <Button type="submit" color="primary">
                 Save Palette
               </Button>
             </ButtonGroup>
@@ -302,7 +307,11 @@ export default function NewPaletteForm(props) {
         <div className={classes.drawerHeader} />
 
         {state.paletteColors.map(c => (
-          <DraggableColorBox key={c.name} color={c} />
+          <DraggableColorBox
+            key={c.name}
+            color={c}
+            handleDeletion={handleDeletion}
+          />
         ))}
       </main>
     </div>

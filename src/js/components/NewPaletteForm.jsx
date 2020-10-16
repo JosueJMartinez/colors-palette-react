@@ -140,11 +140,11 @@ export default function NewPaletteForm(props) {
     props.history.push("/");
   };
 
-  const handleDeletion = deleteName => {
+  const deleteColor = deleteColorName => {
     setState(prevState => ({
       ...prevState,
       paletteColors: state.paletteColors.filter(
-        ({ name }) => name !== deleteName
+        color => color.name !== deleteColorName
       ),
     }));
   };
@@ -307,7 +307,7 @@ export default function NewPaletteForm(props) {
           <DraggableColorBox
             key={c.name}
             color={c}
-            handleDeletion={handleDeletion}
+            deleteColor={deleteColor}
           />
         ))}
       </main>

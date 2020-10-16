@@ -11,6 +11,11 @@ const styles = {
     display: "inline-block",
     position: "relative",
     cursor: "pointer",
+    "&:hover $deleteIcon": {
+      color: "white",
+      fontSize: "30px",
+      backgroundColor: "rgba(0,0,0,0.5)",
+    },
   },
   content: {
     height: "100%",
@@ -33,11 +38,6 @@ const styles = {
     marginBottom: "5px",
     color: "rgba(0,0,0,0.5)",
     transition: "all 0.3s ease-in-out",
-    "&:hover": {
-      color: "white",
-      fontSize: "30px",
-      backgroundColor: "rgba(0,0,0,0.5)",
-    },
   },
 };
 

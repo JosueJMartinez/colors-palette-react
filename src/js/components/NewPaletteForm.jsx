@@ -47,9 +47,21 @@ export default function NewPaletteForm(props) {
         ({ color }) => state.currentColor !== color
       )
     );
+
+    ValidatorForm.addValidationRule("isPaletteNameUnique", value =>
+      props.checkPaletteName(value)
+    );
+
+    ValidatorForm.addValidationRule(
+      "isPaletteNotEmpty",
+      value => state.paletteColors.length > 0
+    );
+
     return () => {
       ValidatorForm.removeValidationRule("isColorNameUnique");
       ValidatorForm.removeValidationRule("isColorUnique");
+      ValidatorForm.removeValidationRule("isPaletteNameUnique");
+      ValidatorForm.removeValidationRule("isPaletteNotEmpty");
     };
   });
 
@@ -115,10 +127,9 @@ export default function NewPaletteForm(props) {
   };
 
   const handleSavePalette = () => {
-    let newName = "Test Palette Demo";
     const newPalette = {
-      paletteName: newName,
-      id: newName.toLowerCase().replace(/ /g, "-"),
+      paletteName: state.newPaletteName,
+      id: state.newPaletteName.toLowerCase().replace(/ /g, "-"),
       emoji: "🎨",
       colors: state.paletteColors,
     };
@@ -171,13 +182,13 @@ export default function NewPaletteForm(props) {
               value={state.newPaletteName}
               validators={[
                 "required",
-                "isColorNameUnique",
-                "isColorUnique",
+                "isPaletteNameUnique",
+                "isPaletteNotEmpty",
               ]}
               errorMessages={[
                 "this field is required",
-                "color name in use already",
-                "color is already in use",
+                "Already a palette with this name",
+                "Palette at least needs one color",
               ]}
             />
             <ButtonGroup

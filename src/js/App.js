@@ -23,6 +23,12 @@ function App() {
     }));
   };
 
+  const checkPaletteName = newName =>
+    state.palettes.every(
+      ({ paletteName }) =>
+        newName.toLowerCase() !== paletteName.toLocaleLowerCase()
+    );
+
   return (
     <div className="App">
       <Switch>
@@ -37,7 +43,11 @@ function App() {
           exact
           path="/palette/new"
           render={routeProps => (
-            <NewPaletteForm {...routeProps} addPalette={addPalette} />
+            <NewPaletteForm
+              {...routeProps}
+              addPalette={addPalette}
+              checkPaletteName={checkPaletteName}
+            />
           )}
         />
         <Route

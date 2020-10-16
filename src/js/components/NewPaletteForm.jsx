@@ -17,6 +17,7 @@ import {
   ValidatorForm,
   TextValidator,
 } from "react-material-ui-form-validator";
+import { SortableContainer, SortableElement } from "react-sortable-hoc";
 
 import styles from "../../styles/NewPaletteFormStyles";
 import DraggableColorBox from "./DraggableColorBox";
@@ -24,6 +25,22 @@ import DraggableColorBox from "./DraggableColorBox";
 const drawerWidth = 350;
 
 const useStyles = makeStyles(theme => styles(theme, drawerWidth));
+
+const SortableBox = SortableElement(({ c, deleteColor }) => (
+  <DraggableColorBox key={c.name} color={c} deleteColor={deleteColor} />
+));
+
+const SortablePalette = SortableContainer(
+  ({ paletteColors, deleteColor }) => {
+    return (
+      <ul>
+        {paletteColors.map(c => (
+          <SortableBox key={c.name} color={c} deleteColor={deleteColor} />
+        ))}
+      </ul>
+    );
+  }
+);
 
 export default function NewPaletteForm(props) {
   const classes = useStyles();

@@ -180,7 +180,6 @@ export default function NewPaletteForm(props) {
           </Typography>
 
           <ValidatorForm
-            // ref="form"
             instantValidate={false}
             onSubmit={handleSubmitPalette}
             className={classes.formContent}
@@ -262,7 +261,6 @@ export default function NewPaletteForm(props) {
             onChangeComplete={handleChangeComplete}
           />
           <ValidatorForm
-            // ref="form"
             instantValidate={false}
             onSubmit={handleAddColorSubmit}
             className={classes.formContent}
@@ -291,7 +289,6 @@ export default function NewPaletteForm(props) {
               variant="contained"
               color="primary"
               style={{ backgroundColor: state.currentColor.hex }}
-              // onClick={handleAddColorClick}
               disabled={state.isFull}
             >
               {state.isFull ? "Palette Full" : "Add Color"}

@@ -13,8 +13,7 @@ const styles = {
     cursor: "pointer",
     "&:hover $deleteIcon": {
       color: "white",
-      fontSize: "30px",
-      backgroundColor: "rgba(0,0,0,0.5)",
+      transform: "scale(1.3)",
     },
   },
   content: {
@@ -26,6 +25,7 @@ const styles = {
     display: "flex",
     alignItems: "flex-end",
     justifyContent: "space-between",
+    color: "rgba(0,0,0,0.5)",
   },
   name: {
     paddingLeft: "5px",
@@ -34,9 +34,7 @@ const styles = {
     letterSpacing: "1px",
   },
   deleteIcon: {
-    padding: "0px 3px 3px 3px",
-    marginBottom: "5px",
-    color: "rgba(0,0,0,0.5)",
+    marginBottom: "2px",
     transition: "all 0.3s ease-in-out",
   },
 };

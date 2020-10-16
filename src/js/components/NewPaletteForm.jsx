@@ -49,7 +49,10 @@ export default function NewPaletteForm(props) {
     );
 
     ValidatorForm.addValidationRule("isPaletteNameUnique", value =>
-      props.checkPaletteName(value)
+      props.palettes.every(
+        ({ paletteName }) =>
+          value.toLowerCase() !== paletteName.toLocaleLowerCase()
+      )
     );
 
     ValidatorForm.addValidationRule(
@@ -126,7 +129,7 @@ export default function NewPaletteForm(props) {
     props.history.push("/");
   };
 
-  const handleSavePalette = () => {
+  const handleSubmitPalette = () => {
     const newPalette = {
       paletteName: state.newPaletteName,
       id: state.newPaletteName.toLowerCase().replace(/ /g, "-"),
@@ -170,7 +173,7 @@ export default function NewPaletteForm(props) {
           <ValidatorForm
             // ref="form"
             instantValidate={false}
-            onSubmit={handleSavePalette}
+            onSubmit={handleSubmitPalette}
             className={classes.formContent}
             onError={errors => console.log(errors)}
           >

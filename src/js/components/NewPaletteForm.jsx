@@ -17,43 +17,41 @@ import {
   ValidatorForm,
   TextValidator,
 } from "react-material-ui-form-validator";
-import { SortableContainer, SortableElement } from "react-sortable-hoc";
-import arrayMove from "array-move";
+import { arrayMove } from "react-sortable-hoc";
+import SortablePalette from "./SortablePalette";
 
 import styles from "../../styles/NewPaletteFormStyles";
-import DraggableColorBox from "./DraggableColorBox";
 
 const drawerWidth = 350;
 
 const useStyles = makeStyles(theme => styles(theme, drawerWidth));
-
-const SortableBox = SortableElement(({ c, deleteColor }) => (
-  <DraggableColorBox key={c.name} color={c} deleteColor={deleteColor} />
-));
-
-const SortablePalette = SortableContainer(
-  ({ paletteColors, deleteColor }) => {
-    return (
-      <ul>
-        {paletteColors.map((c, idx) => (
-          <SortableBox
-            key={c.name}
-            index={idx}
-            color={c}
-            deleteColor={deleteColor}
-          />
-        ))}
-      </ul>
-    );
-  }
-);
 
 export default function NewPaletteForm(props) {
   const classes = useStyles();
   const [state, setState] = useState({
     isOpen: true,
     currentColor: "#0000FF",
-    paletteColors: [],
+    paletteColors: [
+      { name: "red", color: "#F44336" },
+      { name: "pink", color: "#E91E63" },
+      { name: "purple", color: "#9C27B0" },
+      { name: "deeppurple", color: "#673AB7" },
+      { name: "indigo", color: "#3F51B5" },
+      { name: "blue", color: "#2196F3" },
+      { name: "lightblue", color: "#03A9F4" },
+      { name: "cyan", color: "#00BCD4" },
+      { name: "teal", color: "#009688" },
+      { name: "green", color: "#4CAF50" },
+      { name: "lightgreen", color: "#8BC34A" },
+      { name: "lime", color: "#CDDC39" },
+      { name: "yellow", color: "#FFEB3B" },
+      { name: "amber", color: "#FFC107" },
+      { name: "orange", color: "#FF9800" },
+      { name: "deeporange", color: "#FF5722" },
+      { name: "brown", color: "#795548" },
+      { name: "grey", color: "#9E9E9E" },
+      { name: "bluegrey", color: "#607D8B" },
+    ],
     isFull: false,
     newColorName: "",
     newPaletteName: "",
@@ -172,7 +170,7 @@ export default function NewPaletteForm(props) {
     }));
   };
   const onSortEnd = ({ oldIndex, newIndex }) => {
-    this.setState(prevState => ({
+    setState(prevState => ({
       ...prevState,
       paletteColors: arrayMove(
         prevState.paletteColors,
@@ -335,13 +333,12 @@ export default function NewPaletteForm(props) {
         })}
       >
         <div className={classes.drawerHeader} />
-        {state.paletteColors.map(c => (
-          <DraggableColorBox
-            key={c.name}
-            color={c}
-            deleteColor={deleteColor}
-          />
-        ))}
+        <SortablePalette
+          paletteColors={state.paletteColors}
+          deleteColor={deleteColor}
+          onSortEnd={onSortEnd}
+          axis={"xy"}
+        />
       </main>
     </div>
   );

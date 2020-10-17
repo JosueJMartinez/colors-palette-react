@@ -93,7 +93,7 @@ export default function NewPaletteForm(props) {
   });
 
   useEffect(() => {
-    if (state.paletteColors.length === props.maxColors)
+    if (state.paletteColors.length >= props.maxColors)
       return setState(prevState => ({ ...prevState, isFull: true }));
     setState(prevState => ({ ...prevState, isFull: false }));
     // return () => {};

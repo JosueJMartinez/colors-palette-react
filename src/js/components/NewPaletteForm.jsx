@@ -115,17 +115,18 @@ export default function NewPaletteForm(props) {
   };
 
   const handleAddColorSubmit = e => {
+    addColor({ color: state.currentColor, name: state.newColorName });
+  };
+
+  const addColor = color => {
     let isFull = false;
     if (state.paletteColors.length >= 19) {
       isFull = true;
     }
     setState(prevState => ({
       ...prevState,
-      paletteColors: [
-        ...prevState.paletteColors,
-        { color: state.currentColor, name: prevState.newColorName },
-      ],
-      isFull: isFull,
+      paletteColors: [...prevState.paletteColors, color],
+      isFull,
       newColorName: "",
       currentColor: "#0000FF",
     }));
@@ -184,6 +185,19 @@ export default function NewPaletteForm(props) {
     }));
   };
 
+  const handleRandColorClick = e => {
+    const color = getRandColor();
+    // console.log(color);
+    addColor(color);
+  };
+
+  const getRandColor = () => {
+    let randNum = Math.floor(Math.random() * props.palettes.length);
+    const randPalette = props.palettes[randNum];
+    randNum = Math.floor(Math.random() * randPalette.colors.length);
+    return randPalette.colors[randNum];
+  };
+
   return (
     <div
       className={classes.root}
@@ -238,7 +252,7 @@ export default function NewPaletteForm(props) {
               ]}
             />
             <ButtonGroup
-              className={classes}
+              // className={classes}
               variant="contained"
               color="primary"
               aria-label="contained primary button group"
@@ -287,7 +301,13 @@ export default function NewPaletteForm(props) {
             <Button color="secondary" onClick={handleClearClick}>
               Clear Palette
             </Button>
-            <Button color="primary">Random Color</Button>
+            <Button
+              color="primary"
+              onClick={handleRandColorClick}
+              disabled={state.isFull}
+            >
+              Random Color
+            </Button>
           </ButtonGroup>
           <ChromePicker
             disableAlpha

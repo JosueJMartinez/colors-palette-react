@@ -58,6 +58,8 @@ export default function NewPaletteForm(props) {
   });
 
   useEffect(() => {
+    document.body.classList.add("overflow");
+
     ValidatorForm.addValidationRule("isColorNameUnique", value =>
       state.paletteColors.every(
         ({ name }) => name.toLowerCase() !== value.toLowerCase()
@@ -82,6 +84,7 @@ export default function NewPaletteForm(props) {
     );
 
     return () => {
+      document.body.classList.remove("overflow");
       ValidatorForm.removeValidationRule("isColorNameUnique");
       ValidatorForm.removeValidationRule("isColorUnique");
       ValidatorForm.removeValidationRule("isPaletteNameUnique");
@@ -213,7 +216,7 @@ export default function NewPaletteForm(props) {
           <ValidatorForm
             instantValidate={false}
             onSubmit={handleSubmitPalette}
-            className={classes.formContent}
+            className={classes.appBarButtons}
             onError={errors => console.log(errors)}
           >
             <TextValidator
@@ -234,7 +237,7 @@ export default function NewPaletteForm(props) {
               ]}
             />
             <ButtonGroup
-              className={classes.appBarButtons}
+              className={classes}
               variant="contained"
               color="primary"
               aria-label="contained primary button group"

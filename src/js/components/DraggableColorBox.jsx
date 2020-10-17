@@ -35,6 +35,8 @@ const styles = {
     marginBottom: "2px",
     transition: "all 0.3s ease-in-out",
     cursor: "pointer",
+    margin: "0 5px",
+    marginBottom: "3px",
   },
 };
 

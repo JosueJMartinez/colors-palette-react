@@ -1,11 +1,14 @@
 import React from "react";
 import { SortableContainer } from "react-sortable-hoc";
+import { withStyles } from "@material-ui/styles";
 import DraggableColorBox from "./DraggableColorBox";
 
+const styles = { root: { height: "100%" } };
+
 const SortablePalette = SortableContainer(
-  ({ paletteColors, deleteColor }) => {
+  ({ paletteColors, deleteColor, classes }) => {
     return (
-      <div style={{ height: "100%" }}>
+      <div className={classes.root}>
         {paletteColors.map((c, idx) => (
           <DraggableColorBox
             key={c.name}
@@ -19,4 +22,4 @@ const SortablePalette = SortableContainer(
   }
 );
 
-export default SortablePalette;
+export default withStyles(styles)(SortablePalette);

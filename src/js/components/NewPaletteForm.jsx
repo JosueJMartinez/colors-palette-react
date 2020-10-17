@@ -172,6 +172,7 @@ export default function NewPaletteForm(props) {
       ),
     }));
   };
+
   const onSortEnd = ({ oldIndex, newIndex }) => {
     setState(prevState => ({
       ...prevState,

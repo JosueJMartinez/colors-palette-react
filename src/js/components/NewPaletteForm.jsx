@@ -309,6 +309,9 @@ export default function NewPaletteForm(props) {
               color="primary"
               onClick={handleRandColorClick}
               disabled={isFull}
+              style={{
+                backgroundColor: isFull ? "grey" : "",
+              }}
             >
               Random Color
             </Button>
@@ -347,10 +350,12 @@ export default function NewPaletteForm(props) {
               className={classes.formContent}
               variant="contained"
               color="primary"
-              style={{ backgroundColor: state.currentColor }}
+              style={{
+                backgroundColor: isFull ? "grey" : state.currentColor,
+              }}
               disabled={isFull}
             >
-              {state.isFull ? "Palette Full" : "Add Color"}
+              {isFull ? "Palette Full" : "Add Color"}
             </Button>
           </ValidatorForm>
         </div>

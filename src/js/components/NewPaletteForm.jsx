@@ -18,6 +18,7 @@ import {
   TextValidator,
 } from "react-material-ui-form-validator";
 import { SortableContainer, SortableElement } from "react-sortable-hoc";
+import arrayMove from 'array-move';
 
 import styles from "../../styles/NewPaletteFormStyles";
 import DraggableColorBox from "./DraggableColorBox";
@@ -34,8 +35,8 @@ const SortablePalette = SortableContainer(
   ({ paletteColors, deleteColor }) => {
     return (
       <ul>
-        {paletteColors.map(c => (
-          <SortableBox key={c.name} color={c} deleteColor={deleteColor} />
+        {paletteColors.map((c,idx) => (
+          <SortableBox key={c.name} index={idx} color={c} deleteColor={deleteColor} />
         ))}
       </ul>
     );
@@ -165,6 +166,11 @@ export default function NewPaletteForm(props) {
       ),
     }));
   };
+	const  onSortEnd = ({oldIndex, newIndex}) => {
+		this.setState((prevState) => ({...prevState,
+		  paletteColors: arrayMove(prevState.paletteColors, oldIndex, newIndex),
+		}));
+	};
 
   return (
     <div
@@ -305,7 +311,7 @@ export default function NewPaletteForm(props) {
               className={classes.formContent}
               variant="contained"
               color="primary"
-              style={{ backgroundColor: state.currentColor.hex }}
+              style={{ backgroundColor: state.currentColor }}
               disabled={state.isFull}
             >
               {state.isFull ? "Palette Full" : "Add Color"}
@@ -319,8 +325,7 @@ export default function NewPaletteForm(props) {
         })}
       >
         <div className={classes.drawerHeader} />
-
-        {state.paletteColors.map(c => (
+		{state.paletteColors.map(c => (
           <DraggableColorBox
             key={c.name}
             color={c}

@@ -52,9 +52,9 @@ export default function NewPaletteForm(props) {
       { name: "grey", color: "#9E9E9E" },
       { name: "bluegrey", color: "#607D8B" },
     ],
-    isFull: false,
     newColorName: "",
     newPaletteName: "",
+    isFull: false,
   });
 
   useEffect(() => {
@@ -93,7 +93,7 @@ export default function NewPaletteForm(props) {
   });
 
   useEffect(() => {
-    if (state.paletteColors.length > 19)
+    if (state.paletteColors.length === props.maxColors)
       return setState(prevState => ({ ...prevState, isFull: true }));
     setState(prevState => ({ ...prevState, isFull: false }));
     // return () => {};
@@ -119,14 +119,10 @@ export default function NewPaletteForm(props) {
   };
 
   const addColor = color => {
-    let isFull = false;
-    if (state.paletteColors.length >= 19) {
-      isFull = true;
-    }
     setState(prevState => ({
       ...prevState,
       paletteColors: [...prevState.paletteColors, color],
-      isFull,
+
       newColorName: "",
       currentColor: "#0000FF",
     }));
@@ -381,3 +377,7 @@ export default function NewPaletteForm(props) {
     </div>
   );
 }
+
+NewPaletteForm.defaultProps = {
+  maxColors: 20,
+};

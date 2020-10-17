@@ -54,7 +54,6 @@ export default function NewPaletteForm(props) {
     ],
     newColorName: "",
     newPaletteName: "",
-    isFull: false,
   });
 
   useEffect(() => {
@@ -92,12 +91,7 @@ export default function NewPaletteForm(props) {
     };
   });
 
-  useEffect(() => {
-    if (state.paletteColors.length >= props.maxColors)
-      return setState(prevState => ({ ...prevState, isFull: true }));
-    setState(prevState => ({ ...prevState, isFull: false }));
-    // return () => {};
-  }, [state.paletteColors]);
+  const isFull = state.paletteColors.length >= props.maxColors;
 
   const handleDrawerOpen = () => {
     setState(prevState => ({ ...prevState, isOpen: true }));
@@ -314,7 +308,7 @@ export default function NewPaletteForm(props) {
             <Button
               color="primary"
               onClick={handleRandColorClick}
-              disabled={state.isFull}
+              disabled={isFull}
             >
               Random Color
             </Button>
@@ -354,7 +348,7 @@ export default function NewPaletteForm(props) {
               variant="contained"
               color="primary"
               style={{ backgroundColor: state.currentColor }}
-              disabled={state.isFull}
+              disabled={isFull}
             >
               {state.isFull ? "Palette Full" : "Add Color"}
             </Button>

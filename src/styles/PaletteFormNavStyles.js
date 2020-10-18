@@ -7,11 +7,10 @@ export default function styles(theme, drawerWidth) {
         duration: theme.transitions.duration.leavingScreen,
       }),
       height: "64px",
-    },
-    toolBar: {
       flexDirection: "row",
       justifyContent: "space-between",
     },
+    toolBar: {},
     appBarShift: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,

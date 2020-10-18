@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { ChromePicker } from "react-color";
+import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import {
   ValidatorForm,
   TextValidator,
 } from "react-material-ui-form-validator";
+import styles from "../../../styles/NewColorPickerFormStyles";
 
-export default function NewColorPickerForm(props) {
+function NewColorPickerForm(props) {
   const [state, setState] = useState({
     currentColor: "#0000FF",
     newColorName: "",
@@ -53,7 +55,7 @@ export default function NewColorPickerForm(props) {
   };
 
   return (
-    <>
+    <div className={classes.root}>
       <ChromePicker
         disableAlpha
         className={classes.formContent}
@@ -67,7 +69,7 @@ export default function NewColorPickerForm(props) {
         onError={errors => console.log(errors)}
       >
         <TextValidator
-          className={classes.formContent}
+          className={classes.textInput}
           label="Name"
           onChange={handleNameChange}
           name="newColorName"
@@ -81,7 +83,7 @@ export default function NewColorPickerForm(props) {
         />
         <Button
           type="submit"
-          className={classes.formContent}
+          className={classes.textInput}
           variant="contained"
           color="primary"
           style={{
@@ -92,6 +94,8 @@ export default function NewColorPickerForm(props) {
           {isFull ? "Palette Full" : "Add Color"}
         </Button>
       </ValidatorForm>
-    </>
+    </div>
   );
 }
+
+export default withStyles(styles)(NewColorPickerForm);

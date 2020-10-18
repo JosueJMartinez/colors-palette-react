@@ -39,6 +39,7 @@ export default function styles(theme, drawerWidth) {
       justifyContent: "space-between",
     },
     drawerHeaderTitle: {
+      // margin: '0 auto'
       marginLeft: "auto",
       marginRight: "auto",
     },
@@ -59,6 +60,12 @@ export default function styles(theme, drawerWidth) {
         duration: theme.transitions.duration.enteringScreen,
       }),
       marginLeft: 0,
+    },
+    drawerContent: {
+      margin: "auto",
+    },
+    formContent: {
+      marginBottom: "15px",
     },
   };
 }

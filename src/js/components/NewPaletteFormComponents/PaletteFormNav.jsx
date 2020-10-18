@@ -91,48 +91,48 @@ function PaletteFormNav(props) {
           <Typography variant="h5" noWrap>
             Create A Palette
           </Typography>
-          <div className={classes.appBarBtns}>
-            {" "}
-            <ValidatorForm
-              instantValidate={false}
-              onSubmit={() => handleSubmitPalette(newPaletteName)}
-              className={classes.paletteNameForm}
-              onError={errors => console.log(errors)}
-            >
-              <TextValidator
-                // className={classes.formContent}
-                label="Palette Name"
-                onChange={handleNameChange}
-                name="newPaletteName"
-                value={newPaletteName}
-                validators={[
-                  "required",
-                  "isPaletteNameUnique",
-                  "isPaletteNotEmpty",
-                ]}
-                errorMessages={[
-                  "this field is required",
-                  "Already a palette with this name",
-                  "Palette at least needs one color",
-                ]}
-              />
-              <ButtonGroup
-                // className={classes}
-                variant="contained"
-                color="primary"
-                aria-label="contained primary button group"
-                disableElevation
-              >
-                <Button color="secondary" onClick={goBack}>
-                  Go Back
-                </Button>
-                <Button type="submit" color="primary">
-                  Save Palette
-                </Button>
-              </ButtonGroup>
-            </ValidatorForm>
-          </div>
         </Toolbar>
+        <div className={classes.appBarBtns}>
+          {" "}
+          <ValidatorForm
+            instantValidate={false}
+            onSubmit={() => handleSubmitPalette(newPaletteName)}
+            className={classes.paletteNameForm}
+            onError={errors => console.log(errors)}
+          >
+            <TextValidator
+              // className={classes.formContent}
+              label="Palette Name"
+              onChange={handleNameChange}
+              name="newPaletteName"
+              value={newPaletteName}
+              validators={[
+                "required",
+                "isPaletteNameUnique",
+                "isPaletteNotEmpty",
+              ]}
+              errorMessages={[
+                "this field is required",
+                "Already a palette with this name",
+                "Palette at least needs one color",
+              ]}
+            />
+            <ButtonGroup
+              // className={classes}
+              variant="contained"
+              color="primary"
+              aria-label="contained primary button group"
+              disableElevation
+            >
+              <Button color="secondary" onClick={goBack}>
+                Go Back
+              </Button>
+              <Button type="submit" color="primary">
+                Save Palette
+              </Button>
+            </ButtonGroup>
+          </ValidatorForm>
+        </div>
       </AppBar>
     </div>
   );

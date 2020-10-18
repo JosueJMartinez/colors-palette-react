@@ -39,13 +39,11 @@ export default function styles(theme, drawerWidth) {
       justifyContent: "space-between",
     },
     drawerHeaderTitle: {
-      // margin: '0 auto'
       marginLeft: "auto",
       marginRight: "auto",
     },
     content: {
       flexGrow: 1,
-      // padding: theme.spacing(3),
       transition: theme.transitions.create("margin", {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,

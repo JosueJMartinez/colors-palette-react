@@ -83,7 +83,7 @@ function NewColorPickerForm(props) {
         />
         <Button
           type="submit"
-          className={classes.textInput}
+          className={classes.btn}
           variant="contained"
           color="primary"
           style={{

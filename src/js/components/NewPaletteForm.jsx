@@ -23,10 +23,9 @@ export default function NewPaletteForm(props) {
 
   const [state, setState] = useState({
     isDrawerOpen: true,
-
     paletteColors: [],
-
     newPaletteName: "",
+    buttonClickCtr: 0,
   });
 
   useEffect(() => {
@@ -51,6 +50,7 @@ export default function NewPaletteForm(props) {
     setState(prevState => ({
       ...prevState,
       paletteColors: [...prevState.paletteColors, color],
+      buttonClickCtr: prevState.buttonClickCtr + 1,
     }));
   };
 
@@ -96,7 +96,6 @@ export default function NewPaletteForm(props) {
 
   const handleRandColorClick = e => {
     const color = getRandColor();
-    // console.log(color);
     addColor(color);
   };
 
@@ -183,6 +182,7 @@ export default function NewPaletteForm(props) {
             isFull={isFull}
             addColor={addColor}
             paletteColors={state.paletteColors}
+            buttonClickCtr={state.buttonClickCtr}
           />
         </div>
       </Drawer>

@@ -30,6 +30,10 @@ export default function NewColorPickerForm(props) {
     };
   });
 
+  useEffect(() => {
+    setState({ currentColor: "#0000FF", newColorName: "" });
+  }, [props.paletteColors]);
+
   const handleChangeComplete = color => {
     setState(prevState => ({
       ...prevState,
@@ -46,7 +50,6 @@ export default function NewColorPickerForm(props) {
   };
   const handleAddColorSubmit = e => {
     addColor({ color: currentColor, name: newColorName });
-    setState({ newColorName: "", currentColor: "#0000FF" });
   };
 
   return (

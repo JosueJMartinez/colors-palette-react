@@ -104,19 +104,25 @@ export default function NewPaletteForm(props) {
     let isUnique = true;
 
     do {
-      let randNum = Math.floor(Math.random() * props.palettes.length);
+      let randNum = Math.floor(Math.random() * 1);
       const randPalette = props.palettes[randNum];
 
       randNum = Math.floor(Math.random() * randPalette.colors.length);
       randColor = randPalette.colors[randNum];
+      let color = {};
 
-      isUnique = state.paletteColors.every(
-        color =>
-          color.color !== randColor.color &&
-          color.name.toLowerCase() !== randColor.name.toLocaleLowerCase()
-      );
+      for (let i = 0; i < state.paletteColors.length; i++) {
+        color = state.paletteColors[i];
+        isUnique = true;
+        if (
+          color.color === randColor.color ||
+          color.name.toLowerCase() === randColor.name.toLocaleLowerCase()
+        ) {
+          isUnique = false;
+          break;
+        }
+      }
     } while (!isUnique);
-
     return randColor;
   };
 

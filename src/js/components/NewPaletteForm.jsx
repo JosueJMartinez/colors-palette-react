@@ -104,7 +104,7 @@ export default function NewPaletteForm(props) {
     let isUnique = true;
 
     do {
-      let randNum = Math.floor(Math.random() * 1);
+      let randNum = Math.floor(Math.random() * props.palettes.length);
       const randPalette = props.palettes[randNum];
 
       randNum = Math.floor(Math.random() * randPalette.colors.length);

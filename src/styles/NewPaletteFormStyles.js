@@ -60,15 +60,5 @@ export default function styles(theme, drawerWidth) {
       }),
       marginLeft: 0,
     },
-    form: {
-      margin: "auto",
-    },
-    formContent: {
-      margin: "0 auto 1em auto",
-    },
-    appBarButtons: {
-      display: "inline",
-      marginLeft: "auto",
-    },
   };
 }

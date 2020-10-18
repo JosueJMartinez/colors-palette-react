@@ -14,7 +14,6 @@ function NavBar(props) {
   // const classes = this.styles(withStyles);
   return (
     <>
-      <CssBaseline />
       <nav className={classes.root}>
         <div className={classes.logo}>
           <Link to="/">RCP</Link>

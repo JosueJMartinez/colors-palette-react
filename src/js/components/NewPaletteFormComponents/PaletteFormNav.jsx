@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import clsx from "clsx";
+import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -13,13 +14,17 @@ import {
   ValidatorForm,
   TextValidator,
 } from "react-material-ui-form-validator";
+import styles from "../../../styles/PaletteFormNavStyles";
+
+const drawerWidth = 350;
+const useStyles = makeStyles(theme => styles(theme, drawerWidth));
 
 function PaletteFormNav(props) {
+  const classes = useStyles();
   const [state, setState] = useState({
     newPaletteName: "",
   });
   const {
-    classes,
     isDrawerOpen,
     totalColors,
     palettes,
@@ -61,7 +66,7 @@ function PaletteFormNav(props) {
   };
 
   return (
-    <>
+    <div className={classes.root}>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -70,7 +75,7 @@ function PaletteFormNav(props) {
         })}
         color="default"
       >
-        <Toolbar>
+        <Toolbar className={classes.toolBar}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -86,48 +91,50 @@ function PaletteFormNav(props) {
           <Typography variant="h5" noWrap>
             Create A Palette
           </Typography>
-
-          <ValidatorForm
-            instantValidate={false}
-            onSubmit={() => handleSubmitPalette(newPaletteName)}
-            className={classes.appBarButtons}
-            onError={errors => console.log(errors)}
-          >
-            <TextValidator
-              className={classes.formContent}
-              label="Palette Name"
-              onChange={handleNameChange}
-              name="newPaletteName"
-              value={newPaletteName}
-              validators={[
-                "required",
-                "isPaletteNameUnique",
-                "isPaletteNotEmpty",
-              ]}
-              errorMessages={[
-                "this field is required",
-                "Already a palette with this name",
-                "Palette at least needs one color",
-              ]}
-            />
-            <ButtonGroup
-              // className={classes}
-              variant="contained"
-              color="primary"
-              aria-label="contained primary button group"
-              disableElevation
+          <div className={classes.appBarBtns}>
+            {" "}
+            <ValidatorForm
+              instantValidate={false}
+              onSubmit={() => handleSubmitPalette(newPaletteName)}
+              className={classes.paletteNameForm}
+              onError={errors => console.log(errors)}
             >
-              <Button color="secondary" onClick={goBack}>
-                Go Back
-              </Button>
-              <Button type="submit" color="primary">
-                Save Palette
-              </Button>
-            </ButtonGroup>
-          </ValidatorForm>
+              <TextValidator
+                // className={classes.formContent}
+                label="Palette Name"
+                onChange={handleNameChange}
+                name="newPaletteName"
+                value={newPaletteName}
+                validators={[
+                  "required",
+                  "isPaletteNameUnique",
+                  "isPaletteNotEmpty",
+                ]}
+                errorMessages={[
+                  "this field is required",
+                  "Already a palette with this name",
+                  "Palette at least needs one color",
+                ]}
+              />
+              <ButtonGroup
+                // className={classes}
+                variant="contained"
+                color="primary"
+                aria-label="contained primary button group"
+                disableElevation
+              >
+                <Button color="secondary" onClick={goBack}>
+                  Go Back
+                </Button>
+                <Button type="submit" color="primary">
+                  Save Palette
+                </Button>
+              </ButtonGroup>
+            </ValidatorForm>
+          </div>
         </Toolbar>
       </AppBar>
-    </>
+    </div>
   );
 }
 

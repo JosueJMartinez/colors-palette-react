@@ -3,13 +3,9 @@ import clsx from "clsx";
 import { ChromePicker } from "react-color";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
@@ -19,8 +15,8 @@ import {
 } from "react-material-ui-form-validator";
 import { arrayMove } from "react-sortable-hoc";
 import SortablePalette from "./SortablePalette";
-
 import styles from "../../styles/NewPaletteFormStyles";
+import PaletteFormNav from "./PaletteFormComponents/PaletteFormNav";
 
 const drawerWidth = 350;
 
@@ -29,29 +25,9 @@ const useStyles = makeStyles(theme => styles(theme, drawerWidth));
 export default function NewPaletteForm(props) {
   const classes = useStyles();
   const [state, setState] = useState({
-    isOpen: true,
+    isDrawerOpen: true,
     currentColor: "#0000FF",
-    paletteColors: [
-      { name: "red", color: "#F44336" },
-      { name: "pink", color: "#E91E63" },
-      { name: "purple", color: "#9C27B0" },
-      { name: "deeppurple", color: "#673AB7" },
-      { name: "indigo", color: "#3F51B5" },
-      { name: "blue", color: "#2196F3" },
-      { name: "lightblue", color: "#03A9F4" },
-      { name: "cyan", color: "#00BCD4" },
-      { name: "teal", color: "#009688" },
-      { name: "green", color: "#4CAF50" },
-      { name: "lightgreen", color: "#8BC34A" },
-      { name: "lime", color: "#CDDC39" },
-      { name: "yellow", color: "#FFEB3B" },
-      { name: "amber", color: "#FFC107" },
-      { name: "orange", color: "#FF9800" },
-      { name: "deeporange", color: "#FF5722" },
-      { name: "brown", color: "#795548" },
-      { name: "grey", color: "#9E9E9E" },
-      { name: "bluegrey", color: "#607D8B" },
-    ],
+    paletteColors: [],
     newColorName: "",
     newPaletteName: "",
   });
@@ -64,41 +40,28 @@ export default function NewPaletteForm(props) {
         ({ name }) => name.toLowerCase() !== value.toLowerCase()
       )
     );
+
     ValidatorForm.addValidationRule("isColorUnique", () =>
       state.paletteColors.every(
         ({ color }) => state.currentColor !== color
       )
     );
 
-    ValidatorForm.addValidationRule("isPaletteNameUnique", value =>
-      props.palettes.every(
-        ({ paletteName }) =>
-          value.toLowerCase() !== paletteName.toLocaleLowerCase()
-      )
-    );
-
-    ValidatorForm.addValidationRule(
-      "isPaletteNotEmpty",
-      () => state.paletteColors.length > 0
-    );
-
     return () => {
       document.body.classList.remove("overflow");
       ValidatorForm.removeValidationRule("isColorNameUnique");
       ValidatorForm.removeValidationRule("isColorUnique");
-      ValidatorForm.removeValidationRule("isPaletteNameUnique");
-      ValidatorForm.removeValidationRule("isPaletteNotEmpty");
     };
   });
 
   const isFull = state.paletteColors.length >= props.maxColors;
 
   const handleDrawerOpen = () => {
-    setState(prevState => ({ ...prevState, isOpen: true }));
+    setState(prevState => ({ ...prevState, isDrawerOpen: true }));
   };
 
   const handleDrawerClose = () => {
-    setState(prevState => ({ ...prevState, isOpen: false }));
+    setState(prevState => ({ ...prevState, isDrawerOpen: false }));
   };
 
   const handleChangeComplete = color => {
@@ -140,14 +103,10 @@ export default function NewPaletteForm(props) {
     }));
   };
 
-  const goBack = () => {
-    props.history.push("/");
-  };
-
-  const handleSubmitPalette = () => {
+  const handleSubmitPalette = newPaletteName => {
     const newPalette = {
-      paletteName: state.newPaletteName,
-      id: state.newPaletteName.toLowerCase().replace(/ /g, "-"),
+      paletteName: newPaletteName,
+      id: newPaletteName.toLowerCase().replace(/ /g, "-"),
       emoji: "🎨",
       colors: state.paletteColors,
     };
@@ -207,76 +166,19 @@ export default function NewPaletteForm(props) {
       className={classes.root}
       style={{ height: "100%", width: "100%" }}
     >
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: state.isOpen,
-        })}
-        color="default"
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(
-              classes.menuButton,
-              state.isOpen && classes.hide
-            )}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h5" noWrap>
-            Create A Palette
-          </Typography>
-
-          <ValidatorForm
-            instantValidate={false}
-            onSubmit={handleSubmitPalette}
-            className={classes.appBarButtons}
-            onError={errors => console.log(errors)}
-          >
-            <TextValidator
-              className={classes.formContent}
-              label="Palette Name"
-              onChange={handleNameChange}
-              name="newPaletteName"
-              value={state.newPaletteName}
-              validators={[
-                "required",
-                "isPaletteNameUnique",
-                "isPaletteNotEmpty",
-              ]}
-              errorMessages={[
-                "this field is required",
-                "Already a palette with this name",
-                "Palette at least needs one color",
-              ]}
-            />
-            <ButtonGroup
-              // className={classes}
-              variant="contained"
-              color="primary"
-              aria-label="contained primary button group"
-              disableElevation
-            >
-              <Button color="secondary" onClick={goBack}>
-                Go Back
-              </Button>
-              <Button type="submit" color="primary">
-                Save Palette
-              </Button>
-            </ButtonGroup>
-          </ValidatorForm>
-        </Toolbar>
-      </AppBar>
+      <PaletteFormNav
+        classes={classes}
+        isDrawerOpen={state.isDrawerOpen}
+        palettes={props.palettes}
+        totalColors={state.paletteColors.length}
+        handleSubmitPalette={handleSubmitPalette}
+        handleDrawerOpen={handleDrawerOpen}
+      />
       <Drawer
         className={classes.drawer}
         variant="persistent"
         anchor="left"
-        open={state.isOpen}
+        open={state.isDrawerOpen}
         classes={{
           paper: classes.drawerPaper,
         }}
@@ -362,7 +264,7 @@ export default function NewPaletteForm(props) {
       </Drawer>
       <main
         className={clsx(classes.content, {
-          [classes.contentShift]: state.isOpen,
+          [classes.contentShift]: state.isDrawerOpen,
         })}
       >
         <div className={classes.drawerHeader} />

@@ -34,7 +34,6 @@ export default function NewColorPickerForm(props) {
     setState(prevState => ({
       ...prevState,
       currentColor: color.hex,
-      newColorName: "",
     }));
   };
   const handleNameChange = e => {

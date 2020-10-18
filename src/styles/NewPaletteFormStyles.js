@@ -59,7 +59,7 @@ export default function styles(theme, drawerWidth) {
       }),
       marginLeft: 0,
     },
-    drawerContent: {
+    drawerContainer: {
       margin: "auto",
     },
     formContent: {

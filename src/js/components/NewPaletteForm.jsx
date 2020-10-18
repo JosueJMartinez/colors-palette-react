@@ -157,7 +157,7 @@ export default function NewPaletteForm(props) {
         </div>
         <Divider />
 
-        <div className={classes.drawerContent}>
+        <div className={classes.drawerContainer}>
           <Typography variant="h4" className={classes.formContent}>
             Design Your Palette
           </Typography>

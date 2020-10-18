@@ -60,10 +60,17 @@ export default function styles(theme, drawerWidth) {
       marginLeft: 0,
     },
     drawerContainer: {
-      margin: "auto",
+      width: "90%",
+      height: "100%",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      marginLeft: "auto",
+      marginRight: "auto",
     },
     formContent: {
-      marginBottom: "15px",
+      marginBottom: "1rem",
     },
   };
 }

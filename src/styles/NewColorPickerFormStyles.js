@@ -1,17 +1,20 @@
 export default {
   root: {
-    width: "100%",
+    width: "90%",
   },
-  formContent: {
-    margin: "0 auto 15px",
+  picker: {
+    width: "100% !important",
+    marginBottom: "1rem",
   },
   textInput: {
     width: "100%",
-    margin: "0 auto 15px auto",
+    height: "100%",
+    margin: "0 auto 1rem auto",
   },
   btn: {
     paddingTop: "1rem",
     paddingBottom: "1rem",
     width: "100%",
+    fontSize: "1.5rem",
   },
 };

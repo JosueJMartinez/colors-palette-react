@@ -58,7 +58,7 @@ function NewColorPickerForm(props) {
     <div className={classes.root}>
       <ChromePicker
         disableAlpha
-        className={classes.formContent}
+        className={classes.picker}
         color={currentColor}
         onChangeComplete={handleChangeComplete}
       />
@@ -70,10 +70,12 @@ function NewColorPickerForm(props) {
       >
         <TextValidator
           className={classes.textInput}
+          variant="filled"
           label="Name"
           onChange={handleNameChange}
           name="newColorName"
           value={newColorName}
+          margin="normal"
           validators={["required", "isColorNameUnique", "isColorUnique"]}
           errorMessages={[
             "this field is required",

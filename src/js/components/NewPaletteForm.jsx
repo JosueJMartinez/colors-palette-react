@@ -129,7 +129,7 @@ export default function NewPaletteForm(props) {
   return (
     <div
       className={classes.root}
-      style={{ height: "100%", width: "100%" }}
+      // style={{ height: "100%", width: "100%" }}
     >
       <PaletteFormNav
         isDrawerOpen={state.isDrawerOpen}
@@ -156,7 +156,6 @@ export default function NewPaletteForm(props) {
           </IconButton>
         </div>
         <Divider />
-
         <div className={classes.drawerContainer}>
           <Typography variant="h4" className={classes.formContent}>
             Design Your Palette
@@ -183,6 +182,7 @@ export default function NewPaletteForm(props) {
             </Button>
           </ButtonGroup>
           <NewColorPickerForm
+            className={classes.formContent}
             isFull={isFull}
             addColor={addColor}
             paletteColors={state.paletteColors}

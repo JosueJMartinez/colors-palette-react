@@ -75,7 +75,6 @@ function NewColorPickerForm(props) {
           onChange={handleNameChange}
           name="newColorName"
           value={newColorName}
-          margin="normal"
           validators={["required", "isColorNameUnique", "isColorUnique"]}
           errorMessages={[
             "this field is required",

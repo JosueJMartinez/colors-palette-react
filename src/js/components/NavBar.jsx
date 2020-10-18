@@ -13,43 +13,46 @@ function NavBar(props) {
   const { level, handleSlider, type, handleFormat, classes } = props;
   // const classes = this.styles(withStyles);
   return (
-    <nav className={classes.root}>
-      <div className={classes.logo}>
-        <Link to="/">RCP</Link>
-      </div>
-      {handleSlider ? (
-        <div>
-          <span>Level: {level}</span>
-          <div className={classes.slider}>
-            <Slider
-              defaultValue={level}
-              min={100}
-              max={900}
-              onAfterChange={handleSlider}
-              step={100}
-            />
-          </div>
+    <>
+      <CssBaseline />
+      <nav className={classes.root}>
+        <div className={classes.logo}>
+          <Link to="/">RCP</Link>
         </div>
-      ) : (
-        ""
-      )}
-      <div className={classes.selectContainer}>
-        {/* <FormControl variant="outlined"> */}
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          name="type"
-          value={type}
-          onChange={handleFormat}
-          label="Format"
-        >
-          <MenuItem value="hex">HEX - #ffffff</MenuItem>
-          <MenuItem value="rgb">RGB - RGB(255,255,255)</MenuItem>
-          <MenuItem value="rgba">RGBA - RGB(255,255,255, 1.0)</MenuItem>
-        </Select>
-        {/* </FormControl> */}
-      </div>
-    </nav>
+        {handleSlider ? (
+          <div>
+            <span>Level: {level}</span>
+            <div className={classes.slider}>
+              <Slider
+                defaultValue={level}
+                min={100}
+                max={900}
+                onAfterChange={handleSlider}
+                step={100}
+              />
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+        <div className={classes.selectContainer}>
+          {/* <FormControl variant="outlined"> */}
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            name="type"
+            value={type}
+            onChange={handleFormat}
+            label="Format"
+          >
+            <MenuItem value="hex">HEX - #ffffff</MenuItem>
+            <MenuItem value="rgb">RGB - RGB(255,255,255)</MenuItem>
+            <MenuItem value="rgba">RGBA - RGB(255,255,255, 1.0)</MenuItem>
+          </Select>
+          {/* </FormControl> */}
+        </div>
+      </nav>
+    </>
   );
 }
 

@@ -27,8 +27,11 @@ export default function styles(theme, drawerWidth) {
     },
     paletteNameForm: {
       display: "flex",
-      flexDirection: "row",
+      flexDirection: "column",
     },
     appBarBtns: {},
+    nameDialogForm: {
+      padding: "3rem",
+    },
   };
 }

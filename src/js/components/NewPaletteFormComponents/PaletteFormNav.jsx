@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,11 +10,8 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
-import {
-  ValidatorForm,
-  TextValidator,
-} from "react-material-ui-form-validator";
 import styles from "../../../styles/PaletteFormNavStyles";
+import PaletteMetaForm from "./PaletteMetaForm";
 
 const drawerWidth = 350;
 const useStyles = makeStyles(theme => styles(theme, drawerWidth));
@@ -22,7 +19,7 @@ const useStyles = makeStyles(theme => styles(theme, drawerWidth));
 function PaletteFormNav(props) {
   const classes = useStyles();
   const [state, setState] = useState({
-    newPaletteName: "",
+    isPaletteNameOpen: false,
   });
   const {
     isDrawerOpen,
@@ -32,37 +29,18 @@ function PaletteFormNav(props) {
     handleSubmitPalette,
   } = props;
 
-  const { newPaletteName } = state;
-
-  useEffect(() => {
-    ValidatorForm.addValidationRule("isPaletteNameUnique", value =>
-      palettes.every(
-        ({ paletteName }) =>
-          value.toLowerCase() !== paletteName.toLocaleLowerCase()
-      )
-    );
-
-    ValidatorForm.addValidationRule(
-      "isPaletteNotEmpty",
-      () => totalColors > 0
-    );
-    return () => {
-      ValidatorForm.removeValidationRule("isPaletteNameUnique");
-      ValidatorForm.removeValidationRule("isPaletteNotEmpty");
-    };
-  });
-
-  const handleNameChange = e => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setState(prevState => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
+  const { isPaletteNameOpen } = state;
 
   const goBack = () => {
     props.history.push("/");
+  };
+
+  const handleClickOpen = () => {
+    setState(prevState => ({ ...prevState, isPaletteNameOpen: true }));
+  };
+
+  const handleClose = () => {
+    setState(prevState => ({ ...prevState, isPaletteNameOpen: false }));
   };
 
   return (
@@ -94,44 +72,27 @@ function PaletteFormNav(props) {
         </Toolbar>
         <div className={classes.appBarBtns}>
           {" "}
-          <ValidatorForm
-            instantValidate={false}
-            onSubmit={() => handleSubmitPalette(newPaletteName)}
-            className={classes.paletteNameForm}
-            onError={errors => console.log(errors)}
+          <ButtonGroup
+            // className={classes}
+            variant="contained"
+            color="primary"
+            aria-label="contained primary button group"
+            disableElevation
           >
-            <TextValidator
-              // className={classes.formContent}
-              label="Palette Name"
-              onChange={handleNameChange}
-              name="newPaletteName"
-              value={newPaletteName}
-              validators={[
-                "required",
-                "isPaletteNameUnique",
-                "isPaletteNotEmpty",
-              ]}
-              errorMessages={[
-                "this field is required",
-                "Already a palette with this name",
-                "Palette at least needs one color",
-              ]}
-            />
-            <ButtonGroup
-              // className={classes}
-              variant="contained"
-              color="primary"
-              aria-label="contained primary button group"
-              disableElevation
-            >
-              <Button color="secondary" onClick={goBack}>
-                Go Back
-              </Button>
-              <Button type="submit" color="primary">
-                Save Palette
-              </Button>
-            </ButtonGroup>
-          </ValidatorForm>
+            <Button color="secondary" onClick={goBack}>
+              Go Back
+            </Button>
+            <Button onClick={handleClickOpen} color="primary">
+              Save Palette
+            </Button>
+          </ButtonGroup>
+          <PaletteMetaForm
+            isOpen={isPaletteNameOpen}
+            handleClose={handleClose}
+            handleSubmitPalette={handleSubmitPalette}
+            palettes={palettes}
+            totalColors={totalColors}
+          />
         </div>
       </AppBar>
     </div>

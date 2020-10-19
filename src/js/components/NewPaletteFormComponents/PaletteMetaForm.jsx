@@ -18,7 +18,7 @@ import styles from "../../../styles/PaletteMetaFormStyles";
 function PaletteMetaForm(props) {
   const [state, setState] = useState({
     newPaletteName: "",
-    emoji: "",
+    emoji: "department_store",
     isEmojiSelected: true,
   });
 
@@ -59,7 +59,10 @@ function PaletteMetaForm(props) {
       }));
     }
     changeStateOfForm("closed");
-    handleSubmitPalette({ paletteName: newPaletteName, emoji });
+    handleSubmitPalette({
+      paletteName: newPaletteName,
+      emoji: emoji.native,
+    });
   };
 
   const handleNameChange = e => {
@@ -72,7 +75,7 @@ function PaletteMetaForm(props) {
   };
 
   const handleEmojiSelection = emoji => {
-    setState(prevState => ({ ...prevState, emoji: emoji.native }));
+    setState(prevState => ({ ...prevState, emoji }));
   };
 
   return (
@@ -84,7 +87,12 @@ function PaletteMetaForm(props) {
       >
         <DialogTitle id="form-dialog-title">Choose an Emoji</DialogTitle>
         <DialogContent>
-          <Picker onSelect={handleEmojiSelection} emoji={emoji} />
+          <Picker
+            title="Pick a palette emoji"
+            showPreview={true}
+            onSelect={handleEmojiSelection}
+            emoji={emoji.native}
+          />
           <DialogContentText>Current Emoji: {emoji}</DialogContentText>
           <DialogContentText className={classes.warning}>
             {isEmojiSelected ? "" : "Please select an emoji"}

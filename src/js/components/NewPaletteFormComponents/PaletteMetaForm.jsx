@@ -18,16 +18,17 @@ import { withStyles } from "@material-ui/styles";
 const styles = {};
 
 function PaletteMetaForm(props) {
-  const [state, setState] = useState({ newPaletteName: "" });
+  const [state, setState] = useState({ newPaletteName: "", emoji: "" });
   const {
-    isOpen,
+    isPaletteNameOpen,
+    isEmojiOpen,
     handleClose,
-    classes,
+    handleEmojiOpen,
     handleSubmitPalette,
     palettes,
     totalColors,
   } = props;
-  const { newPaletteName } = state;
+  const { newPaletteName, emoji } = state;
 
   useEffect(() => {
     ValidatorForm.addValidationRule("isPaletteNameUnique", value =>
@@ -49,7 +50,12 @@ function PaletteMetaForm(props) {
 
   const handleSubmitName = () => {
     handleClose();
-    handleSubmitPalette(newPaletteName);
+    handleEmojiOpen();
+  };
+
+  const handleFinalSubmit = () => {
+    handleClose();
+    handleSubmitPalette({ paletteName: newPaletteName, emoji });
   };
 
   const handleNameChange = e => {
@@ -60,62 +66,95 @@ function PaletteMetaForm(props) {
       [name]: value,
     }));
   };
+
+  const handleEmojiSelection = emoji => {
+    console.log(`i am selecting ${emoji.native}`);
+    setState(prevState => ({ ...prevState, emoji: emoji.native }));
+  };
   return (
-    <Dialog
-      open={isOpen}
-      onClose={handleClose}
-      aria-labelledby="form-dialog-title"
-      className={classes.nameDialogForm}
-    >
-      <DialogTitle id="form-dialog-title">
-        Choose a Palette Name
-      </DialogTitle>
-      <ValidatorForm
-        instantValidate={false}
-        onSubmit={handleSubmitName}
-        onError={errors => console.log(errors)}
+    <>
+      <Dialog
+        open={isEmojiOpen}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
       >
+        <DialogTitle id="form-dialog-title">Choose an Emoji</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Please enter a name for this new palette. It has to be a unique
-            palette name!
-            <TextValidator
-              label="Palette Name"
-              onChange={handleNameChange}
-              name="newPaletteName"
-              value={newPaletteName}
-              fullWidth
-              margin="normal"
-              validators={[
-                "required",
-                "isPaletteNameUnique",
-                "isPaletteNotEmpty",
-              ]}
-              errorMessages={[
-                "this field is required",
-                "Already a palette with this name",
-                "Palette at least needs one color",
-              ]}
-            />
+            <Picker onSelect={handleEmojiSelection} />
           </DialogContentText>
-          <Picker />
         </DialogContent>
         <DialogActions>
           <ButtonGroup
-            // className={classes.formContent}
             aria-label="contained primary button group"
             disableElevation
           >
             <Button color="primary" onClick={handleClose}>
               Cancel
             </Button>
-            <Button variant="contained" color="primary" type="submit">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleFinalSubmit}
+            >
               Save Name
             </Button>
           </ButtonGroup>
         </DialogActions>
-      </ValidatorForm>
-    </Dialog>
+      </Dialog>
+      <Dialog
+        open={isPaletteNameOpen}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">
+          Choose a Palette Name
+        </DialogTitle>
+        <ValidatorForm
+          instantValidate={false}
+          onSubmit={handleSubmitName}
+          onError={errors => console.log(errors)}
+        >
+          <DialogContent>
+            <DialogContentText>
+              Please enter a name for this new palette. It has to be a
+              unique palette name!
+              <TextValidator
+                label="Palette Name"
+                onChange={handleNameChange}
+                name="newPaletteName"
+                value={newPaletteName}
+                fullWidth
+                margin="normal"
+                validators={[
+                  "required",
+                  "isPaletteNameUnique",
+                  "isPaletteNotEmpty",
+                ]}
+                errorMessages={[
+                  "this field is required",
+                  "Already a palette with this name",
+                  "Palette at least needs one color",
+                ]}
+              />
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <ButtonGroup
+              aria-label="contained primary button group"
+              disableElevation
+            >
+              <Button color="primary" onClick={handleClose}>
+                Cancel
+              </Button>
+              <Button variant="contained" color="primary" type="submit">
+                Save Name
+              </Button>
+            </ButtonGroup>
+          </DialogActions>
+        </ValidatorForm>
+      </Dialog>
+    </>
   );
 }
 

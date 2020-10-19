@@ -63,11 +63,12 @@ export default function NewPaletteForm(props) {
     }));
   };
 
-  const handleSubmitPalette = newPaletteName => {
+  const handleSubmitPalette = submitted => {
+    const { paletteName, emoji } = submitted;
     const newPalette = {
-      paletteName: newPaletteName,
-      id: newPaletteName.toLowerCase().replace(/ /g, "-"),
-      emoji: "🎨",
+      paletteName,
+      id: paletteName.toLowerCase().replace(/ /g, "-"),
+      emoji,
       colors: state.paletteColors,
     };
     props.addPalette(newPalette);

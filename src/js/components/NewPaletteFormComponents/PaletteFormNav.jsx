@@ -20,6 +20,7 @@ function PaletteFormNav(props) {
   const classes = useStyles();
   const [state, setState] = useState({
     isPaletteNameOpen: false,
+    isEmojiOpen: false,
   });
   const {
     isDrawerOpen,
@@ -29,18 +30,26 @@ function PaletteFormNav(props) {
     handleSubmitPalette,
   } = props;
 
-  const { isPaletteNameOpen } = state;
+  const { isPaletteNameOpen, isEmojiOpen } = state;
 
   const goBack = () => {
     props.history.push("/");
   };
 
-  const handleClickOpen = () => {
+  const handleClickOpen = e => {
     setState(prevState => ({ ...prevState, isPaletteNameOpen: true }));
   };
 
   const handleClose = () => {
-    setState(prevState => ({ ...prevState, isPaletteNameOpen: false }));
+    setState(prevState => ({
+      ...prevState,
+      isPaletteNameOpen: false,
+      isEmojiOpen: false,
+    }));
+  };
+
+  const handleEmojiOpen = () => {
+    setState(prevState => ({ ...prevState, isEmojiOpen: true }));
   };
 
   return (
@@ -89,9 +98,11 @@ function PaletteFormNav(props) {
         </div>
       </AppBar>
       <PaletteMetaForm
-        isOpen={isPaletteNameOpen}
+        isPaletteNameOpen={isPaletteNameOpen}
+        isEmojiOpen={isEmojiOpen}
         handleClose={handleClose}
         handleSubmitPalette={handleSubmitPalette}
+        handleEmojiOpen={handleEmojiOpen}
         palettes={palettes}
         totalColors={totalColors}
       />

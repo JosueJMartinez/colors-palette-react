@@ -97,7 +97,7 @@ function PaletteMetaForm(props) {
               color="primary"
               onClick={handleFinalSubmit}
             >
-              Save Name
+              Save!
             </Button>
           </ButtonGroup>
         </DialogActions>
@@ -148,7 +148,7 @@ function PaletteMetaForm(props) {
                 Cancel
               </Button>
               <Button variant="contained" color="primary" type="submit">
-                Save Name
+                Next
               </Button>
             </ButtonGroup>
           </DialogActions>

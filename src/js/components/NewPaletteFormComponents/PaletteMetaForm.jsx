@@ -10,6 +10,8 @@ import {
   ValidatorForm,
   TextValidator,
 } from "react-material-ui-form-validator";
+import { Picker } from "emoji-mart";
+import "emoji-mart/css/emoji-mart.css";
 import { withStyles } from "@material-ui/styles";
 // import styles from "../../../styles/PaletteFormNavStyles";
 
@@ -96,6 +98,7 @@ function PaletteMetaForm(props) {
               ]}
             />
           </DialogContentText>
+          <Picker />
         </DialogContent>
         <DialogActions>
           <ButtonGroup

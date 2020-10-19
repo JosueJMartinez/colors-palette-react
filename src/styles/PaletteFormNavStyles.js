@@ -9,6 +9,7 @@ export default function styles(theme, drawerWidth) {
       height: "64px",
       flexDirection: "row",
       justifyContent: "space-between",
+      alignItems: "center",
     },
     toolBar: {},
     appBarShift: {
@@ -25,6 +26,6 @@ export default function styles(theme, drawerWidth) {
     hide: {
       display: "none",
     },
-    appBarBtns: { margin: "auto 10px auto 0" },
+    appBarBtns: { marginRight: "1rem" },
   };
 }

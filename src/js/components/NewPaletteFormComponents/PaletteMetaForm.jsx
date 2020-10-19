@@ -13,7 +13,6 @@ import {
 import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
 import { withStyles } from "@material-ui/styles";
-// import styles from "../../../styles/PaletteFormNavStyles";
 
 const styles = {
   warning: {
@@ -27,6 +26,7 @@ function PaletteMetaForm(props) {
     emoji: "",
     isEmojiSelected: true,
   });
+
   const {
     isPaletteNameOpen,
     isEmojiOpen,
@@ -37,6 +37,7 @@ function PaletteMetaForm(props) {
     totalColors,
     classes,
   } = props;
+
   const { newPaletteName, emoji, isEmojiSelected } = state;
 
   useEffect(() => {
@@ -84,9 +85,9 @@ function PaletteMetaForm(props) {
   };
 
   const handleEmojiSelection = emoji => {
-    console.log(`i am selecting ${emoji.native}`);
     setState(prevState => ({ ...prevState, emoji: emoji.native }));
   };
+
   return (
     <>
       <Dialog
@@ -96,7 +97,8 @@ function PaletteMetaForm(props) {
       >
         <DialogTitle id="form-dialog-title">Choose an Emoji</DialogTitle>
         <DialogContent>
-          <Picker onSelect={handleEmojiSelection} emoji="😀" />
+          <Picker onSelect={handleEmojiSelection} emoji={emoji} />
+          <DialogContentText>Current Emoji: {emoji}</DialogContentText>
           <DialogContentText className={classes.warning}>
             {isEmojiSelected ? "" : "Please select an emoji"}
           </DialogContentText>

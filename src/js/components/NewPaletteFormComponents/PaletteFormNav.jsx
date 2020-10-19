@@ -18,10 +18,12 @@ const useStyles = makeStyles(theme => styles(theme, drawerWidth));
 
 function PaletteFormNav(props) {
   const classes = useStyles();
+
   const [state, setState] = useState({
     isPaletteNameOpen: false,
     isEmojiOpen: false,
   });
+
   const {
     isDrawerOpen,
     totalColors,

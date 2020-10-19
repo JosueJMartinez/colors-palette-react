@@ -15,10 +15,18 @@ import "emoji-mart/css/emoji-mart.css";
 import { withStyles } from "@material-ui/styles";
 // import styles from "../../../styles/PaletteFormNavStyles";
 
-const styles = {};
+const styles = {
+  warning: {
+    color: "red",
+  },
+};
 
 function PaletteMetaForm(props) {
-  const [state, setState] = useState({ newPaletteName: "", emoji: "" });
+  const [state, setState] = useState({
+    newPaletteName: "",
+    emoji: "",
+    isEmojiSelected: true,
+  });
   const {
     isPaletteNameOpen,
     isEmojiOpen,
@@ -27,8 +35,9 @@ function PaletteMetaForm(props) {
     handleSubmitPalette,
     palettes,
     totalColors,
+    classes,
   } = props;
-  const { newPaletteName, emoji } = state;
+  const { newPaletteName, emoji, isEmojiSelected } = state;
 
   useEffect(() => {
     ValidatorForm.addValidationRule("isPaletteNameUnique", value =>
@@ -54,6 +63,13 @@ function PaletteMetaForm(props) {
   };
 
   const handleFinalSubmit = () => {
+    if (!emoji.length) {
+      console.log("emoji not selected");
+      return setState(prevState => ({
+        ...prevState,
+        isEmojiSelected: false,
+      }));
+    }
     handleClose();
     handleSubmitPalette({ paletteName: newPaletteName, emoji });
   };
@@ -80,8 +96,9 @@ function PaletteMetaForm(props) {
       >
         <DialogTitle id="form-dialog-title">Choose an Emoji</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            <Picker onSelect={handleEmojiSelection} />
+          <Picker onSelect={handleEmojiSelection} emoji="😀" />
+          <DialogContentText className={classes.warning}>
+            {isEmojiSelected ? "" : "Please select an emoji"}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

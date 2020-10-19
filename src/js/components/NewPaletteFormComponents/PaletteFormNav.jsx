@@ -86,15 +86,15 @@ function PaletteFormNav(props) {
               Save Palette
             </Button>
           </ButtonGroup>
-          <PaletteMetaForm
-            isOpen={isPaletteNameOpen}
-            handleClose={handleClose}
-            handleSubmitPalette={handleSubmitPalette}
-            palettes={palettes}
-            totalColors={totalColors}
-          />
         </div>
       </AppBar>
+      <PaletteMetaForm
+        isOpen={isPaletteNameOpen}
+        handleClose={handleClose}
+        handleSubmitPalette={handleSubmitPalette}
+        palettes={palettes}
+        totalColors={totalColors}
+      />
     </div>
   );
 }

@@ -182,7 +182,6 @@ export default function NewPaletteForm(props) {
             </Button>
           </ButtonGroup>
           <NewColorPickerForm
-            className={classes.formContent}
             isFull={isFull}
             addColor={addColor}
             paletteColors={state.paletteColors}

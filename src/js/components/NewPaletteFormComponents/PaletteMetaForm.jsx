@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-
 import Button from "@material-ui/core/Button";
-
+import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -68,21 +67,24 @@ function PaletteMetaForm(props) {
         className={classes.nameDialogForm}
       >
         <DialogTitle id="form-dialog-title">
-          Please enter a name
+          Choose a Palette Name
         </DialogTitle>
         <ValidatorForm
           instantValidate={false}
           onSubmit={handleSubmitName}
-          className={classes.paletteNameForm}
           onError={errors => console.log(errors)}
         >
           <DialogContent>
             <DialogContentText>
+              Please enter a name for this new palette. It has to be a
+              unique palette name!
               <TextValidator
                 label="Palette Name"
                 onChange={handleNameChange}
                 name="newPaletteName"
                 value={newPaletteName}
+                fullWidth
+                margin="normal"
                 validators={[
                   "required",
                   "isPaletteNameUnique",
@@ -97,9 +99,18 @@ function PaletteMetaForm(props) {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button type="submit" color="primary">
-              Save Name
-            </Button>
+            <ButtonGroup
+              // className={classes.formContent}
+              aria-label="contained primary button group"
+              disableElevation
+            >
+              <Button color="primary" onClick={handleClose}>
+                Cancel
+              </Button>
+              <Button variant="contained" color="primary" type="submit">
+                Save Name
+              </Button>
+            </ButtonGroup>
           </DialogActions>
         </ValidatorForm>
       </Dialog>

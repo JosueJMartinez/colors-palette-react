@@ -25,13 +25,6 @@ export default function styles(theme, drawerWidth) {
     hide: {
       display: "none",
     },
-    paletteNameForm: {
-      display: "flex",
-      flexDirection: "column",
-    },
-    appBarBtns: {},
-    nameDialogForm: {
-      padding: "3rem",
-    },
+    appBarBtns: { margin: "auto 10px auto 0" },
   };
 }

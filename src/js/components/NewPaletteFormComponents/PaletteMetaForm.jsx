@@ -13,12 +13,7 @@ import {
 import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
 import { withStyles } from "@material-ui/styles";
-
-const styles = {
-  warning: {
-    color: "red",
-  },
-};
+import styles from "../../../styles/PaletteMetaFormStyles";
 
 function PaletteMetaForm(props) {
   const [state, setState] = useState({

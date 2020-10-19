@@ -59,62 +59,60 @@ function PaletteMetaForm(props) {
     }));
   };
   return (
-    <div>
-      <Dialog
-        open={isOpen}
-        onClose={handleClose}
-        aria-labelledby="form-dialog-title"
-        className={classes.nameDialogForm}
+    <Dialog
+      open={isOpen}
+      onClose={handleClose}
+      aria-labelledby="form-dialog-title"
+      className={classes.nameDialogForm}
+    >
+      <DialogTitle id="form-dialog-title">
+        Choose a Palette Name
+      </DialogTitle>
+      <ValidatorForm
+        instantValidate={false}
+        onSubmit={handleSubmitName}
+        onError={errors => console.log(errors)}
       >
-        <DialogTitle id="form-dialog-title">
-          Choose a Palette Name
-        </DialogTitle>
-        <ValidatorForm
-          instantValidate={false}
-          onSubmit={handleSubmitName}
-          onError={errors => console.log(errors)}
-        >
-          <DialogContent>
-            <DialogContentText>
-              Please enter a name for this new palette. It has to be a
-              unique palette name!
-              <TextValidator
-                label="Palette Name"
-                onChange={handleNameChange}
-                name="newPaletteName"
-                value={newPaletteName}
-                fullWidth
-                margin="normal"
-                validators={[
-                  "required",
-                  "isPaletteNameUnique",
-                  "isPaletteNotEmpty",
-                ]}
-                errorMessages={[
-                  "this field is required",
-                  "Already a palette with this name",
-                  "Palette at least needs one color",
-                ]}
-              />
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <ButtonGroup
-              // className={classes.formContent}
-              aria-label="contained primary button group"
-              disableElevation
-            >
-              <Button color="primary" onClick={handleClose}>
-                Cancel
-              </Button>
-              <Button variant="contained" color="primary" type="submit">
-                Save Name
-              </Button>
-            </ButtonGroup>
-          </DialogActions>
-        </ValidatorForm>
-      </Dialog>
-    </div>
+        <DialogContent>
+          <DialogContentText>
+            Please enter a name for this new palette. It has to be a unique
+            palette name!
+            <TextValidator
+              label="Palette Name"
+              onChange={handleNameChange}
+              name="newPaletteName"
+              value={newPaletteName}
+              fullWidth
+              margin="normal"
+              validators={[
+                "required",
+                "isPaletteNameUnique",
+                "isPaletteNotEmpty",
+              ]}
+              errorMessages={[
+                "this field is required",
+                "Already a palette with this name",
+                "Palette at least needs one color",
+              ]}
+            />
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <ButtonGroup
+            // className={classes.formContent}
+            aria-label="contained primary button group"
+            disableElevation
+          >
+            <Button color="primary" onClick={handleClose}>
+              Cancel
+            </Button>
+            <Button variant="contained" color="primary" type="submit">
+              Save Name
+            </Button>
+          </ButtonGroup>
+        </DialogActions>
+      </ValidatorForm>
+    </Dialog>
   );
 }
 

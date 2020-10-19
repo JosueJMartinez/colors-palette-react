@@ -20,8 +20,7 @@ function PaletteFormNav(props) {
   const classes = useStyles();
 
   const [state, setState] = useState({
-    isPaletteNameOpen: false,
-    isEmojiOpen: false,
+    stateOfMetaForm: "closed",
   });
 
   const {
@@ -32,26 +31,14 @@ function PaletteFormNav(props) {
     handleSubmitPalette,
   } = props;
 
-  const { isPaletteNameOpen, isEmojiOpen } = state;
+  const { stateOfMetaForm } = state;
 
   const goBack = () => {
     props.history.push("/");
   };
 
-  const handleClickOpen = e => {
-    setState(prevState => ({ ...prevState, isPaletteNameOpen: true }));
-  };
-
-  const handleClose = () => {
-    setState(prevState => ({
-      ...prevState,
-      isPaletteNameOpen: false,
-      isEmojiOpen: false,
-    }));
-  };
-
-  const handleEmojiOpen = () => {
-    setState(prevState => ({ ...prevState, isEmojiOpen: true }));
+  const changeStateOfForm = stateOfMetaForm => {
+    setState(prevState => ({ ...prevState, stateOfMetaForm }));
   };
 
   return (
@@ -93,20 +80,21 @@ function PaletteFormNav(props) {
             <Button color="secondary" onClick={goBack}>
               Go Back
             </Button>
-            <Button onClick={handleClickOpen} color="primary">
+            <Button
+              onClick={() => changeStateOfForm("nameForm")}
+              color="primary"
+            >
               Save Palette
             </Button>
           </ButtonGroup>
         </div>
       </AppBar>
       <PaletteMetaForm
-        isPaletteNameOpen={isPaletteNameOpen}
-        isEmojiOpen={isEmojiOpen}
-        handleClose={handleClose}
         handleSubmitPalette={handleSubmitPalette}
-        handleEmojiOpen={handleEmojiOpen}
         palettes={palettes}
         totalColors={totalColors}
+        changeStateOfForm={changeStateOfForm}
+        stateOfMetaForm={stateOfMetaForm}
       />
     </div>
   );

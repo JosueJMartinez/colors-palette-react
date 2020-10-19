@@ -23,14 +23,12 @@ function PaletteMetaForm(props) {
   });
 
   const {
-    isPaletteNameOpen,
-    isEmojiOpen,
-    handleClose,
-    handleEmojiOpen,
     handleSubmitPalette,
     palettes,
     totalColors,
     classes,
+    changeStateOfForm,
+    stateOfMetaForm,
   } = props;
 
   const { newPaletteName, emoji, isEmojiSelected } = state;
@@ -53,20 +51,14 @@ function PaletteMetaForm(props) {
     };
   });
 
-  const handleSubmitName = () => {
-    handleClose();
-    handleEmojiOpen();
-  };
-
   const handleFinalSubmit = () => {
     if (!emoji.length) {
-      console.log("emoji not selected");
       return setState(prevState => ({
         ...prevState,
         isEmojiSelected: false,
       }));
     }
-    handleClose();
+    changeStateOfForm("closed");
     handleSubmitPalette({ paletteName: newPaletteName, emoji });
   };
 
@@ -86,8 +78,8 @@ function PaletteMetaForm(props) {
   return (
     <>
       <Dialog
-        open={isEmojiOpen}
-        onClose={handleClose}
+        open={stateOfMetaForm === "emojiForm"}
+        onClose={stateOfMetaForm !== "emojiForm"}
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">Choose an Emoji</DialogTitle>
@@ -103,7 +95,10 @@ function PaletteMetaForm(props) {
             aria-label="contained primary button group"
             disableElevation
           >
-            <Button color="primary" onClick={handleClose}>
+            <Button
+              color="primary"
+              onClick={() => changeStateOfForm("closed")}
+            >
               Cancel
             </Button>
             <Button
@@ -117,8 +112,8 @@ function PaletteMetaForm(props) {
         </DialogActions>
       </Dialog>
       <Dialog
-        open={isPaletteNameOpen}
-        onClose={handleClose}
+        open={stateOfMetaForm === "nameForm"}
+        onClose={stateOfMetaForm !== "nameForm"}
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">
@@ -126,7 +121,7 @@ function PaletteMetaForm(props) {
         </DialogTitle>
         <ValidatorForm
           instantValidate={false}
-          onSubmit={handleSubmitName}
+          onSubmit={() => changeStateOfForm("emojiForm")}
           onError={errors => console.log(errors)}
         >
           <DialogContent>
@@ -158,7 +153,10 @@ function PaletteMetaForm(props) {
               aria-label="contained primary button group"
               disableElevation
             >
-              <Button color="primary" onClick={handleClose}>
+              <Button
+                color="primary"
+                onClick={() => changeStateOfForm("closed")}
+              >
                 Cancel
               </Button>
               <Button variant="contained" color="primary" type="submit">

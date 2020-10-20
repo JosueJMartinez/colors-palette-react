@@ -9,12 +9,13 @@ export default {
     "&:hover": {
       cursor: "pointer",
     },
-    // height: '150px',
   },
   colors: {
     display: "flex",
     flexWrap: "wrap",
+    alignContent: "flex-start",
     height: "150px",
+    width: "100%",
     borderRadius: "5px !important",
     backgroundColor: "grey",
     overflow: "hidden",
@@ -31,7 +32,6 @@ export default {
     justifyContent: "space-between",
     margin: "0",
     paddingTop: "0.5rem",
-    // color: '#2c1515'
   },
   link: {
     textDecoration: "none",

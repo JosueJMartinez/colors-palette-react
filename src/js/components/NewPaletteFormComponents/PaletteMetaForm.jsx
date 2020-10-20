@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Dialog from "@material-ui/core/Dialog";
@@ -29,9 +29,12 @@ function PaletteMetaForm(props) {
     classes,
     changeStateOfForm,
     stateOfMetaForm,
+	  nameInputRef
   } = props;
 
   const { newPaletteName, emoji, isEmojiSelected } = state;
+	
+	
 
   useEffect(() => {
     ValidatorForm.addValidationRule("isPaletteNameUnique", value =>
@@ -61,7 +64,7 @@ function PaletteMetaForm(props) {
     changeStateOfForm("closed");
     handleSubmitPalette({
       paletteName: newPaletteName,
-      emoji: emoji.native,
+      emoji,
     });
   };
 
@@ -75,7 +78,7 @@ function PaletteMetaForm(props) {
   };
 
   const handleEmojiSelection = emoji => {
-    setState(prevState => ({ ...prevState, emoji }));
+    setState(prevState => ({ ...prevState, emoji: emoji.native }));
   };
 
   return (
@@ -92,6 +95,7 @@ function PaletteMetaForm(props) {
             showPreview={true}
             onSelect={handleEmojiSelection}
             emoji={emoji.native}
+			autofocus
           />
           <DialogContentText>Current Emoji: {emoji}</DialogContentText>
           <DialogContentText className={classes.warning}>
@@ -153,6 +157,7 @@ function PaletteMetaForm(props) {
                   "Already a palette with this name",
                   "Palette at least needs one color",
                 ]}
+				ref={nameInputRef}
               />
             </DialogContentText>
           </DialogContent>

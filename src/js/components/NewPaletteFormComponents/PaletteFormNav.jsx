@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { withRouter } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
@@ -32,6 +32,8 @@ function PaletteFormNav(props) {
   } = props;
 
   const { stateOfMetaForm } = state;
+	
+	const nameInputRef = useRef(null)
 
   const goBack = () => {
     props.history.push("/");
@@ -40,6 +42,11 @@ function PaletteFormNav(props) {
   const changeStateOfForm = stateOfMetaForm => {
     setState(prevState => ({ ...prevState, stateOfMetaForm }));
   };
+	
+  const handleFormClick=() => {
+    nameInputRef.current.focus();
+	changeStateOfForm("nameForm")
+  }
 
   return (
     <div className={classes.root}>
@@ -81,7 +88,7 @@ function PaletteFormNav(props) {
               Go Back
             </Button>
             <Button
-              onClick={() => changeStateOfForm("nameForm")}
+              onClick={handleFormClick}
               color="primary"
             >
               Save Palette
@@ -89,13 +96,14 @@ function PaletteFormNav(props) {
           </ButtonGroup>
         </div>
       </AppBar>
-      <PaletteMetaForm
+      {stateOfMetaForm==='emojiForm'||stateOfMetaForm==='nameForm'?<PaletteMetaForm
         handleSubmitPalette={handleSubmitPalette}
         palettes={palettes}
         totalColors={totalColors}
         changeStateOfForm={changeStateOfForm}
         stateOfMetaForm={stateOfMetaForm}
-      />
+		nameInputRef={nameInputRef}
+      />:''}
     </div>
   );
 }

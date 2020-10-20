@@ -29,7 +29,7 @@ function PaletteMetaForm(props) {
     classes,
     changeStateOfForm,
     stateOfMetaForm,
-	  nameInputRef
+	  // nameInputRef
   } = props;
 
   const { newPaletteName, emoji, isEmojiSelected } = state;
@@ -157,7 +157,7 @@ function PaletteMetaForm(props) {
                   "Already a palette with this name",
                   "Palette at least needs one color",
                 ]}
-				ref={nameInputRef}
+				//ref={nameInputRef}
               />
             </DialogContentText>
           </DialogContent>

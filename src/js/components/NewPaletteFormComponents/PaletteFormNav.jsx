@@ -33,7 +33,7 @@ function PaletteFormNav(props) {
 
   const { stateOfMetaForm } = state;
 	
-	const nameInputRef = useRef(null)
+	// const nameInputRef = useRef(null)
 
   const goBack = () => {
     props.history.push("/");
@@ -44,7 +44,7 @@ function PaletteFormNav(props) {
   };
 	
   const handleFormClick=() => {
-    nameInputRef.current.focus();
+    // nameInputRef.current.focus();
 	changeStateOfForm("nameForm")
   }
 
@@ -102,7 +102,7 @@ function PaletteFormNav(props) {
         totalColors={totalColors}
         changeStateOfForm={changeStateOfForm}
         stateOfMetaForm={stateOfMetaForm}
-		nameInputRef={nameInputRef}
+		// nameInputRef={nameInputRef}
       />:''}
     </div>
   );

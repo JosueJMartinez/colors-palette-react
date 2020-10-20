@@ -150,7 +150,7 @@ export default function NewPaletteForm(props) {
       >
         <div className={classes.drawerHeader}>
           <Typography variant="h5" className={classes.drawerHeaderTitle}>
-            RCP Options
+            Create a Palette
           </Typography>
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />

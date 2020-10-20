@@ -32,8 +32,8 @@ function PaletteFormNav(props) {
   } = props;
 
   const { stateOfMetaForm } = state;
-	
-	// const nameInputRef = useRef(null)
+
+  // const nameInputRef = useRef(null)
 
   const goBack = () => {
     props.history.push("/");
@@ -42,11 +42,11 @@ function PaletteFormNav(props) {
   const changeStateOfForm = stateOfMetaForm => {
     setState(prevState => ({ ...prevState, stateOfMetaForm }));
   };
-	
-  const handleFormClick=() => {
+
+  const handleFormClick = () => {
     // nameInputRef.current.focus();
-	changeStateOfForm("nameForm")
-  }
+    changeStateOfForm("nameForm");
+  };
 
   return (
     <div className={classes.root}>
@@ -72,7 +72,7 @@ function PaletteFormNav(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h5" noWrap>
-            Create A Palette
+            RCP
           </Typography>
         </Toolbar>
         <div className={classes.appBarBtns}>
@@ -87,23 +87,25 @@ function PaletteFormNav(props) {
             <Button color="secondary" onClick={goBack}>
               Go Back
             </Button>
-            <Button
-              onClick={handleFormClick}
-              color="primary"
-            >
+            <Button onClick={handleFormClick} color="primary">
               Save Palette
             </Button>
           </ButtonGroup>
         </div>
       </AppBar>
-      {stateOfMetaForm==='emojiForm'||stateOfMetaForm==='nameForm'?<PaletteMetaForm
-        handleSubmitPalette={handleSubmitPalette}
-        palettes={palettes}
-        totalColors={totalColors}
-        changeStateOfForm={changeStateOfForm}
-        stateOfMetaForm={stateOfMetaForm}
-		// nameInputRef={nameInputRef}
-      />:''}
+      {stateOfMetaForm === "emojiForm" ||
+      stateOfMetaForm === "nameForm" ? (
+        <PaletteMetaForm
+          handleSubmitPalette={handleSubmitPalette}
+          palettes={palettes}
+          totalColors={totalColors}
+          changeStateOfForm={changeStateOfForm}
+          stateOfMetaForm={stateOfMetaForm}
+          // nameInputRef={nameInputRef}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

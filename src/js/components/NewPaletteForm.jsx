@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { arrayMove } from "react-sortable-hoc";
 import SortablePalette from "./NewPaletteFormComponents/SortablePalette";
 import PaletteFormNav from "./NewPaletteFormComponents/PaletteFormNav";
-import NewColorPickerForm from "./NewPaletteFormComponents/NewColorPickerForm";
+import PaletteFormDrawer from "./NewPaletteFormComponents/PaletteFormDrawer";
 import styles from "../../styles/NewPaletteFormStyles";
 import { DRAWER_WIDTH } from "../../constants";
 
@@ -23,9 +16,10 @@ export default function NewPaletteForm(props) {
   const [state, setState] = useState({
     isDrawerOpen: true,
     paletteColors: [],
-    newPaletteName: "",
-    buttonClickCtr: 0,
+    addClickCtr: 0,
   });
+
+  const { isDrawerOpen, paletteColors, addClickCtr } = state;
 
   useEffect(() => {
     document.body.classList.add("overflow");
@@ -35,7 +29,7 @@ export default function NewPaletteForm(props) {
     };
   });
 
-  const isFull = state.paletteColors.length >= props.maxColors;
+  const isFull = paletteColors.length >= props.maxColors;
 
   const handleDrawerOpen = () => {
     setState(prevState => ({ ...prevState, isDrawerOpen: true }));
@@ -49,7 +43,7 @@ export default function NewPaletteForm(props) {
     setState(prevState => ({
       ...prevState,
       paletteColors: [...prevState.paletteColors, color],
-      buttonClickCtr: prevState.buttonClickCtr + 1,
+      addClickCtr: prevState.addClickCtr + 1,
     }));
   };
 
@@ -68,7 +62,7 @@ export default function NewPaletteForm(props) {
       paletteName,
       id: paletteName.toLowerCase().replace(/ /g, "-"),
       emoji,
-      colors: state.paletteColors,
+      colors: paletteColors,
     };
     props.addPalette(newPalette);
     props.history.push("/");
@@ -77,7 +71,7 @@ export default function NewPaletteForm(props) {
   const deleteColor = deleteColorName => {
     setState(prevState => ({
       ...prevState,
-      paletteColors: state.paletteColors.filter(
+      paletteColors: paletteColors.filter(
         color => color.name !== deleteColorName
       ),
     }));
@@ -111,8 +105,8 @@ export default function NewPaletteForm(props) {
       randColor = randPalette.colors[randNum];
       let color = {};
 
-      for (let i = 0; i < state.paletteColors.length; i++) {
-        color = state.paletteColors[i];
+      for (let i = 0; i < paletteColors.length; i++) {
+        color = paletteColors[i];
         isUnique = true;
         if (
           color.color === randColor.color ||
@@ -129,71 +123,30 @@ export default function NewPaletteForm(props) {
   return (
     <div className={classes.root}>
       <PaletteFormNav
-        isDrawerOpen={state.isDrawerOpen}
+        isDrawerOpen={isDrawerOpen}
         palettes={props.palettes}
-        totalColors={state.paletteColors.length}
+        totalColors={paletteColors.length}
         handleSubmitPalette={handleSubmitPalette}
         handleDrawerOpen={handleDrawerOpen}
       />
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={state.isDrawerOpen}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <Typography variant="h5" className={classes.drawerHeaderTitle}>
-            Create a Palette
-          </Typography>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <div className={classes.drawerContainer}>
-          <Typography variant="h4" className={classes.formContent}>
-            Design Your Palette
-          </Typography>
-          <ButtonGroup
-            className={classes.formContent}
-            variant="contained"
-            color="primary"
-            aria-label="contained primary button group"
-            disableElevation
-          >
-            <Button color="secondary" onClick={handleClearClick}>
-              Clear Palette
-            </Button>
-            <Button
-              color="primary"
-              onClick={handleRandColorClick}
-              disabled={isFull}
-              style={{
-                backgroundColor: isFull ? "grey" : "",
-              }}
-            >
-              Random Color
-            </Button>
-          </ButtonGroup>
-          <NewColorPickerForm
-            isFull={isFull}
-            addColor={addColor}
-            paletteColors={state.paletteColors}
-            buttonClickCtr={state.buttonClickCtr}
-          />
-        </div>
-      </Drawer>
+      <PaletteFormDrawer
+        isDrawerOpen={isDrawerOpen}
+        handleDrawerClose={handleDrawerClose}
+        handleClearClick={handleClearClick}
+        handleRandColorClick={handleRandColorClick}
+        isFull={isFull}
+        addColor={addColor}
+        paletteColors={paletteColors}
+        addClickCtr={addClickCtr}
+      />
       <main
         className={clsx(classes.content, {
-          [classes.contentShift]: state.isDrawerOpen,
+          [classes.contentShift]: isDrawerOpen,
         })}
       >
         <div className={classes.drawerHeader} />
         <SortablePalette
-          paletteColors={state.paletteColors}
+          paletteColors={paletteColors}
           deleteColor={deleteColor}
           onSortEnd={onSortEnd}
           axis={"xy"}

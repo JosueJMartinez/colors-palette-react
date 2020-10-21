@@ -11,7 +11,6 @@ export default function styles(theme, drawerWidth) {
       justifyContent: "space-between",
       alignItems: "center",
     },
-    toolBar: {},
     appBarShift: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,

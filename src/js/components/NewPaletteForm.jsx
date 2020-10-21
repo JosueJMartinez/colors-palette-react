@@ -127,10 +127,7 @@ export default function NewPaletteForm(props) {
   };
 
   return (
-    <div
-      className={classes.root}
-      // style={{ height: "100%", width: "100%" }}
-    >
+    <div className={classes.root}>
       <PaletteFormNav
         isDrawerOpen={state.isDrawerOpen}
         palettes={props.palettes}

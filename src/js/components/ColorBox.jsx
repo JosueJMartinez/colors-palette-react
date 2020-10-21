@@ -10,7 +10,7 @@ class ColorBox extends Component {
     copied: false,
   };
 
-  handleCopyClick = e => {
+  handleCopyClick = () => {
     this.animate();
   };
 

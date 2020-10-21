@@ -11,7 +11,7 @@ import styles from "../../styles/NavBarStyles";
 
 function NavBar(props) {
   const { level, handleSlider, type, handleFormat, classes } = props;
-  // const classes = this.styles(withStyles);
+
   return (
     <>
       <nav className={classes.root}>
@@ -35,7 +35,6 @@ function NavBar(props) {
           ""
         )}
         <div className={classes.selectContainer}>
-          {/* <FormControl variant="outlined"> */}
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
@@ -48,7 +47,6 @@ function NavBar(props) {
             <MenuItem value="rgb">RGB - RGB(255,255,255)</MenuItem>
             <MenuItem value="rgba">RGBA - RGB(255,255,255, 1.0)</MenuItem>
           </Select>
-          {/* </FormControl> */}
         </div>
       </nav>
     </>

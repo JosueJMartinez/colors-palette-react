@@ -14,8 +14,6 @@ import styles from "../../../styles/PaletteFormNavStyles";
 import PaletteMetaForm from "./PaletteMetaForm";
 import { DRAWER_WIDTH } from "../../../constants";
 
-// const DRAWER_WIDTH = styleConstants;
-
 const useStyles = makeStyles(theme => styles(theme, DRAWER_WIDTH));
 
 function PaletteFormNav(props) {

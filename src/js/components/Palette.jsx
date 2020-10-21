@@ -118,7 +118,6 @@ class Palette extends Component {
 
     return (
       <div className={classes.root}>
-        {/* NavBar goes here */}
         <NavBar
           level={isRegPalette && level}
           handleSlider={isRegPalette && this.handleSlider}
@@ -130,7 +129,6 @@ class Palette extends Component {
           className={`${classes.copyOverlayText} ${show && classes.show}`}
         >
           <h1
-            // style={{ backgroundColor: this.backgroundColorLum(color) }}
             className={
               this.isBackgroundColorDark(color)
                 ? classes.darkBackground
@@ -140,7 +138,6 @@ class Palette extends Component {
             Copied
           </h1>
           <p
-            // style={{ color: this.fontColorLum(color) }}
             className={
               this.isFontColorDark(color) ? classes.lightText : undefined
             }
@@ -149,7 +146,6 @@ class Palette extends Component {
           </p>
         </div>
         <div className={classes.paletteColors}>
-          {/* Mapping colors array into individual colorboxes */}
           {decidePalette()}
           {addBackButton()}
         </div>
@@ -179,7 +175,7 @@ class Palette extends Component {
             </Fragment>
           }
         />
-        {/* footer here */}
+
         <Footer emoji={emoji} name={paletteName} />
       </div>
     );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 
 import Palette from "./components/Palette";
@@ -10,12 +10,23 @@ import PaletteList from "./components/PaletteList";
 import NewPaletteForm from "./components/NewPaletteForm";
 
 function App() {
-  const [state, setState] = useState({ palettes: seedColors });
+  const [state, setState] = useState({ palettes: [] });
+
+  const { palettes } = state;
 
   const grabPalette = id => {
-    const found = state.palettes.filter(p => id === p.id);
+    const found = palettes.filter(p => id === p.id);
     return genPalette(found[0]);
   };
+
+  useEffect(() => {
+    const palettes = JSON.parse(localStorage.getItem("RCP_PaletteList"));
+    palettes ? setState({ palettes }) : setState({ palettes: seedColors });
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("RCP_PaletteList", JSON.stringify(palettes));
+  }, [palettes]);
 
   const addPalette = newPalette => {
     setState(prevState => ({

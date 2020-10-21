@@ -1,6 +1,12 @@
 export default {
   root: {
     padding: "6px !important",
+    display: "inline-block",
+    position: "relative",
+    "&:hover $deleteIcon": {
+      opacity: "1",
+      backgroundColor: "white",
+    },
   },
   card: {
     backgroundColor: "white",
@@ -42,5 +48,16 @@ export default {
     fontSize: "1rem",
     lineHeight: "15px",
     textShadow: "1px 2px black",
+  },
+  deleteIcon: {
+    padding: "0",
+    margin: "0",
+    width: "24px",
+    position: "absolute",
+    display: "inline-block",
+    top: "4%",
+    right: "4%",
+    backgroundColor: "white",
+    opacity: "0",
   },
 };

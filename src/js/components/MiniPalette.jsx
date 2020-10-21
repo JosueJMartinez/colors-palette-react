@@ -1,7 +1,10 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
-import { useHistory } from "react-router-dom";
+import IconButton from "@material-ui/core/IconButton";
+import CancelPresentationIcon from "@material-ui/icons/CancelPresentation";
+import CancelIcon from "@material-ui/icons/Cancel";
 import styles from "../../styles/MiniPaletteStyles";
 
 function MiniPalette(props) {
@@ -19,6 +22,23 @@ function MiniPalette(props) {
       xs={12}
       sm={4}
     >
+      <IconButton
+        color="secondary"
+        aria-label="delete palette"
+        // onClick={handleDrawerOpen}
+        edge="start"
+        className={classes.deleteIcon}
+        // className={clsx(
+        //   classes.menuButton,
+        //   isDrawerOpen && classes.hide
+        // )}
+      >
+        <CancelIcon
+        // color="secondary"
+        // aria-label="delete palette"
+        // className={classes.deleteIcon}
+        />
+      </IconButton>
       <div className={classes.card}>
         <div className={classes.colors}>
           {colors.map((c, idx) => (

@@ -12,10 +12,8 @@ import { arrayMove } from "react-sortable-hoc";
 import SortablePalette from "./NewPaletteFormComponents/SortablePalette";
 import PaletteFormNav from "./NewPaletteFormComponents/PaletteFormNav";
 import NewColorPickerForm from "./NewPaletteFormComponents/NewColorPickerForm";
-import styleConstants from '../../constants';
 import styles from "../../styles/NewPaletteFormStyles";
-
-const {DRAWER_WIDTH} = styleConstants;
+import { DRAWER_WIDTH } from "../../constants";
 
 const useStyles = makeStyles(theme => styles(theme, DRAWER_WIDTH));
 

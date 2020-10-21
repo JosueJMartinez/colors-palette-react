@@ -10,13 +10,14 @@ import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { arrayMove } from "react-sortable-hoc";
 import SortablePalette from "./NewPaletteFormComponents/SortablePalette";
-import styles from "../../styles/NewPaletteFormStyles";
 import PaletteFormNav from "./NewPaletteFormComponents/PaletteFormNav";
 import NewColorPickerForm from "./NewPaletteFormComponents/NewColorPickerForm";
+import styleConstants from '../../constants';
+import styles from "../../styles/NewPaletteFormStyles";
 
-const drawerWidth = 350;
+const {DRAWER_WIDTH} = styleConstants;
 
-const useStyles = makeStyles(theme => styles(theme, drawerWidth));
+const useStyles = makeStyles(theme => styles(theme, DRAWER_WIDTH));
 
 export default function NewPaletteForm(props) {
   const classes = useStyles();

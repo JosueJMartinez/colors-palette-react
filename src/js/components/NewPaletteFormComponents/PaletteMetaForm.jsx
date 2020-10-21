@@ -133,6 +133,7 @@ function PaletteMetaForm(props) {
           instantValidate={false}
           onSubmit={() => changeStateOfForm("emojiForm")}
           onError={errors => console.log(errors)}
+			autofocus
         >
           <DialogContent>
             <DialogContentText>

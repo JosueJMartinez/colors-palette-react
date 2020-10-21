@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
@@ -12,9 +12,11 @@ import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import styles from "../../../styles/PaletteFormNavStyles";
 import PaletteMetaForm from "./PaletteMetaForm";
+import styleConstants  from '../../../constants';
 
-const drawerWidth = 350;
-const useStyles = makeStyles(theme => styles(theme, drawerWidth));
+const {DRAWER_WIDTH} = styleConstants;
+
+const useStyles = makeStyles(theme => styles(theme, DRAWER_WIDTH));
 
 function PaletteFormNav(props) {
   const classes = useStyles();
@@ -78,7 +80,6 @@ function PaletteFormNav(props) {
         <div className={classes.appBarBtns}>
           {" "}
           <ButtonGroup
-            // className={classes}
             variant="contained"
             color="primary"
             aria-label="contained primary button group"
@@ -93,19 +94,13 @@ function PaletteFormNav(props) {
           </ButtonGroup>
         </div>
       </AppBar>
-      {stateOfMetaForm === "emojiForm" ||
-      stateOfMetaForm === "nameForm" ? (
         <PaletteMetaForm
           handleSubmitPalette={handleSubmitPalette}
           palettes={palettes}
           totalColors={totalColors}
           changeStateOfForm={changeStateOfForm}
           stateOfMetaForm={stateOfMetaForm}
-          // nameInputRef={nameInputRef}
         />
-      ) : (
-        ""
-      )}
     </div>
   );
 }

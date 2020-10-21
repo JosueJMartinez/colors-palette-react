@@ -7,7 +7,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
+import AddBoxIcon from "@material-ui/icons/AddBox";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import styles from "../../../styles/PaletteFormNavStyles";
@@ -69,7 +69,7 @@ function PaletteFormNav(props) {
               isDrawerOpen && classes.hide
             )}
           >
-            <AddToPhotosIcon />
+            <AddBoxIcon />
           </IconButton>
           <Typography variant="h5" noWrap>
             RCP

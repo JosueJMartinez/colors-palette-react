@@ -6,7 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import styles from "../../styles/PaletteListStyles";
 
-import MiniPalette from "./MiniPalette";
+import MiniPalette from "./PaletteListComponents/MiniPalette";
 
 class PaletteList extends Component {
   render() {

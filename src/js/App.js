@@ -11,17 +11,13 @@ import NewPaletteForm from "./components/NewPaletteForm";
 
 function App() {
   const [state, setState] = useState({ palettes: [] });
-
   const { palettes } = state;
-
-  const grabPalette = id => {
-    const found = palettes.filter(p => id === p.id);
-    return genPalette(found[0]);
-  };
 
   useEffect(() => {
     const palettes = JSON.parse(localStorage.getItem("RCP_PaletteList"));
-    palettes ? setState({ palettes }) : setState({ palettes: seedColors });
+    palettes.length
+      ? setState({ palettes })
+      : setState({ palettes: seedColors });
   }, []);
 
   useEffect(() => {
@@ -32,6 +28,11 @@ function App() {
     setState(prevState => ({
       palettes: [...prevState.palettes, newPalette],
     }));
+  };
+
+  const grabPalette = id => {
+    const found = palettes.filter(p => id === p.id);
+    return genPalette(found[0]);
   };
 
   return (

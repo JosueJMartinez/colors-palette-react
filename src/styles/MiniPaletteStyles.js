@@ -5,7 +5,7 @@ export default {
     position: "relative",
     "&:hover $deleteIcon": {
       opacity: "1",
-      backgroundColor: "white",
+      // backgroundColor: "white",
     },
   },
   card: {
@@ -59,5 +59,6 @@ export default {
     right: "4%",
     backgroundColor: "white",
     opacity: "0",
+    transition: "all 0.3s ease-in-out",
   },
 };

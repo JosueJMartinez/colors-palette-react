@@ -33,16 +33,8 @@ function MiniPalette(props) {
         onClick={handleDeleteClick}
         edge="start"
         className={classes.deleteIcon}
-        // className={clsx(
-        //   classes.menuButton,
-        //   isDrawerOpen && classes.hide
-        // )}
       >
-        <CancelIcon
-        // color="secondary"
-        // aria-label="delete palette"
-        // className={classes.deleteIcon}
-        />
+        <CancelIcon />
       </IconButton>
       <div className={classes.card}>
         <div className={classes.colors}>

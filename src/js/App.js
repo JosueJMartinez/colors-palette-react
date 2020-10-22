@@ -10,15 +10,12 @@ import PaletteList from "./components/PaletteList";
 import NewPaletteForm from "./components/NewPaletteForm";
 
 function App() {
-  const [state, setState] = useState({ palettes: [] });
-  const { palettes } = state;
+  const memPalettes = JSON.parse(localStorage.getItem("RCP_PaletteList"));
+  const [state, setState] = useState({
+    palettes: memPalettes.length ? memPalettes : seedColors,
+  });
 
-  useEffect(() => {
-    const palettes = JSON.parse(localStorage.getItem("RCP_PaletteList"));
-    palettes.length
-      ? setState({ palettes })
-      : setState({ palettes: seedColors });
-  }, []);
+  const { palettes } = state;
 
   useEffect(() => {
     localStorage.setItem("RCP_PaletteList", JSON.stringify(palettes));

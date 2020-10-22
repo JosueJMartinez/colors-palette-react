@@ -84,6 +84,7 @@ class Palette extends Component {
 
       const keys = Object.keys(colors);
       const colorLevels = [];
+
       for (let i = 1; i < keys.length; i++) {
         const c = colors[keys[i]].filter(c => c.id === params.color);
         colorLevels.push(c[0]);

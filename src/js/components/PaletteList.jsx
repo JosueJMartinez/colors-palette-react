@@ -10,7 +10,7 @@ import MiniPalette from "./MiniPalette";
 
 class PaletteList extends Component {
   render() {
-    const { classes, palettes } = this.props;
+    const { classes, palettes, removePalette } = this.props;
 
     return (
       <Container className={classes.root} fixed maxWidth={"sm"}>
@@ -22,7 +22,7 @@ class PaletteList extends Component {
         </nav>
         <Grid container spacing={3}>
           {palettes.map(p => (
-            <MiniPalette key={p.id} {...p} />
+            <MiniPalette removePalette={removePalette} key={p.id} {...p} />
           ))}
         </Grid>
       </Container>

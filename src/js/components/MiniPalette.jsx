@@ -3,16 +3,21 @@ import { useHistory } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
-import CancelPresentationIcon from "@material-ui/icons/CancelPresentation";
 import CancelIcon from "@material-ui/icons/Cancel";
 import styles from "../../styles/MiniPaletteStyles";
 
 function MiniPalette(props) {
-  const { classes, id, paletteName, emoji, colors } = props;
+  const { classes, id, paletteName, emoji, colors, removePalette } = props;
   const history = useHistory();
   const onClickPalette = e => {
     history.push(`/palette/${id}`);
   };
+
+  const handleDeleteClick = e => {
+    e.stopPropagation();
+    removePalette(id);
+  };
+
   return (
     <Grid
       onClick={onClickPalette}
@@ -25,7 +30,7 @@ function MiniPalette(props) {
       <IconButton
         color="secondary"
         aria-label="delete palette"
-        // onClick={handleDrawerOpen}
+        onClick={handleDeleteClick}
         edge="start"
         className={classes.deleteIcon}
         // className={clsx(

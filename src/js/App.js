@@ -30,6 +30,11 @@ function App() {
     }));
   };
 
+  const removePalette = removedId => {
+    const newPalettes = palettes.filter(p => p.id !== removedId);
+    setState({ palettes: newPalettes });
+  };
+
   const grabPalette = id => {
     const found = palettes.filter(p => id === p.id);
     return genPalette(found[0]);
@@ -42,7 +47,11 @@ function App() {
           exact
           path="/"
           render={routeProps => (
-            <PaletteList palettes={state.palettes} {...routeProps} />
+            <PaletteList
+              palettes={state.palettes}
+              {...routeProps}
+              removePalette={removePalette}
+            />
           )}
         />
         <Route

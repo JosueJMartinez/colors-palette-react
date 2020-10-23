@@ -7,10 +7,24 @@ import Container from "@material-ui/core/Container";
 import styles from "../../styles/PaletteListStyles";
 
 import MiniPalette from "./PaletteListComponents/MiniPalette";
+import DeleteDialog from "./PaletteListComponents/DeleteDialog";
 
 class PaletteList extends Component {
+  state = {
+    isDeleteDialogOpen: false,
+    potentialDeleteID: "",
+  };
+
+  openDelete = id => {
+    this.setState({ isDeleteDialogOpen: true, potentialDeleteID: id });
+  };
+
+  closeDelete = () => {
+    this.setState({ isDeleteDialogOpen: false, potentialDeleteID: "" });
+  };
   render() {
     const { classes, palettes, removePalette } = this.props;
+    const { isDeleteDialogOpen, potentialDeleteID } = this.state;
 
     return (
       <Container className={classes.root} fixed maxWidth={"sm"}>
@@ -22,9 +36,15 @@ class PaletteList extends Component {
         </nav>
         <Grid container spacing={3}>
           {palettes.map(p => (
-            <MiniPalette removePalette={removePalette} key={p.id} {...p} />
+            <MiniPalette openDelete={this.openDelete} key={p.id} {...p} />
           ))}
         </Grid>
+        <DeleteDialog
+          closeDelete={this.closeDelete}
+          isDeleteDialogOpen={isDeleteDialogOpen}
+          potentialDeleteID={potentialDeleteID}
+          removePalette={removePalette}
+        />
       </Container>
     );
   }

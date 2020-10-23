@@ -12,7 +12,7 @@ import NewPaletteForm from "./components/NewPaletteForm";
 function App() {
   const memPalettes = JSON.parse(localStorage.getItem("RCP_PaletteList"));
   const [state, setState] = useState({
-    palettes: memPalettes.length ? memPalettes : seedColors,
+    palettes: memPalettes ? memPalettes : seedColors,
   });
 
   const { palettes } = state;

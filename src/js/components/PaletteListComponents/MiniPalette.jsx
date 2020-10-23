@@ -7,7 +7,7 @@ import CancelIcon from "@material-ui/icons/Cancel";
 import styles from "../../../styles/MiniPaletteStyles";
 
 function MiniPalette(props) {
-  const { classes, id, paletteName, emoji, colors, removePalette } = props;
+  const { classes, id, paletteName, emoji, colors, openDelete } = props;
   const history = useHistory();
   const onClickPalette = e => {
     history.push(`/palette/${id}`);
@@ -15,7 +15,7 @@ function MiniPalette(props) {
 
   const handleDeleteClick = e => {
     e.stopPropagation();
-    removePalette(id);
+    openDelete(id);
   };
 
   return (

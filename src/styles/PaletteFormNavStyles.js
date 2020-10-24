@@ -26,5 +26,9 @@ export default function styles(theme, drawerWidth) {
       display: "none",
     },
     appBarBtns: { marginRight: "1rem" },
+    logo: {
+      textDecoration: "none",
+      color: "inherit",
+    },
   };
 }

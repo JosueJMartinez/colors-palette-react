@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -71,9 +71,11 @@ function PaletteFormNav(props) {
           >
             <AddBoxIcon />
           </IconButton>
-          <Typography variant="h5" noWrap>
-            RCP
-          </Typography>
+          <Link to="/" className={classes.logo}>
+            <Typography variant="h5" noWrap>
+              RCP
+            </Typography>
+          </Link>
         </Toolbar>
         <div className={classes.appBarBtns}>
           {" "}

@@ -5,16 +5,13 @@ export default {
     position: "relative",
     "&:hover $deleteIcon": {
       opacity: "1",
-      // backgroundColor: "white",
     },
   },
   card: {
     backgroundColor: "white",
     borderRadius: "5px",
     padding: "0.5rem",
-    "&:hover": {
-      cursor: "pointer",
-    },
+    cursor: "pointer",
   },
   colors: {
     display: "flex",
@@ -55,8 +52,8 @@ export default {
     width: "24px",
     position: "absolute",
     display: "inline-block",
-    top: "4%",
-    right: "4%",
+    top: "0px",
+    right: "0px",
     backgroundColor: "white",
     opacity: "0",
     transition: "all 0.3s ease-in-out",

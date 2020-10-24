@@ -41,7 +41,7 @@ function MiniPalette(props) {
           {colors.map((c, idx) => (
             <div
               className={classes.color}
-              item
+              item="true"
               xs={3}
               style={{ backgroundColor: c.color }}
               key={idx}

@@ -1,3 +1,4 @@
+import sizes from "./mediaQueries";
 export default {
   root: {
     width: "20%",
@@ -9,6 +10,21 @@ export default {
     cursor: "pointer",
     "&:hover $copy-button": {
       opacity: 1,
+    },
+    [sizes.down("lg")]: {
+      width: "25%",
+      height: props =>
+        props.isBackBox || props.isRegPalette ? "33.3%" : "20%",
+    },
+    [sizes.down("md")]: {
+      width: "50%",
+      height: props =>
+        props.isBackBox || props.isRegPalette ? "20%" : "10%",
+    },
+    [sizes.down("xs")]: {
+      width: "100%",
+      height: props =>
+        props.isBackBox || props.isRegPalette ? "10%" : "5%",
     },
   },
   "copy-button": {
@@ -44,12 +60,12 @@ export default {
     width: "100%",
     height: "100%",
     position: "absolute",
-    transition: "transform 0.6s ease-in-out",
-    transform: "scale(0.1)",
+    transition: "transform .6s ease-in-out",
+    transform: "scale(0.6)",
   },
   show: {
     opacity: "1",
-    transform: "scale(10)",
+    transform: "scale(52)",
     zIndex: "10",
   },
   content: {
@@ -84,6 +100,11 @@ export default {
       !props.isBackBox && props.isFontColorDark(props.type)
         ? "white"
         : "black",
+    [sizes.down("sm")]: {
+      padding: "0 0 0 10px",
+      marginBottom: "0px",
+    },
+    margin: "-2px",
   },
   "margin-back": {
     marginTop: "-30px",

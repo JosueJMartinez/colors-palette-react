@@ -1,3 +1,4 @@
+import sizes from "./mediaQueries";
 export default {
   root: {
     display: " flex",
@@ -21,7 +22,6 @@ export default {
       color: "black",
     },
   },
-
   slider: {
     width: " 340px",
     margin: "0 10px",
@@ -38,9 +38,20 @@ export default {
       width: " 14px",
       height: " 14px",
     },
+    [sizes.down("md")]: {
+      width: "270px",
+    },
+    [sizes.down("md")]: {
+      width: "150px",
+    },
   },
   selectContainer: {
     marginLeft: "auto",
     marginRight: "10px",
+  },
+  levelDisplay: {
+    [sizes.down("xs")]: {
+      display: "none",
+    },
   },
 };

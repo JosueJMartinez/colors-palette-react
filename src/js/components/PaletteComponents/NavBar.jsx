@@ -19,8 +19,8 @@ function NavBar(props) {
           <Link to="/">RCP</Link>
         </div>
         {handleSlider ? (
-          <div>
-            <span>Level: {level}</span>
+          <div className={classes.sliderContainer}>
+            <span className={classes.levelDisplay}>Level: {level}</span>
             <div className={classes.slider}>
               <Slider
                 defaultValue={level}

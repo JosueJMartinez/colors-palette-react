@@ -1,3 +1,4 @@
+import sizes from "./mediaQueries";
 export default {
   root: {
     width: "20%",
@@ -9,6 +10,18 @@ export default {
     "&:hover $deleteIcon": {
       color: "white",
       transform: "scale(1.3)",
+    },
+    [sizes.down("lg")]: {
+      width: "25%",
+      height: "20%",
+    },
+    [sizes.down("md")]: {
+      width: "50%",
+      height: "10%",
+    },
+    [sizes.down("xs")]: {
+      width: "100%",
+      height: "5%",
     },
   },
   content: {

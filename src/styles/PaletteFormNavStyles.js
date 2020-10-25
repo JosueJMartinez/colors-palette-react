@@ -1,3 +1,5 @@
+import sizes from "./mediaQueries";
+
 export default function styles(theme, drawerWidth) {
   return {
     root: { display: "flex" },
@@ -25,10 +27,32 @@ export default function styles(theme, drawerWidth) {
     hide: {
       display: "none",
     },
-    appBarBtns: { marginRight: "1rem" },
+    appBarBtns: {
+      marginRight: "1rem",
+      [sizes.down("md")]: {
+        marginRight: "0.5rem",
+        marginLeft: "0.5rem",
+      },
+      "& button": {
+        [sizes.down("md")]: {
+          fontSize: "0.7rem",
+          padding: "0.4rem",
+        },
+      },
+    },
     logo: {
       textDecoration: "none",
       color: "inherit",
+    },
+    toolBar: {
+      [sizes.down("md")]: {
+        paddingLeft: "10px",
+        paddingRight: "10px",
+      },
+      [sizes.down("xs")]: {
+        paddingLeft: "6px",
+        paddingRight: "6px",
+      },
     },
   };
 }

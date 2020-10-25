@@ -10,6 +10,7 @@ export default function styles(theme, drawerWidth) {
       // necessary for content to be below app bar
       ...theme.mixins.toolbar,
       justifyContent: "space-between",
+      minHeight: "64px",
     },
     content: {
       flexGrow: 1,

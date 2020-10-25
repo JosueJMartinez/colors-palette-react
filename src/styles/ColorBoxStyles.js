@@ -1,6 +1,7 @@
 import sizes from "./mediaQueries";
 export default {
   root: {
+    zIndex: "2",
     width: "20%",
     height: props =>
       props.isBackBox || props.isRegPalette ? "50%" : "25%",
@@ -14,7 +15,7 @@ export default {
     [sizes.down("lg")]: {
       width: "25%",
       height: props =>
-        props.isBackBox || props.isRegPalette ? "33.3%" : "20%",
+        props.isBackBox || props.isRegPalette ? "33.33333%" : "20%",
     },
     [sizes.down("md")]: {
       width: "50%",
@@ -76,6 +77,15 @@ export default {
     alignItems: "flex-end",
     justifyContent: "space-between",
   },
+  backContent: {
+    margin: "30 auto",
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    alignContent: "center",
+    justifyContent: "center",
+    // backgroundColor: "blue",
+  },
   "more-link": {
     padding: "0 5px",
     color: "white",
@@ -133,8 +143,10 @@ export default {
       backgroundColor: "grey",
     },
   },
-
   "default-pointer": {
     cursor: "default !important",
+  },
+  layBehindColorBoxes: {
+    zIndex: "1",
   },
 };

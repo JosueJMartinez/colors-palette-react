@@ -1,3 +1,4 @@
+import sizes from "./mediaQueries";
 export default {
   root: {
     height: "100vh",
@@ -24,11 +25,19 @@ export default {
     opacity: "0",
     "& p": {
       fontSize: "2rem",
-      fonteight: "100",
+      fontWeight: "100",
       color: "black",
     },
     "& $lightText": {
       color: "white",
+    },
+    [sizes.down("md")]: {
+      fontSize: "3rem",
+      "& p": { fontSize: "1.5rem" },
+    },
+    [sizes.down("xs")]: {
+      fontSize: "2rem",
+      "& p": { fontSize: "1rem" },
     },
   },
   show: {

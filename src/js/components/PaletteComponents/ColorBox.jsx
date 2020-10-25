@@ -84,11 +84,15 @@ class ColorBox extends Component {
         );
       }
       return (
-        <div
-          className={`${classes.root} ${classes["height-lvl-palette"]} ${classes["margin-back"]} ${classes["default-pointer"]} ${classes.layBehindColorBoxes}`}
-        >
+        <div className={`${classes.root}  ${classes["default-pointer"]} `}>
           <div className={classes["copy-container"]}>
-            <div className={classes["backContent"]}>
+            <div className={classes.content}>
+              <span
+                className={`${classes["color-name"]} ${classes["text-color"]}`}
+              >
+                <div>text</div>
+                <div>text</div>
+              </span>{" "}
               <Link
                 className={classes["back"]}
                 to={`/palette/${paletteId}`}

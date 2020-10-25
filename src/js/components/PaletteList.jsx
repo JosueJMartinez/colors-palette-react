@@ -27,14 +27,14 @@ class PaletteList extends Component {
     const { isDeleteDialogOpen, potentialDeleteID } = this.state;
 
     return (
-      <Container className={classes.root} fixed maxWidth={"sm"}>
+      <Container className={classes.root} fixed maxWidth={"md"}>
         <nav className={classes.nav}>
           <h1>RCP</h1>
           <Link to="/palette/new" className={classes.create}>
             Create New Palette
           </Link>
         </nav>
-        <Grid container spacing={3}>
+        <Grid container justify="center">
           {palettes.map(p => (
             <MiniPalette openDelete={this.openDelete} key={p.id} {...p} />
           ))}

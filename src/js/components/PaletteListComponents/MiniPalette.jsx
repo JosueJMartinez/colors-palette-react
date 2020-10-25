@@ -20,12 +20,13 @@ function MiniPalette(props) {
 
   return (
     <Grid
+      item
       onClick={onClickPalette}
       className={classes.root}
       id={id}
-      item
-      xs={12}
-      sm={4}
+      xs={9}
+      sm={6}
+      md={4}
     >
       <IconButton
         color="secondary"

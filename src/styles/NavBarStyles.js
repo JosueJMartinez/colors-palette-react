@@ -38,10 +38,11 @@ export default {
       width: " 14px",
       height: " 14px",
     },
+
     [sizes.down("md")]: {
       width: "270px",
     },
-    [sizes.down("md")]: {
+    [sizes.down("xs")]: {
       width: "150px",
     },
   },

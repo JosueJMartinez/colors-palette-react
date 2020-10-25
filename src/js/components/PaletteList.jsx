@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { withStyles } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
@@ -34,11 +34,21 @@ class PaletteList extends Component {
             Create New Palette
           </Link>
         </nav>
+
         <Grid container justify="center">
-          {palettes.map(p => (
-            <MiniPalette openDelete={this.openDelete} key={p.id} {...p} />
-          ))}
+          <TransitionGroup component={null}>
+            {palettes.map(p => (
+              <CSSTransition
+                key={p.id}
+                timeout={500}
+                classNames="palette-item"
+              >
+                <MiniPalette openDelete={this.openDelete} {...p} />
+              </CSSTransition>
+            ))}
+          </TransitionGroup>
         </Grid>
+
         <DeleteDialog
           closeDelete={this.closeDelete}
           isDeleteDialogOpen={isDeleteDialogOpen}

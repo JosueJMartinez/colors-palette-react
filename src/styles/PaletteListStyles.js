@@ -4,9 +4,12 @@ export default {
     display: "flex",
     width: "100%",
     justifyContent: "space-between",
+    alignContent: "center",
     padding: "20px 0",
+    textAlign: "center",
     "& h1": {
       margin: "0px",
+      fontSize: "2rem",
     },
   },
   create: {
@@ -15,6 +18,15 @@ export default {
     textDecoration: "none",
     "&:hover": {
       color: "blue",
+    },
+  },
+  "@global": {
+    ".palette-item-exit": {
+      opacity: "1",
+    },
+    ".palette-item-exit-active": {
+      opacity: "0",
+      transition: "opacity 500ms ease-in",
     },
   },
 };

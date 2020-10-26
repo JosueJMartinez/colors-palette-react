@@ -1,4 +1,5 @@
 import sizes from "../mediaQueries";
+import chroma from "chroma-js";
 export default {
   root: {
     width: "20%",
@@ -31,7 +32,10 @@ export default {
     display: "flex",
     alignItems: "flex-end",
     justifyContent: "space-between",
-    color: "rgba(0,0,0,0.5)",
+    color: props =>
+      chroma(props.color.color).luminance() < 0.08
+        ? "rgba(255,255,255,0.5)"
+        : "rgba(0,0,0,0.5)",
   },
   name: {
     paddingLeft: "5px",

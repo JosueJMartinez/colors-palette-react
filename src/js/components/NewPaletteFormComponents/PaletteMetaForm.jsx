@@ -83,7 +83,7 @@ function PaletteMetaForm(props) {
     <>
       <Dialog
         open={stateOfMetaForm === "emojiForm"}
-        onClose={stateOfMetaForm !== "emojiForm"}
+        onClose={() => stateOfMetaForm !== "emojiForm"}
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">Choose an Emoji</DialogTitle>
@@ -123,7 +123,7 @@ function PaletteMetaForm(props) {
       </Dialog>
       <Dialog
         open={stateOfMetaForm === "nameForm"}
-        onClose={stateOfMetaForm !== "nameForm"}
+        onClose={() => stateOfMetaForm !== "nameForm"}
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">
@@ -133,31 +133,30 @@ function PaletteMetaForm(props) {
           instantValidate={false}
           onSubmit={() => changeStateOfForm("emojiForm")}
           onError={errors => console.log(errors)}
-          autofocus
         >
           <DialogContent>
-            <DialogContentText>
+            <DialogContentText className={classes.dialog}>
               Please enter a name for this new palette. It has to be a
               unique palette name!
-              <TextValidator
-                label="Palette Name"
-                onChange={handleNameChange}
-                name="newPaletteName"
-                value={newPaletteName}
-                fullWidth
-                margin="normal"
-                validators={[
-                  "required",
-                  "isPaletteNameUnique",
-                  "isPaletteNotEmpty",
-                ]}
-                errorMessages={[
-                  "this field is required",
-                  "Already a palette with this name",
-                  "Palette at least needs one color",
-                ]}
-              />
             </DialogContentText>
+            <TextValidator
+              label="Palette Name"
+              onChange={handleNameChange}
+              name="newPaletteName"
+              value={newPaletteName}
+              fullWidth
+              margin="normal"
+              validators={[
+                "required",
+                "isPaletteNameUnique",
+                "isPaletteNotEmpty",
+              ]}
+              errorMessages={[
+                "this field is required",
+                "Already a palette with this name",
+                "Palette at least needs one color",
+              ]}
+            />
           </DialogContent>
           <DialogActions>
             <ButtonGroup

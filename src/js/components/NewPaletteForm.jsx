@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
-import { arrayMove } from "react-sortable-hoc";
+import arrayMove from "array-move";
 
 import SortablePalette from "./NewPaletteFormComponents/SortablePalette";
 import PaletteFormNav from "./NewPaletteFormComponents/PaletteFormNav";
@@ -158,7 +158,7 @@ export default function NewPaletteForm(props) {
           deleteColor={deleteColor}
           onSortEnd={onSortEnd}
           axis={"xy"}
-          distance={20}
+          // distance={20}
         />
       </main>
     </div>

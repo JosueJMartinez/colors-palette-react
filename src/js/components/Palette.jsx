@@ -3,7 +3,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import chroma from "chroma-js";
-
+import clsx from "clsx";
 import { withStyles } from "@material-ui/styles";
 import styles from "../../styles/PaletteStyles";
 
@@ -127,7 +127,9 @@ class Palette extends Component {
         />
 
         <div
-          className={`${classes.copyOverlayText} ${show && classes.show}`}
+          className={clsx(classes.copyOverlayText, {
+            [classes.show]: show,
+          })}
         >
           <h1
             className={

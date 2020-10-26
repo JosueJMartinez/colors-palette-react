@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
+import clsx from "clsx";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { withStyles } from "@material-ui/styles";
 import styles from "../../../styles/ColorBoxStyles";
@@ -48,21 +49,27 @@ class ColorBox extends Component {
             >
               <div
                 style={{ backgroundColor: type }}
-                className={`${classes["copy-overlay"]} ${
-                  copied && classes["show"]
-                }`}
+                className={clsx(classes["copy-overlay"], {
+                  [classes.show]: copied,
+                })}
               />
 
               <div className={classes["copy-container"]}>
                 <div className={classes.content}>
                   <span
-                    className={`${classes["color-name"]} ${classes["text-color"]}`}
+                    className={clsx(
+                      classes["copy-name"],
+                      classes["text-color"]
+                    )}
                   >
                     <div>{nameArr[0]}</div>
                     <div>{nameArr[1]}</div>
                   </span>{" "}
                   <button
-                    className={`${classes["copy-button"]} ${classes["dark-background"]}`}
+                    className={clsx(
+                      classes["copy-button"],
+                      classes["dark-background"]
+                    )}
                   >
                     Copy
                   </button>
@@ -71,7 +78,10 @@ class ColorBox extends Component {
                   ) : (
                     <Link
                       to={`/palette/${paletteId}/${id}`}
-                      className={`${classes["more-link"]} ${classes["dark-background"]}`}
+                      className={clsx(
+                        classes["more-link"],
+                        classes["dark-background"]
+                      )}
                       onClick={e => e.stopPropagation()}
                     >
                       More
@@ -84,11 +94,14 @@ class ColorBox extends Component {
         );
       }
       return (
-        <div className={`${classes.root}  ${classes["default-pointer"]} `}>
+        <div className={clsx(classes.root, classes["default-pointer"])}>
           <div className={classes["copy-container"]}>
             <div className={classes.content}>
               <span
-                className={`${classes["color-name"]} ${classes["text-color"]}`}
+                className={clsx(
+                  classes["color-name"],
+                  classes["text-color"]
+                )}
               >
                 <div>text</div>
                 <div>text</div>

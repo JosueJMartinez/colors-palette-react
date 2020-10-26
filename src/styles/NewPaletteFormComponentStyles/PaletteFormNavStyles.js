@@ -1,4 +1,4 @@
-import sizes from "./mediaQueries";
+import sizes from "../mediaQueries";
 
 export default function styles(theme, drawerWidth) {
   return {

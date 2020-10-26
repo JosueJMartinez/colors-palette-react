@@ -3,7 +3,7 @@ import { SortableContainer } from "react-sortable-hoc";
 import { withStyles } from "@material-ui/styles";
 
 import DraggableColorBox from "./DraggableColorBox";
-import styles from "../../../styles/SortablePalette";
+import styles from "../../../styles/NewPaletteFormComponentStyles/SortablePalette";
 
 const SortablePalette = SortableContainer(
   ({ paletteColors, deleteColor, classes }) => {

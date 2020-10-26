@@ -7,7 +7,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 
 import "rc-slider/assets/index.css";
-import styles from "../../../styles/NavBarStyles";
+import styles from "../../../styles/PaletteComponentStyles/NavBarStyles";
 
 function NavBar(props) {
   const { level, handleSlider, type, handleFormat, classes } = props;

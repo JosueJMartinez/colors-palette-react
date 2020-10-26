@@ -12,7 +12,7 @@ import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 
 import PaletteMetaForm from "./PaletteMetaForm";
-import styles from "../../../styles/PaletteFormNavStyles";
+import styles from "../../../styles/NewPaletteFormComponentStyles/PaletteFormNavStyles";
 import { DRAWER_WIDTH } from "../../../constants";
 
 const useStyles = makeStyles(theme => styles(theme, DRAWER_WIDTH));

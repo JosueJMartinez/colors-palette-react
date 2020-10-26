@@ -14,7 +14,7 @@ import {
 import { Picker } from "emoji-mart";
 
 import "emoji-mart/css/emoji-mart.css";
-import styles from "../../../styles/PaletteMetaFormStyles";
+import styles from "../../../styles/NewPaletteFormComponentStyles/PaletteMetaFormStyles";
 
 function PaletteMetaForm(props) {
   const [state, setState] = useState({

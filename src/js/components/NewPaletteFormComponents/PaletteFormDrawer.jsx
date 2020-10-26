@@ -9,7 +9,7 @@ import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 
 import NewColorPickerForm from "./NewColorPickerForm";
-import styles from "../../../styles/PaletteFormDrawerStyles";
+import styles from "../../../styles/NewPaletteFormComponentStyles/PaletteFormDrawerStyles";
 import { DRAWER_WIDTH } from "../../../constants";
 
 const useStyles = makeStyles(theme => styles(theme, DRAWER_WIDTH));

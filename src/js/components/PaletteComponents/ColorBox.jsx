@@ -56,12 +56,7 @@ class ColorBox extends Component {
 
               <div className={classes["copy-container"]}>
                 <div className={classes.content}>
-                  <span
-                    className={clsx(
-                      classes["copy-name"],
-                      classes["text-color"]
-                    )}
-                  >
+                  <span className={classes["color-name"]}>
                     <div>{nameArr[0]}</div>
                     <div>{nameArr[1]}</div>
                   </span>{" "}

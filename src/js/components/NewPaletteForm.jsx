@@ -40,6 +40,7 @@ export default function NewPaletteForm(props) {
   });
 
   const { isDrawerOpen, paletteColors, addClickCtr } = state;
+  const { maxColors, addPalette, history, palettes } = props;
 
   useEffect(() => {
     document.body.classList.add("overflow");
@@ -54,7 +55,7 @@ export default function NewPaletteForm(props) {
     };
   });
 
-  const isFull = paletteColors.length >= props.maxColors;
+  const isFull = paletteColors.length >= maxColors;
 
   const handleDrawerOpen = () => {
     setState(prevState => ({ ...prevState, isDrawerOpen: true }));
@@ -89,8 +90,8 @@ export default function NewPaletteForm(props) {
       emoji,
       colors: paletteColors,
     };
-    props.addPalette(newPalette);
-    props.history.push("/");
+    addPalette(newPalette);
+    history.push("/");
   };
 
   const deleteColor = deleteColorName => {
@@ -123,8 +124,8 @@ export default function NewPaletteForm(props) {
     let isUnique = true;
 
     do {
-      let randNum = Math.floor(Math.random() * props.palettes.length);
-      const randPalette = props.palettes[randNum];
+      let randNum = Math.floor(Math.random() * palettes.length);
+      const randPalette = palettes[randNum];
 
       randNum = Math.floor(Math.random() * randPalette.colors.length);
       randColor = randPalette.colors[randNum];
@@ -149,7 +150,7 @@ export default function NewPaletteForm(props) {
     <div className={classes.root}>
       <PaletteFormNav
         isDrawerOpen={isDrawerOpen}
-        palettes={props.palettes}
+        palettes={palettes}
         totalColors={paletteColors.length}
         handleSubmitPalette={handleSubmitPalette}
         handleDrawerOpen={handleDrawerOpen}

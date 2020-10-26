@@ -29,6 +29,7 @@ function PaletteFormNav(props) {
     palettes,
     handleDrawerOpen,
     handleSubmitPalette,
+    history,
   } = props;
 
   const { stateOfMetaForm } = state;
@@ -36,7 +37,7 @@ function PaletteFormNav(props) {
   // const nameInputRef = useRef(null)
 
   const goBack = () => {
-    props.history.push("/");
+    history.push("/");
   };
 
   const changeStateOfForm = stateOfMetaForm => {

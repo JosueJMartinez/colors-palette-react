@@ -21,10 +21,10 @@ export default {
     },
   },
   "@global": {
-    ".palette-item-exit": {
+    ".transition-exit": {
       opacity: "1",
     },
-    ".palette-item-exit-active": {
+    ".transition-exit-active": {
       opacity: "0",
       transition: "opacity 500ms ease-in",
     },

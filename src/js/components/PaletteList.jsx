@@ -41,7 +41,7 @@ class PaletteList extends Component {
               <CSSTransition
                 key={p.id}
                 timeout={500}
-                classNames="palette-item"
+                classNames="transition"
               >
                 <MiniPalette openDelete={this.openDelete} {...p} />
               </CSSTransition>

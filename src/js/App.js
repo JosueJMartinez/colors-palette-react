@@ -7,7 +7,8 @@ import seedColors from "./seedColors";
 import genPalette from "./chromaHelpers";
 import PaletteList from "./components/PaletteList";
 import NewPaletteForm from "./components/NewPaletteForm";
-import "../css/App.css";
+
+import Page from "./components/Page";
 
 function App() {
   const memPalettes = JSON.parse(localStorage.getItem("RCP_PaletteList"));
@@ -52,59 +53,59 @@ function App() {
                   exact
                   path="/"
                   render={routeProps => (
-                    <div className="page">
+                    <Page>
                       <PaletteList
                         palettes={state.palettes}
                         {...routeProps}
                         removePalette={removePalette}
                       />
-                    </div>
+                    </Page>
                   )}
                 />
                 <Route
                   exact
                   path="/palette/new"
                   render={routeProps => (
-                    <div className="page">
+                    <Page>
                       <NewPaletteForm
                         {...routeProps}
                         addPalette={addPalette}
                         palettes={state.palettes}
                       />
-                    </div>
+                    </Page>
                   )}
                 />
                 <Route
                   exact
                   path="/palette/:id"
                   render={routeProps => (
-                    <div className="page">
+                    <Page className="page">
                       <Palette
                         {...grabPalette(routeProps.match.params.id)}
                         {...routeProps}
                       />
-                    </div>
+                    </Page>
                   )}
                 />
                 <Route
                   exact
                   path="/palette/:id/:color"
                   render={routeProps => (
-                    <div className="page">
+                    <Page className="page">
                       <Palette
                         isRegPalette={false}
                         {...routeProps}
                         {...grabPalette(routeProps.match.params.id)}
                       />
-                    </div>
+                    </Page>
                   )}
                 />
                 <Route
                   render={() => (
-                    <div className="page">
+                    <Page className="page">
                       {" "}
                       <h1>404 page</h1>
-                    </div>
+                    </Page>
                   )}
                 />
               </Switch>

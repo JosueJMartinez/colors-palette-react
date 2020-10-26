@@ -1,0 +1,27 @@
+.page {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-image: url("../images/bg-tile.png");
+  background-repeat: repeat;
+  background-attachment: fixed;
+  transition: opacity 500ms ease-in;
+}
+
+.page-enter {
+  opacity: 0;
+}
+.page-enter-active {
+  opacity: 1;
+}
+.page-exit {
+  opacity: 1;
+}
+.page-exit-active {
+  opacity: 0;
+}
+
+.fullscreen-height {
+  height: 100%;
+}

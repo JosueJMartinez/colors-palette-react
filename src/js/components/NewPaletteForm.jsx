@@ -44,11 +44,13 @@ export default function NewPaletteForm(props) {
   useEffect(() => {
     document.body.classList.add("overflow");
     document.querySelector(".page").classList.add("fullscreen-height");
+    document.querySelector(".page").style.position = "fixed";
     return () => {
       document.body.classList.remove("overflow");
       document
         .querySelector(".page")
         .classList.remove("fullscreen-height");
+      document.querySelector(".page").style.position = "absolute";
     };
   });
 

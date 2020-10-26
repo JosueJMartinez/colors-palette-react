@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useHistory } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
@@ -57,4 +57,4 @@ function MiniPalette(props) {
   );
 }
 
-export default withStyles(styles)(MiniPalette);
+export default memo(withStyles(styles)(MiniPalette));

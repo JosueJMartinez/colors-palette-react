@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import CancelIcon from "@material-ui/icons/Cancel";
+
 import styles from "../../../styles/MiniPaletteStyles";
 
 function MiniPalette(props) {

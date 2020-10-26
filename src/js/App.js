@@ -7,7 +7,6 @@ import seedColors from "./seedColors";
 import genPalette from "./chromaHelpers";
 import PaletteList from "./components/PaletteList";
 import NewPaletteForm from "./components/NewPaletteForm";
-
 import Page from "./components/Page";
 
 function App() {

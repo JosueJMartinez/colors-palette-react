@@ -5,11 +5,11 @@ import CloseIcon from "@material-ui/icons/Close";
 import chroma from "chroma-js";
 import clsx from "clsx";
 import { withStyles } from "@material-ui/styles";
-import styles from "../../styles/PaletteStyles";
 
 import NavBar from "./PaletteComponents/NavBar";
 import ColorBox from "./PaletteComponents/ColorBox";
 import Footer from "./PaletteComponents/Footer";
+import styles from "../../styles/PaletteStyles";
 
 class Palette extends Component {
   static defaultProps = {

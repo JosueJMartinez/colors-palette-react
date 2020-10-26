@@ -4,10 +4,10 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { withStyles } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
-import styles from "../../styles/PaletteListStyles";
 
 import MiniPalette from "./PaletteListComponents/MiniPalette";
 import DeleteDialog from "./PaletteListComponents/DeleteDialog";
+import styles from "../../styles/PaletteListStyles";
 
 class PaletteList extends Component {
   state = {

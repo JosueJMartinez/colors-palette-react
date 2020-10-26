@@ -6,6 +6,7 @@ import {
   ValidatorForm,
   TextValidator,
 } from "react-material-ui-form-validator";
+
 import styles from "../../../styles/NewColorPickerFormStyles";
 
 function NewColorPickerForm(props) {

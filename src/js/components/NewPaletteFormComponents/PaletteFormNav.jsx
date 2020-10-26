@@ -10,8 +10,9 @@ import IconButton from "@material-ui/core/IconButton";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
-import styles from "../../../styles/PaletteFormNavStyles";
+
 import PaletteMetaForm from "./PaletteMetaForm";
+import styles from "../../../styles/PaletteFormNavStyles";
 import { DRAWER_WIDTH } from "../../../constants";
 
 const useStyles = makeStyles(theme => styles(theme, DRAWER_WIDTH));

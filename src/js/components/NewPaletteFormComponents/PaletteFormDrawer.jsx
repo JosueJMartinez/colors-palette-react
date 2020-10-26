@@ -7,6 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
+
 import NewColorPickerForm from "./NewColorPickerForm";
 import styles from "../../../styles/PaletteFormDrawerStyles";
 import { DRAWER_WIDTH } from "../../../constants";

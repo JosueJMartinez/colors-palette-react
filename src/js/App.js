@@ -100,10 +100,13 @@ function App() {
                   )}
                 />
                 <Route
-                  render={() => (
-                    <Page className="page">
-                      {" "}
-                      <h1>404 page</h1>
+                  render={routeProps => (
+                    <Page>
+                      <PaletteList
+                        palettes={state.palettes}
+                        {...routeProps}
+                        removePalette={removePalette}
+                      />
                     </Page>
                   )}
                 />

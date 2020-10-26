@@ -22,11 +22,7 @@ export default function DeleteDialog(props) {
   };
 
   return (
-    <Dialog
-      open={isDeleteDialogOpen}
-      // onClose={closeDelete}
-      aria-labelledby="form-dialog-title"
-    >
+    <Dialog open={isDeleteDialogOpen} aria-labelledby="form-dialog-title">
       <DialogTitle id="form-dialog-title">Delete Palette</DialogTitle>
       <DialogContent>
         <DialogContentText>

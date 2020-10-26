@@ -156,7 +156,6 @@ function PaletteMetaForm(props) {
                   "Already a palette with this name",
                   "Palette at least needs one color",
                 ]}
-                //ref={nameInputRef}
               />
             </DialogContentText>
           </DialogContent>

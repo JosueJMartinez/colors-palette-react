@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
@@ -23,10 +23,34 @@ class Palette extends Component {
     level: 500,
     type: "hex",
     isOpen: false,
+    colors: {},
+    emoji: "",
+    id: "",
+    paletteName: "",
+    isColorFound: false,
   };
 
   componentDidMount() {
     document.body.classList.add("overflow");
+    const palette = this.props.grabPalette(this.props.match.params.id);
+    if (!palette) {
+      return this.props.history.push("/");
+    }
+    // i am here working to add a check if color exists in the palette
+    if (!this.props.isRegPalette) {
+      const colorFound = palette.colors["50"].filter(
+        c => c.id === this.props.match.params.color
+      );
+      if (!colorFound.length) return this.props.history.push("/");
+      console.log(colorFound);
+      return this.setState(prevState => ({
+        ...prevState,
+        ...palette,
+        isColorFound: true,
+      }));
+    }
+
+    this.setState(prevState => ({ ...prevState, ...palette }));
   }
 
   componentWillUnmount() {
@@ -64,16 +88,18 @@ class Palette extends Component {
   };
 
   render() {
+    const { isRegPalette, match, classes } = this.props;
     const {
+      level,
+      type,
+      isOpen,
+      copyStatus,
       colors,
       emoji,
       id,
       paletteName,
-      isRegPalette,
-      match,
-      classes,
-    } = this.props;
-    const { level, type, isOpen, copyStatus } = this.state;
+      isColorFound,
+    } = this.state;
     const { show, color } = copyStatus;
     const { params } = match;
 
@@ -89,6 +115,7 @@ class Palette extends Component {
         const c = colors[keys[i]].filter(c => c.id === params.color);
         colorLevels.push(c[0]);
       }
+
       return mapPaletteBoxes(colorLevels, false);
     };
 
@@ -117,6 +144,69 @@ class Palette extends Component {
       }
     };
 
+    const loadContent = () => {
+      return id.length &&
+        (isRegPalette || (!isRegPalette && isColorFound)) ? (
+        <>
+          {" "}
+          <div
+            className={clsx(classes.copyOverlayText, {
+              [classes.show]: show,
+            })}
+          >
+            <h1
+              className={
+                this.isBackgroundColorDark(color)
+                  ? classes.darkBackground
+                  : undefined
+              }
+            >
+              Copied
+            </h1>
+            <p
+              className={
+                this.isFontColorDark(color) ? classes.lightText : undefined
+              }
+            >
+              {color}
+            </p>
+          </div>
+          <div className={classes.paletteColors}>
+            {decidePalette()}
+            {addBackButton()}
+          </div>
+          <Snackbar
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left",
+            }}
+            open={isOpen}
+            autoHideDuration={1500}
+            onClose={this.handleClose}
+            message={
+              <span id="message-id">Format is {type.toUpperCase()}</span>
+            }
+            ContentProps={{ "aria-describedby": "message-id" }}
+            action={
+              <>
+                <IconButton
+                  size="small"
+                  aria-label="close"
+                  color="inherit"
+                  onClick={this.handleClose}
+                  onClose={this.handleClose}
+                >
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              </>
+            }
+          />
+        </>
+      ) : (
+        "is Loading"
+      );
+    };
+
     return (
       <div className={classes.root}>
         <NavBar
@@ -125,60 +215,7 @@ class Palette extends Component {
           handleFormat={this.changeFormat}
           type={type}
         />
-
-        <div
-          className={clsx(classes.copyOverlayText, {
-            [classes.show]: show,
-          })}
-        >
-          <h1
-            className={
-              this.isBackgroundColorDark(color)
-                ? classes.darkBackground
-                : undefined
-            }
-          >
-            Copied
-          </h1>
-          <p
-            className={
-              this.isFontColorDark(color) ? classes.lightText : undefined
-            }
-          >
-            {color}
-          </p>
-        </div>
-        <div className={classes.paletteColors}>
-          {decidePalette()}
-          {addBackButton()}
-        </div>
-        <Snackbar
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "left",
-          }}
-          open={isOpen}
-          autoHideDuration={1500}
-          onClose={this.handleClose}
-          message={
-            <span id="message-id">Format is {type.toUpperCase()}</span>
-          }
-          ContentProps={{ "aria-describedby": "message-id" }}
-          action={
-            <Fragment>
-              <IconButton
-                size="small"
-                aria-label="close"
-                color="inherit"
-                onClick={this.handleClose}
-                onClose={this.handleClose}
-              >
-                <CloseIcon fontSize="small" />
-              </IconButton>
-            </Fragment>
-          }
-        />
-
+        {loadContent()}
         <Footer emoji={emoji} name={paletteName} />
       </div>
     );

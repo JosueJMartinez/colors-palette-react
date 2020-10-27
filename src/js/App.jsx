@@ -34,6 +34,7 @@ function App() {
 
   const grabPalette = id => {
     const found = palettes.filter(p => id === p.id);
+    if (!found.length) return null;
     return genPalette(found[0]);
   };
 
@@ -80,8 +81,9 @@ function App() {
                   render={routeProps => (
                     <Page className="page">
                       <Palette
-                        {...grabPalette(routeProps.match.params.id)}
+                        // {...grabPalette(routeProps.match.params.id)}
                         {...routeProps}
+                        grabPalette={grabPalette}
                       />
                     </Page>
                   )}
@@ -94,7 +96,8 @@ function App() {
                       <Palette
                         isRegPalette={false}
                         {...routeProps}
-                        {...grabPalette(routeProps.match.params.id)}
+                        //{...grabPalette(routeProps.match.params.id)}
+                        grabPalette={grabPalette}
                       />
                     </Page>
                   )}
@@ -103,6 +106,7 @@ function App() {
                   render={routeProps => (
                     <Page>
                       <PaletteList
+                        isRegPalette={true}
                         palettes={state.palettes}
                         {...routeProps}
                         removePalette={removePalette}

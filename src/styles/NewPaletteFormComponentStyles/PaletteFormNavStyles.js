@@ -54,5 +54,14 @@ export default function styles(theme, drawerWidth) {
         paddingRight: "6px",
       },
     },
+    isGrabbing: {
+      cursor: ({ isGrabbing }) => (isGrabbing ? "grabbing" : ""),
+      "& svg": {
+        cursor: ({ isGrabbing }) => (isGrabbing ? "grabbing" : ""),
+      },
+      "& button": {
+        cursor: ({ isGrabbing }) => (isGrabbing ? "grabbing" : ""),
+      },
+    },
   };
 }

@@ -18,7 +18,7 @@ import { DRAWER_WIDTH } from "../../../constants";
 const useStyles = makeStyles(theme => styles(theme, DRAWER_WIDTH));
 
 function PaletteFormNav(props) {
-  const classes = useStyles();
+  const classes = useStyles(props);
 
   const [state, setState] = useState({
     stateOfMetaForm: "closed",
@@ -52,9 +52,13 @@ function PaletteFormNav(props) {
       <CssBaseline />
       <AppBar
         position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: isDrawerOpen,
-        })}
+        className={clsx(
+          classes.appBar,
+          {
+            [classes.appBarShift]: isDrawerOpen,
+          },
+          classes.isGrabbing
+        )}
         color="default"
       >
         <Toolbar className={classes.toolBar}>

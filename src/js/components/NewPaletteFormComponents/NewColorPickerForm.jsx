@@ -15,7 +15,7 @@ function NewColorPickerForm(props) {
     currentColor: "#0000FF",
     newColorName: "",
   });
-  const { classes, isFull, addColor, paletteColors, isGrabbing } = props;
+  const { classes, isFull, addColor, paletteColors } = props;
   const { currentColor, newColorName } = state;
 
   useEffect(() => {

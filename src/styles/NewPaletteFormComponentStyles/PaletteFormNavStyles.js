@@ -62,6 +62,9 @@ export default function styles(theme, drawerWidth) {
       "& button": {
         cursor: ({ isGrabbing }) => (isGrabbing ? "grabbing" : ""),
       },
+			"& a": {
+        cursor: ({ isGrabbing }) => (isGrabbing ? "grabbing" : ""),
+      },
     },
   };
 }

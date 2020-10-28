@@ -7,6 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
+import clsx from "clsx";
 
 import NewColorPickerForm from "./NewColorPickerForm";
 import styles from "../../../styles/NewPaletteFormComponentStyles/PaletteFormDrawerStyles";
@@ -15,7 +16,7 @@ import { DRAWER_WIDTH } from "../../../constants";
 const useStyles = makeStyles(theme => styles(theme, DRAWER_WIDTH));
 
 export default function PaletteFormDrawer(props) {
-  const classes = useStyles();
+  const classes = useStyles(props);
 
   const {
     isDrawerOpen,
@@ -26,6 +27,7 @@ export default function PaletteFormDrawer(props) {
     addColor,
     paletteColors,
     addClickCtr,
+    isGrabbing,
   } = props;
 
   return (
@@ -42,7 +44,10 @@ export default function PaletteFormDrawer(props) {
         <Typography variant="h5" className={classes.drawerHeaderTitle}>
           Create a Palette
         </Typography>
-        <IconButton onClick={handleDrawerClose}>
+        <IconButton
+          onClick={handleDrawerClose}
+          className={classes.isGrabbing}
+        >
           <ChevronLeftIcon />
         </IconButton>
       </div>
@@ -58,16 +63,18 @@ export default function PaletteFormDrawer(props) {
           aria-label="contained primary button group"
           disableElevation
         >
-          <Button color="secondary" onClick={handleClearClick}>
+          <Button
+            color="secondary"
+            onClick={handleClearClick}
+            className={classes.isGrabbing}
+          >
             Clear Palette
           </Button>
           <Button
             color="primary"
             onClick={handleRandColorClick}
             disabled={isFull}
-            style={{
-              backgroundColor: isFull ? "grey" : "",
-            }}
+            className={clsx(classes.isGrabbing, classes.isFull)}
           >
             Random Color
           </Button>
@@ -77,6 +84,7 @@ export default function PaletteFormDrawer(props) {
           addColor={addColor}
           paletteColors={paletteColors}
           addClickCtr={addClickCtr}
+          isGrabbing={isGrabbing}
         />
       </div>
     </Drawer>

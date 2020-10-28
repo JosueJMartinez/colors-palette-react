@@ -6,6 +6,7 @@ import {
   ValidatorForm,
   TextValidator,
 } from "react-material-ui-form-validator";
+import clsx from "clsx";
 
 import styles from "../../../styles/NewPaletteFormComponentStyles/NewColorPickerFormStyles";
 
@@ -14,7 +15,7 @@ function NewColorPickerForm(props) {
     currentColor: "#0000FF",
     newColorName: "",
   });
-  const { classes, isFull, addColor, paletteColors } = props;
+  const { classes, isFull, addColor, paletteColors, isGrabbing } = props;
   const { currentColor, newColorName } = state;
 
   useEffect(() => {
@@ -58,8 +59,8 @@ function NewColorPickerForm(props) {
   return (
     <div className={classes.root}>
       <ChromePicker
-        disableAlpha
-        className={classes.picker}
+        // disableAlpha
+        className={clsx(classes.picker, classes.isGrabbing)}
         color={currentColor}
         onChangeComplete={handleChangeComplete}
       />
@@ -70,7 +71,7 @@ function NewColorPickerForm(props) {
         onError={errors => console.log(errors)}
       >
         <TextValidator
-          className={classes.textInput}
+          className={clsx(classes.textInput, classes.isGrabbing)}
           variant="filled"
           label="Name"
           onChange={handleNameChange}
@@ -85,7 +86,7 @@ function NewColorPickerForm(props) {
         />
         <Button
           type="submit"
-          className={classes.btn}
+          className={clsx(classes.btn, classes.isGrabbing)}
           variant="contained"
           color="primary"
           style={{

@@ -41,8 +41,9 @@ class Palette extends Component {
       const colorFound = palette.colors["50"].filter(
         c => c.id === this.props.match.params.color
       );
+
       if (!colorFound.length) return this.props.history.push("/");
-      console.log(colorFound);
+
       return this.setState(prevState => ({
         ...prevState,
         ...palette,

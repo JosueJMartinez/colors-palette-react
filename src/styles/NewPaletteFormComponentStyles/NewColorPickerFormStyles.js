@@ -17,4 +17,13 @@ export default {
     width: "100%",
     fontSize: "1.5rem",
   },
+  isGrabbing: {
+    cursor: ({ isGrabbing }) => (isGrabbing ? "grabbing" : ""),
+    "& input": {
+      cursor: ({ isGrabbing }) => (isGrabbing ? "grabbing" : ""),
+    },
+    "& svg": {
+      cursor: ({ isGrabbing }) => (isGrabbing ? "grabbing" : ""),
+    },
+  },
 };

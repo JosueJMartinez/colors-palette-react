@@ -1,4 +1,5 @@
 export default function styles(theme, drawerWidth) {
+  // console.log(props);
   return {
     root: {
       width: drawerWidth,
@@ -32,6 +33,12 @@ export default function styles(theme, drawerWidth) {
     },
     formContent: {
       marginBottom: "1rem",
+    },
+    isGrabbing: {
+      cursor: ({ isGrabbing }) => (isGrabbing ? "grabbing" : ""),
+    },
+    isFull: {
+      backgroundColor: ({ isFull }) => (isFull ? "grey" : ""),
     },
   };
 }

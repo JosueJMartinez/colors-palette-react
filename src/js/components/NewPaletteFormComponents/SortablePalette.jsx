@@ -3,10 +3,10 @@ import { SortableContainer } from "react-sortable-hoc";
 import { withStyles } from "@material-ui/styles";
 
 import DraggableColorBox from "./DraggableColorBox";
-import styles from "../../../styles/NewPaletteFormComponentStyles/SortablePalette";
+import styles from "../../../styles/NewPaletteFormComponentStyles/SortablePaletteStyles";
 
 const SortablePalette = SortableContainer(
-  ({ paletteColors, deleteColor, classes }) => {
+  ({ paletteColors, deleteColor, classes, isGrabbing }) => {
     return (
       <div className={classes.root}>
         {paletteColors.map((c, idx) => (
@@ -15,6 +15,7 @@ const SortablePalette = SortableContainer(
             color={c}
             index={idx}
             deleteColor={deleteColor}
+            isGrabbing={isGrabbing}
           />
         ))}
       </div>

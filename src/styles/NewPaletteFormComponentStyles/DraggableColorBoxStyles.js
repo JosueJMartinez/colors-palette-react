@@ -7,7 +7,7 @@ export default {
     margin: "0 auto",
     display: "inline-block",
     position: "relative",
-    cursor: "default",
+    cursor: ({ isGrabbing }) => (isGrabbing ? "grabbing" : "grab"),
     "&:hover $deleteIcon": {
       color: "white",
       transform: "scale(1.3)",
@@ -32,8 +32,8 @@ export default {
     display: "flex",
     alignItems: "flex-end",
     justifyContent: "space-between",
-    color: props =>
-      chroma(props.color.color).luminance() < 0.08
+    color: ({ color }) =>
+      chroma(color.color).luminance() < 0.08
         ? "rgba(255,255,255,0.5)"
         : "rgba(0,0,0,0.5)",
   },
@@ -45,7 +45,7 @@ export default {
   },
   deleteIcon: {
     transition: "all 0.3s ease-in-out",
-    cursor: "pointer",
+    cursor: ({ isGrabbing }) => (isGrabbing ? "grabbing" : "pointer"),
     margin: "0 5px",
     marginBottom: "3px",
   },

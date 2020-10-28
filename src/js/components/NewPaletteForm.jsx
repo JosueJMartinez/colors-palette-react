@@ -19,9 +19,10 @@ export default function NewPaletteForm(props) {
     isDrawerOpen: true,
     paletteColors: seedColors[0].colors,
     addClickCtr: 0,
+    isGrabbing: false,
   });
 
-  const { isDrawerOpen, paletteColors, addClickCtr } = state;
+  const { isDrawerOpen, paletteColors, addClickCtr, isGrabbing } = state;
   const { maxColors, addPalette, history, palettes } = props;
 
   useEffect(() => {
@@ -86,6 +87,10 @@ export default function NewPaletteForm(props) {
   };
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
+    document.querySelector("body").style.cursor = "";
+    // document.querySelector("#sorting-palette").style.cursor = "";
+    // document.querySelector("button").style.cursor = "";
+    // document.querySelector("a").style.cursor = "";
     setState(prevState => ({
       ...prevState,
       paletteColors: arrayMove(
@@ -93,7 +98,16 @@ export default function NewPaletteForm(props) {
         oldIndex,
         newIndex
       ),
+      isGrabbing: false,
     }));
+  };
+
+  const onSortMove = () => {
+    document.querySelector("body").style.cursor = "grabbing";
+    // document.querySelector("#sorting-palette").style.cursor = "grabbing";
+    // document.querySelector("button").style.cursor = "grabbing";
+    // document.querySelector("a").style.cursor = "grabbing";
+    setState(prevState => ({ ...prevState, isGrabbing: true }));
   };
 
   const handleRandColorClick = e => {
@@ -136,6 +150,7 @@ export default function NewPaletteForm(props) {
         totalColors={paletteColors.length}
         handleSubmitPalette={handleSubmitPalette}
         handleDrawerOpen={handleDrawerOpen}
+        isGrabbing={isGrabbing}
       />
       <PaletteFormDrawer
         isDrawerOpen={isDrawerOpen}
@@ -146,6 +161,7 @@ export default function NewPaletteForm(props) {
         addColor={addColor}
         paletteColors={paletteColors}
         addClickCtr={addClickCtr}
+        isGrabbing={isGrabbing}
       />
       <main
         className={clsx(classes.content, {
@@ -158,7 +174,11 @@ export default function NewPaletteForm(props) {
           deleteColor={deleteColor}
           onSortEnd={onSortEnd}
           axis={"xy"}
-          // distance={20}
+          onSortStart={onSortMove}
+          // onSortMove={onSortMove}
+          // onSortOver={onSortMove}
+          distance={20}
+          isGrabbing={isGrabbing}
         />
       </main>
     </div>

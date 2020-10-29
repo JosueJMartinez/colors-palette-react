@@ -42,7 +42,6 @@ function NewColorPickerForm(props) {
   }, [paletteColors]);
 
   const handleChangeComplete = color => {
-    console.log(color.rgb);
     setState(prevState => ({
       ...prevState,
       currentColor: color.rgb,

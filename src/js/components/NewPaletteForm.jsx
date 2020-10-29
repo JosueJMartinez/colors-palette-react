@@ -88,9 +88,6 @@ export default function NewPaletteForm(props) {
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
     document.querySelector("body").style.cursor = "";
-    // document.querySelector("#sorting-palette").style.cursor = "";
-    // document.querySelector("button").style.cursor = "";
-    // document.querySelector("a").style.cursor = "";
     setState(prevState => ({
       ...prevState,
       paletteColors: arrayMove(
@@ -104,9 +101,6 @@ export default function NewPaletteForm(props) {
 
   const onSortMove = () => {
     document.querySelector("body").style.cursor = "grabbing";
-    // document.querySelector("#sorting-palette").style.cursor = "grabbing";
-    // document.querySelector("button").style.cursor = "grabbing";
-    // document.querySelector("a").style.cursor = "grabbing";
     setState(prevState => ({ ...prevState, isGrabbing: true }));
   };
 
@@ -175,8 +169,6 @@ export default function NewPaletteForm(props) {
           onSortEnd={onSortEnd}
           axis={"xy"}
           onSortStart={onSortMove}
-          // onSortMove={onSortMove}
-          // onSortOver={onSortMove}
           distance={20}
           isGrabbing={isGrabbing}
         />

@@ -12,7 +12,7 @@ import styles from "../../../styles/NewPaletteFormComponentStyles/NewColorPicker
 
 function NewColorPickerForm(props) {
   const [state, setState] = useState({
-    currentColor: "#0000FF",
+    currentColor: { r: 0, g: 0, b: 255, a: 1 },
     newColorName: "",
   });
   const { classes, isFull, addColor, paletteColors } = props;
@@ -35,13 +35,17 @@ function NewColorPickerForm(props) {
   });
 
   useEffect(() => {
-    setState({ currentColor: "#0000FF", newColorName: "" });
+    setState({
+      currentColor: { r: 0, g: 0, b: 255, a: 1 },
+      newColorName: "",
+    });
   }, [paletteColors]);
 
   const handleChangeComplete = color => {
+    console.log(color.rgb);
     setState(prevState => ({
       ...prevState,
-      currentColor: color.hex,
+      currentColor: color.rgb,
     }));
   };
   const handleNameChange = e => {
@@ -53,7 +57,10 @@ function NewColorPickerForm(props) {
     }));
   };
   const handleAddColorSubmit = e => {
-    addColor({ color: currentColor, name: newColorName });
+    addColor({
+      color: `rgba(${currentColor.r},${currentColor.g},${currentColor.b},${currentColor.a})`,
+      name: newColorName,
+    });
   };
 
   return (
@@ -90,7 +97,9 @@ function NewColorPickerForm(props) {
           variant="contained"
           color="primary"
           style={{
-            backgroundColor: isFull ? "grey" : currentColor,
+            backgroundColor: isFull
+              ? "grey"
+              : `rgba(${currentColor.r},${currentColor.g},${currentColor.b},${currentColor.a})`,
           }}
           disabled={isFull}
         >

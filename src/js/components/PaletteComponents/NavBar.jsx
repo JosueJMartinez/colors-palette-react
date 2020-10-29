@@ -45,7 +45,7 @@ function NavBar(props) {
           >
             <MenuItem value="hex">HEX - #ffffff</MenuItem>
             <MenuItem value="rgb">RGB - RGB(255,255,255)</MenuItem>
-            <MenuItem value="rgba">RGBA - RGB(255,255,255, 1.0)</MenuItem>
+            <MenuItem value="hsl">HSL - HSL(0,0%,100%,1)</MenuItem>
           </Select>
         </div>
       </nav>

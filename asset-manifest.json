@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/react-yahtzee/static/css/main.3a33e34e.chunk.css",
-    "main.js": "/react-yahtzee/static/js/main.f17bcea8.chunk.js",
-    "main.js.map": "/react-yahtzee/static/js/main.f17bcea8.chunk.js.map",
-    "runtime-main.js": "/react-yahtzee/static/js/runtime-main.a8e2b2bd.js",
-    "runtime-main.js.map": "/react-yahtzee/static/js/runtime-main.a8e2b2bd.js.map",
-    "static/css/2.0da342d8.chunk.css": "/react-yahtzee/static/css/2.0da342d8.chunk.css",
-    "static/js/2.8b9b98f7.chunk.js": "/react-yahtzee/static/js/2.8b9b98f7.chunk.js",
-    "static/js/2.8b9b98f7.chunk.js.map": "/react-yahtzee/static/js/2.8b9b98f7.chunk.js.map",
-    "index.html": "/react-yahtzee/index.html",
-    "precache-manifest.c616589eef949fefc75943061a7364b7.js": "/react-yahtzee/precache-manifest.c616589eef949fefc75943061a7364b7.js",
-    "service-worker.js": "/react-yahtzee/service-worker.js",
-    "static/css/2.0da342d8.chunk.css.map": "/react-yahtzee/static/css/2.0da342d8.chunk.css.map",
-    "static/css/main.3a33e34e.chunk.css.map": "/react-yahtzee/static/css/main.3a33e34e.chunk.css.map",
-    "static/js/2.8b9b98f7.chunk.js.LICENSE.txt": "/react-yahtzee/static/js/2.8b9b98f7.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/react-yahtzee/static/media/bg-tile.850989fb.png"
+    "main.css": "/colors-palette-react/static/css/main.8dec4154.chunk.css",
+    "main.js": "/colors-palette-react/static/js/main.9a8557b2.chunk.js",
+    "main.js.map": "/colors-palette-react/static/js/main.9a8557b2.chunk.js.map",
+    "runtime-main.js": "/colors-palette-react/static/js/runtime-main.f0f94cb8.js",
+    "runtime-main.js.map": "/colors-palette-react/static/js/runtime-main.f0f94cb8.js.map",
+    "static/css/2.0da342d8.chunk.css": "/colors-palette-react/static/css/2.0da342d8.chunk.css",
+    "static/js/2.8b9b98f7.chunk.js": "/colors-palette-react/static/js/2.8b9b98f7.chunk.js",
+    "static/js/2.8b9b98f7.chunk.js.map": "/colors-palette-react/static/js/2.8b9b98f7.chunk.js.map",
+    "index.html": "/colors-palette-react/index.html",
+    "precache-manifest.c78b80a5d9ac5bd609407ff31dd2771a.js": "/colors-palette-react/precache-manifest.c78b80a5d9ac5bd609407ff31dd2771a.js",
+    "service-worker.js": "/colors-palette-react/service-worker.js",
+    "static/css/2.0da342d8.chunk.css.map": "/colors-palette-react/static/css/2.0da342d8.chunk.css.map",
+    "static/css/main.8dec4154.chunk.css.map": "/colors-palette-react/static/css/main.8dec4154.chunk.css.map",
+    "static/js/2.8b9b98f7.chunk.js.LICENSE.txt": "/colors-palette-react/static/js/2.8b9b98f7.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/colors-palette-react/static/media/bg-tile.850989fb.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.a8e2b2bd.js",
+    "static/js/runtime-main.f0f94cb8.js",
     "static/css/2.0da342d8.chunk.css",
     "static/js/2.8b9b98f7.chunk.js",
-    "static/css/main.3a33e34e.chunk.css",
-    "static/js/main.f17bcea8.chunk.js"
+    "static/css/main.8dec4154.chunk.css",
+    "static/js/main.9a8557b2.chunk.js"
   ]
 }
